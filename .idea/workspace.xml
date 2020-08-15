@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="20e1c948-7ca9-4766-a16f-3169ea5b0426" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/database.php" afterPath="$PROJECT_DIR$/config/database.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yarn.lock" afterPath="$PROJECT_DIR$/yarn.lock" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,8 +71,8 @@
       <file leaf-file-name="database.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/database.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="47" column="38" lean-forward="false" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="38" />
+            <state relative-caret-position="271">
+              <caret line="55" column="48" lean-forward="false" selection-start-line="55" selection-start-column="47" selection-end-line="55" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -122,22 +122,6 @@
   </component>
   <component name="FrameworkCommandLineHistory">
     <commandsHistory>
-      <command text="php artisan cache:clear" />
-      <command text="php artisan config:clear" />
-      <command text="php artisan config:cache" />
-      <command text="heroku run bash " />
-      <command text="git push heroku master" />
-      <command text="npm i -g heroku" />
-      <command text="yarn add -g heroku" />
-      <command text="npm i -g heroku" />
-      <command text="$heroku login" />
-      <command text="scoop install heroku-cli" />
-      <command text="npm install heroku-cli" />
-      <command text="yarn" />
-      <command text="npm install heroku-cli" />
-      <command text="herokou" />
-      <command text="heroku run bash " />
-      <command text="npm i -g heroku" />
       <command text="yarn add heroku-cli" />
       <command text="heroku" />
       <command text="yarn add heroku-cli" />
@@ -147,6 +131,22 @@
       <command text="php artisan cache:clear" />
       <command text="php artisan config:clear" />
       <command text="php artisan config:cache" />
+      <command text="heroku run bash " />
+      <command text="heroku --version" />
+      <command text="npm install -g heroku" />
+      <command text="yarn add -g heroku" />
+      <command text="yarn add -g heroku-cli" />
+      <command text="yarn add -g heroku_cli" />
+      <command text="heroku --version" />
+      <command text="yarn add -g heroku-cli" />
+      <command text="yarn add -g heroku" />
+      <command text="yarn" />
+      <command text="heroku --version" />
+      <command text="php artisan cache:clear" />
+      <command text="php artisan config:clear" />
+      <command text="php artisan config:cache" />
+      <command text="heroku --version" />
+      <command text="heroku run bash " />
     </commandsHistory>
   </component>
   <component name="Git.Settings">
@@ -223,7 +223,7 @@
             <path>
               <item name="ibn_albalad" type="b2602c69:ProjectViewProjectNode" />
               <item name="ibn_albalad" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="node_modules" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -234,7 +234,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SintKarasAdministratiekantoor" />
     <property name="nodejs_interpreter_path" value="C:/Program Files (x86)/nodejs/node" />
   </component>
   <component name="RecentsManager">
@@ -301,19 +301,27 @@
       <option name="project" value="LOCAL" />
       <updated>1597499722966</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="pro">
+      <created>1597500872786</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1597500872787</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22083000" />
+    <option name="totallyTimeSpent" value="27496000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Command Line Tools Console" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48895898" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48895898" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -582,8 +590,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/database.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="47" column="38" lean-forward="false" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="38" />
+        <state relative-caret-position="271">
+          <caret line="55" column="48" lean-forward="false" selection-start-line="55" selection-start-column="47" selection-end-line="55" selection-end-column="48" />
           <folding />
         </state>
       </provider>
