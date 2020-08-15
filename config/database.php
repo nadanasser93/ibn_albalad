@@ -52,7 +52,7 @@ return [
             'username' => env('DB_USERNAME', 'faten12345678'),
             'password' => env('DB_PASSWORD', 'faten123456'),
             'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
+            'charset' => 'utf8',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'prefix_indexes' => true,
