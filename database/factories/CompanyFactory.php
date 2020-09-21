@@ -5,6 +5,9 @@
 use App\Models\City;
 use App\Models\Company;
 use Faker\Generator as Faker;
+
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /*
@@ -19,9 +22,13 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(Company::class, function (Faker $faker) {
+    $image = $faker->image();
+    $imageFile = new File($image);
     return [
         'company_name' => $faker->name,
          'address' => $faker->address,
+         'description' => $faker->sentence(10),
+         'image' => Storage::disk('public')->putFile('images', $imageFile),
          'city_id'=>City::all(['id'])->random(),
          'phone'=> $faker->phoneNumber,
     ];

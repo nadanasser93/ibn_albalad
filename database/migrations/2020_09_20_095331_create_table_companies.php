@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCompaniesTable extends Migration
+class CreateTableCompanies extends Migration
 {
     /**
      * Run the migrations.
@@ -16,11 +16,14 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('company_name');
-            $table->unsignedBigInteger('city_id')->nullable();
-            $table->string('address')->nullable();
-            $table->string('phone')->nullable();
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('bank_account')->nullable();
+            $table->text('description')->nullable();
+            $table->string('kvk',50)->nullable();
+            $table->string('btw',50)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

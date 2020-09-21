@@ -4,15 +4,37 @@ namespace App\Models;
 
 use Hamcrest\Thingy;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Company extends Model
+class Company extends BaseModel implements HasMedia
 {
-    protected $fillable=['company_name','city_id','address','phone'];
-    public function jobs()
+    use HasMediaTrait;
+    protected $fillable=['company_name','phone','email','bank_account','description','kvk','btw'];
+    protected $appends =['image'];
+    public function user()
     {
-        return $this->hasMany(Job::class,'company_id');
+        return $this->morphOne('App\User', 'userable');
     }
-    public function city(){
-        return $this->belongsTo(City::class,'city_id');
+    public function addresses()
+    {
+        return $this->hasMany(CityAddress::class,'company_id');//->withPivot('company_name', 'company_address','company_phone','company_description','image');
+    }
+    public function homes()
+    {
+        return $this->hasMany(Home::class,'home_id');
+    }
+    public function orders()
+    {
+        return $this->morphMany('App\Models\Order', 'orderable');
+    }
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('image')
+            ->singleFile();
+    }
+    public function getImageAttribute()
+    {
+        return $this->getFirstMedia('image');
     }
 }
