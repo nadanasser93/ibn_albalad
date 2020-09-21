@@ -10,7 +10,8 @@
                     Customer Profile
                 </p>
                 <form class="forms-sample" method="post" action="{{route('profile')}}" enctype="multipart/form-data">
-                    @csrf_field
+                    @csrf
+                    <input type="hidden" value="{{$user->id}}" name="user_id">
                     <div class="form-group">
                         <label for="exampleInputName1">Name</label>
                         <input type="text" name="customer_name" class="form-control" id="exampleInputName1" placeholder="Name">
@@ -22,7 +23,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName1">Phone</label>
-                        <input type="text" name="phone" class="form-control" id="exampleInputName1" placeholder="Name">
+                        <input type="text" name="phone" class="form-control" id="exampleInputName1" placeholder="Phone">
                         @error('phone')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -35,7 +36,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">@</div>
                             </div>
-                            <input type="email" name="email" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
+                            <input type="email" name="email" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Email">
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -62,14 +63,14 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputCity1">Bank Account</label>
-                        <input type="text" name="bank_account" class="form-control" id="exampleInputCity1" placeholder="Location">
+                        <input type="text" name="bank_account" class="form-control" id="exampleInputCity1" placeholder="Bank Account">
                     </div>
                     <div class="form-group">
                         <label for="exampleTextarea1">Textarea</label>
                         <textarea name="description" class="form-control" id="exampleTextarea1" rows="4"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
+                    
                 </form>
             </div>
         </div>
