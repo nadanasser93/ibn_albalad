@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Period;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 /**
  * App\Models\Subscription
@@ -14,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
  * @property string $name
  * @property string $description
  * @property int $most_chosen
+ * @property string $order_type
  * @property string $image
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -37,13 +41,28 @@ use Illuminate\Support\Facades\Auth;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subscription whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Subscription extends Model
+class Subscription extends BaseModel implements HasMedia
 {
+    use HasMediaTrait;
 
+    protected $fillable=['period_id','name','description','most_chosen','price_incl','price_excl','order_type'];
+    protected $appends =['image'];
+    public function period()
+    {
+        return $this->belongsTo(Period::class);
+    }
     public function user()
     {
         return $this->hasOne(User::class);
     }
-
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('image')
+            ->singleFile();
+    }
+    public function getImageAttribute()
+    {
+        return $this->getFirstMedia('image');
+    }
 
 }

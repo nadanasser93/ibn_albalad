@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -24,10 +25,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Period whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Period extends Model
+class Period extends BaseModel
 {
     //
-
+    protected $fillable=['name','number'];
     /*public function subscriptions()
     {
         return $this->hasMany(Subscription::class);
