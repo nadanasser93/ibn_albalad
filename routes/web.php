@@ -26,7 +26,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::name('webhooks.mollie')->post('webhooks/mollie', 'MollieWebhookController@handle');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('profile','Customer\CustomerController@profile')->middleware('auth');
 Route::post('profile_store','Customer\CustomerController@store')->name('profile')->middleware('auth');
