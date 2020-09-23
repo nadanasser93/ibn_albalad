@@ -42,9 +42,10 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin','middleware'=>'adm
 Auth::routes();
 Route::name('webhooks.mollie')->post('webhooks/mollie', 'MollieWebhookController@handle');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('profile', 'CustomerController@profile')->middleware('auth');
+Route::post('profile_store', 'CustomerController@store')->name('profile')->middleware('auth');
 Route::group(['prefix' => 'customer', 'namespace' => 'Customer','middleware'=>'customer'], function () {
-    Route::get('profile', 'CustomerController@profile');
-    Route::post('profile_store', 'CustomerController@store')->name('profile');
+
 
     Route::get('homes', 'HomeController@index')->name('homes.index');
     Route::get('/homes/create', 'HomeController@create')->name('homes.create');
