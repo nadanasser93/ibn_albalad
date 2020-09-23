@@ -6,8 +6,7 @@
 
     <!-- Links -->
     <ul class="navbar-nav">
-
-        <!-- Dropdown -->
+                <!-- Dropdown -->
         @if(\Auth::user()->hasRole('admin'))
             <li class="nav-item">
                 <a  class="nav-link" href="{{ route('periods.index') }}">{{ trans('admin.periods.name') }}</a>
@@ -15,6 +14,22 @@
         <li class="nav-item">
             <a  class="nav-link" href="{{ route('subscriptions.index') }}">{{ trans('admin.subscriptions.name') }}</a>
         </li>
+            @else
+            <li class="nav-item">
+                <a  class="nav-link" href="{{ route('profile') }}">{{ trans('global.profile') }}</a>
+            </li>
+            <li class="nav-item">
+                <a  class="nav-link" href="{{route('companies.index')}}">{{ trans('global.companies') }}</a>
+            </li>
+            <li class="nav-item">
+                <a  class="nav-link" href="#">{{ trans('global.house_excange') }}</a>
+            </li>
+            <li class="nav-item">
+                <a  class="nav-link" href="#">{{ trans('global.employee_state') }}</a>
+            </li>
+            <li class="nav-item">
+                <a  class="nav-link" href="#">{{ trans('global.order_employee') }}</a>
+            </li>
         @endif
 
     </ul>

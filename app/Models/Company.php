@@ -10,8 +10,8 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 class Company extends BaseModel implements HasMedia
 {
     use HasMediaTrait;
-    protected $fillable=['company_name','phone','email','bank_account','description','kvk','btw'];
-    protected $appends =['image'];
+    protected $fillable=['company_name','phone','email','bank_account','description','kvk','btw','name','street','house_number','post_code','city_id','customer_id'];
+    protected $appends =['image','photos'];
     public function user()
     {
         return $this->morphOne('App\User', 'userable');
@@ -30,10 +30,15 @@ class Company extends BaseModel implements HasMedia
     }
     public function registerMediaCollections()
     {
-        $this->addMediaCollection('image')
-            ->singleFile();
+        $this->addMediaCollection('image')->singleFile();;
+
+        $this->addMediaCollection('photos');
     }
-    public function getImageAttribute()
+    public function getPhotosAttribute()
+    {
+        return $this->getMedia('photos');
+    }
+    public function getMainImageAttribute()
     {
         return $this->getFirstMedia('image');
     }

@@ -9,7 +9,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 class Customer extends BaseModel implements HasMedia
 {
     use HasMediaTrait;
-    protected $fillable=['customer_name','phone','email','bank_account','description','gender'];
+    protected $fillable=['customer_name','phone','email','bank_account','description','gender','company_name','street','house_number','post_code','city_id'];
     protected $appends =['image'];
     public function user()
     {

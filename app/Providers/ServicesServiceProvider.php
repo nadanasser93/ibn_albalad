@@ -3,8 +3,12 @@
 namespace App\Providers;
 
 
+use App\Services\Company\CompanyService;
+use App\Services\Company\ICompanyService;
 use App\Services\Customer\CustomerService;
 use App\Services\Customer\ICustomerService;
+use App\Services\Home\HomeService;
+use App\Services\Home\IHomeService;
 use App\Services\Period\IPeriodService;
 use App\Services\Period\PeriodService;
 use App\Services\Subscription\ISubscriptionService;
@@ -27,12 +31,20 @@ class ServicesServiceProvider extends ServiceProvider
             CustomerService::class
         );
         $this->app->bind(
+            ICompanyService::class,
+            CompanyService::class
+        );
+        $this->app->bind(
             IPeriodService::class,
             PeriodService::class
         );
         $this->app->bind(
             ISubscriptionService::class,
             SubScriptionService::class
+        );
+        $this->app->bind(
+            IHomeService::class,
+            HomeService::class
         );
     }
 

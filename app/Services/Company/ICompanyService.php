@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Customer;
+namespace App\Services\Company;
 
-interface ICustomerService
+interface ICompanyService
 {
 
     /**

@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Services\Customer;
+namespace App\Services\Company;
 
-use App\Services\Customer\ICustomerService;
-use App\Models\Customer;
+use App\Models\Company;
+use App\Services\Company\ICompanyService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-class CustomerService implements ICustomerService
+class CompanyService implements ICompanyService
 {
 
-    protected $customer;
+    protected $company;
 
-    function __construct(Customer $customer) {
-        $this->customer = $customer;
+    function __construct(Company $company) {
+        $this->company = $company;
     }
     /**
     * get All Customers
@@ -21,7 +21,7 @@ class CustomerService implements ICustomerService
     * @return Collection<App\Models\Customer>
     */
     public function all(){
-        return Customer::query()->orderby('created_at','desc')->get();
+        return Company::query()->orderby('created_at','desc')->get();
     }
 
     /**
@@ -30,7 +30,7 @@ class CustomerService implements ICustomerService
     * @return App\Models\Customer
     */
     public function find($id){
-        return Customer::where('id',$id)->first();
+        return Company::where('id',$id)->first();
     }
     /**
     * Create new Customer
@@ -39,8 +39,8 @@ class CustomerService implements ICustomerService
     * @return App\Models\Customer
     */
     public function create($data){
-        $customer =  Customer::create($data);
-        return $customer;
+        $company =  Company::create($data);
+        return $company;
     }
 
     /**
@@ -51,11 +51,11 @@ class CustomerService implements ICustomerService
     * @return boolean
     */
     public function update($id, $data){
-        $customer = $this->find($id);
+        $company = $this->find($id);
 
-        $customer->update($data);
+        $company->update($data);
 
-        return $customer;
+        return $company;
     }
 
 
@@ -66,7 +66,7 @@ class CustomerService implements ICustomerService
     * @return boolean
     */
     public function delete($id){
-        return Customer::destroy($id);
+        return Company::destroy($id);
     }
 
 
