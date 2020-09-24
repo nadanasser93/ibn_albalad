@@ -1,4 +1,4 @@
-<div class="card-body" style="border: 1px lightgray">
+<div class="card-body" id="address{{$address->id}}del" style="border: 1px lightgray">
     <input type="hidden" name="address_id" value="{{$address->id}}">
     <div class="form-group">
         <label for="exampleInputName1">City</label>
@@ -28,4 +28,5 @@
            <label for="exampleInputName1">Post Code</label>
            <input type="text" name="post_code[]"  value="{{$address->post_code}}" class="form-control" id="exampleInputName1" placeholder="Post Code">
         </div>
+    <a href="#" class="btn btn-danger"  onclick="delaccount(event,{{$address->id}})">-</a>
     </div>

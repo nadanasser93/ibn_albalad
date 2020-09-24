@@ -22,53 +22,42 @@ class CustomerController extends Controller
     }
 
     public function profile(){
-        $user=Auth::user();
-        $cities=City::all();
-        if(Auth::user()->userable_type==Customer::class) {
+        $customer=Auth::user();
+       /* if(Auth::user()->userable_type==Customer::class) {
             $customer = $this->customer_service->find(auth()->user()->userable_id);
         }
         else if(Auth::user()->userable_type==Company::class)
             $customer = $this->company_service->find(auth()->user()->userable_id);
-        else $customer=null;
-        return view('customer.profile', compact('customer','user','cities'));
+        else $customer= new Customer();*/
+        return view('customer.profile', compact('customer'));
     }
     public function store(Request $request)
     {
-        if ($request['type'] == 'customer') {
+        $user = User::where('id',$request->user_id)->first();
+      //  dd($user);
             $request->validate([
-                'customer_name' => ['required', 'string', 'max:255'],
+              'customer_name' => ['required', 'string', 'max:255'],
+                'email' => 'required|email|unique:users,email,'.$user->id,
             ]);
-            if (Auth::user()->userable_type == Customer::class) {
-                $customer = $this->customer_service->update(Auth::user()->userable_id, $request->all());
-            } else
-                $customer = $this->customer_service->create($request->all());
-            $user = User::find($request->user_id);
-            $user->userable_type = "App\Models\Customer";
-            $user->userable_id = $customer->id;
-            $user->update();
-            $user->assignRole(User::USER_ROLE_CUSTOMER_USER);
-        }
-        else{
-            $request->validate([
-                'company_name' => ['required', 'string', 'max:255'],
-            ]);
-            if (Auth::user()->userable_type == Company::class) {
-                $company = $this->company_service->update(Auth::user()->userable_id, $request->all());
-            } else
-                $company = $this->company_service->create($request->all());
 
-            /*  if($request->hasFile('image')){
-                  $name =  $request->image->getClientOriginalName();
-                  $extension = $request->image->getClientOriginalExtension();
-                  $mdf5 = md5($name.'_'.time()).'.'.$extension;
-                  $customer->addMediaFromRequest('image')->usingFileName($mdf5)->withResponsiveImages()->toMediaCollection('image');
-              }*/
-          /*  $user = User::find($request->user_id);
-            $user->userable_type = "App\Models\Company";
-            $user->userable_id = $company->id;
+
+        if ($request['type'] == 'customer')
+            $request['customer_type']=1;
+          else
+              $request['customer_type']=2;
+
+
+
+        $user->userable_type = "App\Models\Customer";
+        $user->customer_name = $request->customer_name;
+        $user->company_name= $request->company_name;
+        $user->kvk= $request->kvk;
+        $user->phone= $request->phone;
+        $user->email= $request->email;
+        $user->customer_type= $request->customer_type;
+
             $user->update();
-            $user->assignRole(User::USER_ROLE_COMPANY_USER);*/
-        }
+
         return back();
     }
 }

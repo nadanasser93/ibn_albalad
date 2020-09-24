@@ -27,5 +27,5 @@
  '   <label for="exampleInputName1">Post Code</label>'+
  '   <input type="text" name="post_code[]"  value="" class="form-control" id="exampleInputName1" placeholder="Post Code">'+
 '</div>'+
-    '<a href="#" class="button button-red" style="    background: red;" onclick="remove(event)">-</a>' +
+    '<a href="#" class="btn btn-danger"   onclick="remove(event)">-</a>' +
 '</div>'

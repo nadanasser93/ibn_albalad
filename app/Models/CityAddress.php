@@ -14,10 +14,8 @@ class CityAddress extends BaseModel
     public function company(){
         return $this->belongsTo(Company::class,'company_id');
     }
-    public function customer(){
-        return $this->belongsTo(Customer::class,'customer_id');
-    }
+
     public function job(){
-        return $this->belongsTo(Customer::class,'job_id');
+        return $this->belongsTo(Job::class,'job_id');
     }
 }

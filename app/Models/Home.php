@@ -19,9 +19,7 @@ class Home extends BaseModel implements HasMedia
     public function company(){
         return $this->belongsTo(Company::class,'company_id');
     }
-    public function customer(){
-        return $this->belongsTo(Customer::class,'customer_id');
-    }
+
     public function registerMediaCollections()
     {
         $this->addMediaCollection('main_image')->singleFile();;

@@ -33,7 +33,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Main Image</label>
-                                <input type="file" name="image"  value="" class="form-control" id="exampleInputName1" placeholder="Phone">
+                                <input type="file" name="image"  value="" class="form-control" id="exampleInputName1">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputName1">Other Image</label>
+                                <input type="file" class="form-control" name="photos" multiple>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Description</label>
@@ -59,9 +63,9 @@
                                     <button type="button" id="add_address" class="btn btn-primary">
                                         Add New Address
                                     </button>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                        Add MAny Images
-                                    </button>
+                                   <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                        Add Any Images
+                                    </button>-->
 
                                 </div>
 
@@ -73,7 +77,7 @@
             </div>
         </div>
     </div>
-
+{{--@include('customer.companies.components.images',['company'=>null])--}}
 @endsection
 @push('footer-scripts')
 <script>

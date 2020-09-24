@@ -24,8 +24,8 @@ class CreateTableAddressesCityJob extends Migration
             $table->foreign('job_id')->references('id')->on('jobs');
             $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')->references('id')->on('companies');
-            $table->unsignedBigInteger('customer_id')->nullable();
-            $table->foreign('customer_id')->references('id')->on('customers');
+           // $table->unsignedBigInteger('customer_id')->nullable();
+           // $table->foreign('customer_id')->references('id')->on('customers');
             $table->timestamps();
             $table->softDeletes();
         });

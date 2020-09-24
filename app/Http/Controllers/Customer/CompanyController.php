@@ -8,6 +8,7 @@ use App\Models\CityAddress;
 use App\Models\Customer;
 use App\Models\Job;
 use App\Services\Company\ICompanyService;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,10 +22,10 @@ class CompanyController extends Controller
     }
     public function index()
     {
-        $customer=Auth::user()->userable;
+        $customer=Auth::user();
         //dd( $customer);
         $companies = $this->company_service->all();
-        $companies=$companies->where('customer_id',$customer->id);
+        $companies=$companies->where('user_id',$customer->id);
         return view('customer.companies.index',compact('companies'));
     }
 
@@ -35,8 +36,8 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        $customer=Auth::user()->userable;
-        $customer=Customer::find($customer->id);
+        $user=Auth::user();
+        $customer=User::find($user->id);
         $cities=City::all();
         $jobs=Job::all();
         return view('customer.companies.create',compact('customer','cities','jobs'));
@@ -53,7 +54,7 @@ class CompanyController extends Controller
 
         $company = $this->company_service->create([
             'company_name'=>$request->company_name,
-            'customer_id'=>$request->customer_id,
+            'user_id'=>$request->customer_id,
             'kvk'=>$request->kvk,
             'phone'=>$request->phone,
             'description'=>$request->description,
@@ -81,6 +82,14 @@ if($request->city!=null)
             $extension = $request->image->getClientOriginalExtension();
             $mdf5 = md5($name . '_' . time()) . '.' . $extension;
             $company->addMediaFromRequest('image')->usingFileName($mdf5)->withResponsiveImages()->toMediaCollection('image');
+        }
+        if ($request->hasFile('photos')) {
+            $fileAdders = $company->addMultipleMediaFromRequest(['photos'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('photos');
+
+                });
+            // }
         }
         return redirect()->route('companies.index');
     }
@@ -173,5 +182,10 @@ if($request->city!=null)
         //
         $this->company_service->delete($id);
         return \redirect()->back();
+    }
+    public function destroyAddress($id)
+    {
+        CityAddress::find($id)->delete($id);
+      //  return \redirect()->back();
     }
 }

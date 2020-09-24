@@ -95,7 +95,17 @@
                 tags: true
             });
         });
+        function remove(e){ //user click on remove text
+            e.preventDefault(); $('#address'+x).remove(); x--;
+        }
+        function delaccount(e,id){ //user click on remove text
+            e.preventDefault();
+            $.ajax({ url: '{{asset('customer/address/destroy/')}}/'+id, method: 'GET' })
+                .then(function (data) {
+                    $('#address'+id+'del').remove();
+                });
 
+        }
 
     </script>
 @endpush

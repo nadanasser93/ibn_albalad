@@ -8,22 +8,22 @@
                 <h4 class="card-title">Customer Profile</h4>
                 <form class="forms-sample" method="post" action="{{route('profile')}}" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" value="{{$user->id}}" name="user_id">
+                    <input type="hidden" value="{{$customer->id}}" name="user_id">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-1">  <label for="customer">Customer</label></div>
                             <div class="col-md-5">
 
-                                <input type="radio" name="type" class="form-control" id="customer" value="customer" placeholder="Name" checked></div>
+                                <input type="radio" name="type" class="form-control" id="customer" value="customer" placeholder="Name" {{$customer->customer_type==1?'checked':''}}></div>
                             <div class="col-md-1">  <label for="customer">Company</label></div>
                             <div class="col-md-5">
-                                 <input type="radio" name="type" class="form-control" id="company" value="company" placeholder="Name">
+                                 <input type="radio" name="type" class="form-control" id="company" value="company" placeholder="Name" {{$customer->customer_type==2?'checked':''}}>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group" id="kvk" style="display: none">
+                    <div class="form-group" id="kvk" style="{{$customer->customer_type==1?'display: none':'display: block'}}">
                         <label for="exampleInputName1">KVK</label>
-                        <input type="text" name="kvk" value="{{isset($customer)?$customer->kvk:''}}" class="form-control" id="exampleInputName1" placeholder="KVK">
+                        <input type="text" name="kvk" value="{{$customer->kvk}}" class="form-control" id="exampleInputName1" placeholder="KVK">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName1">Name</label>
@@ -43,26 +43,7 @@
                                     </span>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputName1">City</label>
-                        <select  name="city" class="form-control" id="exampleInputName1" >
-                            @foreach($cities as $city)
-                                <option value="{{$city->id}}" {{$customer->city_id==$city->id?'selected':''}}>{{$city->name}}</option>
-                             @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputName1">Street</label>
-                        <input type="text" name="street"  value="{{$customer->street}}" class="form-control" id="exampleInputName1" placeholder="Street">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputName1">House Number</label>
-                        <input type="text" name="house_number"  value="{{$customer->house_number}}" class="form-control" id="exampleInputName1" placeholder="House Number">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputName1">Post Code</label>
-                        <input type="text" name="post_code"  value="{{$customer->post_code}}" class="form-control" id="exampleInputName1" placeholder="Post Code">
-                    </div>
+
                     <div class="form-group">
                         <label for="exampleInputName1">Phone</label>
                         <input type="text" name="phone"  value="{{$customer->phone}}" class="form-control" id="exampleInputName1" placeholder="Phone">
@@ -74,6 +55,11 @@
                                 <div class="input-group-text">@</div>
                             </div>
                             <input type="email" name="email" value="{{$customer->email}}" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Email">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
                     </div>
                    <!-- <div class="form-group">

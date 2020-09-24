@@ -1,7 +1,8 @@
 <?php
 
+use App\Models\Period;
 use Illuminate\Database\Seeder;
-use App\Period;
+//use App\Period;
 use Carbon\Carbon;
 
 class SubscriptionsTableSeeder extends Seeder

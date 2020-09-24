@@ -43,7 +43,7 @@ Auth::routes();
 Route::name('webhooks.mollie')->post('webhooks/mollie', 'MollieWebhookController@handle');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('profile', 'Customer\CustomerController@profile')->middleware('auth');
-Route::post('profile_store', 'Customer\CustomerController@store')->name('profile')->middleware('auth');
+Route::post('profile_store', 'Customer\CustomerController@store')->name('profile');
 Route::group(['prefix' => 'customer', 'namespace' => 'Customer','middleware'=>'customer'], function () {
 
 
@@ -60,4 +60,5 @@ Route::group(['prefix' => 'customer', 'namespace' => 'Customer','middleware'=>'c
     Route::get('/companies/edit/{id}', 'CompanyController@edit')->name('companies.edit');
     Route::post('/companies/update/{id}', 'CompanyController@update')->name('companies.update');
     Route::get('/companies/destroy/{id}', 'CompanyController@destroy')->name('companies.destroy');
+    Route::get('/address/destroy/{id}', 'CompanyController@destroyAddress')->name('address.destroy');
 });

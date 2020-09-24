@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8234c16b4db62f791592d2f9bc531607",
+    "content-hash": "349ab29f3104662ebdce98498fd605f6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -105,6 +105,62 @@
             "time": "2020-08-18T23:57:15+00:00"
         },
         {
+            "name": "composer/ca-bundle",
+            "version": "1.2.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/ca-bundle.git",
+                "reference": "8a7ecad675253e4654ea05505233285377405215"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/8a7ecad675253e4654ea05505233285377405215",
+                "reference": "8a7ecad675253e4654ea05505233285377405215",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "ext-pcre": "*",
+                "php": "^5.3.2 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || 6.5 - 8",
+                "psr/log": "^1.0",
+                "symfony/process": "^2.5 || ^3.0 || ^4.0 || ^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\CaBundle\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "Lets you find a path to the system CA bundle, and includes a fallback to the Mozilla CA bundle.",
+            "keywords": [
+                "cabundle",
+                "cacert",
+                "certificate",
+                "ssl",
+                "tls"
+            ],
+            "time": "2020-08-23T12:54:47+00:00"
+        },
+        {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "v0.1.1",
             "source": {
@@ -136,6 +192,258 @@
             ],
             "description": "implementation of xdg base directory specification for php",
             "time": "2019-12-04T15:06:13+00:00"
+        },
+        {
+            "name": "doctrine/cache",
+            "version": "1.10.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/cache.git",
+                "reference": "13e3381b25847283a91948d04640543941309727"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/13e3381b25847283a91948d04640543941309727",
+                "reference": "13e3381b25847283a91948d04640543941309727",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.1 || ^8.0"
+            },
+            "conflict": {
+                "doctrine/common": ">2.2,<2.4"
+            },
+            "require-dev": {
+                "alcaeus/mongo-php-adapter": "^1.1",
+                "doctrine/coding-standard": "^6.0",
+                "mongodb/mongodb": "^1.1",
+                "phpunit/phpunit": "^7.0",
+                "predis/predis": "~1.0"
+            },
+            "suggest": {
+                "alcaeus/mongo-php-adapter": "Required to use legacy MongoDB driver"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.9.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\Cache\\": "lib/Doctrine/Common/Cache"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "PHP Doctrine Cache library is a popular cache implementation that supports many different drivers such as redis, memcache, apc, mongodb and others.",
+            "homepage": "https://www.doctrine-project.org/projects/cache.html",
+            "keywords": [
+                "abstraction",
+                "apcu",
+                "cache",
+                "caching",
+                "couchdb",
+                "memcached",
+                "php",
+                "redis",
+                "xcache"
+            ],
+            "time": "2020-07-07T18:54:01+00:00"
+        },
+        {
+            "name": "doctrine/dbal",
+            "version": "2.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/dbal.git",
+                "reference": "0d4e1a8b29dd987704842f0465aded378f441dca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/0d4e1a8b29dd987704842f0465aded378f441dca",
+                "reference": "0d4e1a8b29dd987704842f0465aded378f441dca",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/cache": "^1.0",
+                "doctrine/event-manager": "^1.0",
+                "ext-pdo": "*",
+                "php": "^7.3"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^8.1",
+                "jetbrains/phpstorm-stubs": "^2019.1",
+                "nikic/php-parser": "^4.4",
+                "phpstan/phpstan": "^0.12.40",
+                "phpunit/phpunit": "^9.3",
+                "psalm/plugin-phpunit": "^0.10.0",
+                "symfony/console": "^2.0.5|^3.0|^4.0|^5.0",
+                "vimeo/psalm": "^3.14.2"
+            },
+            "suggest": {
+                "symfony/console": "For helpful console commands such as SQL execution and import of files."
+            },
+            "bin": [
+                "bin/doctrine-dbal"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\DBAL\\": "lib/Doctrine/DBAL"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                }
+            ],
+            "description": "Powerful PHP database abstraction layer (DBAL) with many features for database schema introspection and management.",
+            "homepage": "https://www.doctrine-project.org/projects/dbal.html",
+            "keywords": [
+                "abstraction",
+                "database",
+                "db2",
+                "dbal",
+                "mariadb",
+                "mssql",
+                "mysql",
+                "oci8",
+                "oracle",
+                "pdo",
+                "pgsql",
+                "postgresql",
+                "queryobject",
+                "sasql",
+                "sql",
+                "sqlanywhere",
+                "sqlite",
+                "sqlserver",
+                "sqlsrv"
+            ],
+            "time": "2020-09-20T23:24:53+00:00"
+        },
+        {
+            "name": "doctrine/event-manager",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/event-manager.git",
+                "reference": "41370af6a30faa9dc0368c4a6814d596e81aba7f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/event-manager/zipball/41370af6a30faa9dc0368c4a6814d596e81aba7f",
+                "reference": "41370af6a30faa9dc0368c4a6814d596e81aba7f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1 || ^8.0"
+            },
+            "conflict": {
+                "doctrine/common": "<2.9@dev"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^6.0",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\": "lib/Doctrine/Common"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                },
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com"
+                }
+            ],
+            "description": "The Doctrine Event Manager is a simple PHP event system that was built to be used with the various Doctrine projects.",
+            "homepage": "https://www.doctrine-project.org/projects/event-manager.html",
+            "keywords": [
+                "event",
+                "event dispatcher",
+                "event manager",
+                "event system",
+                "events"
+            ],
+            "time": "2020-05-29T18:28:51+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -332,16 +640,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "2.1.20",
+            "version": "2.1.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "f46887bc48db66c7f38f668eb7d6ae54583617ff"
+                "reference": "563d0cdde5d862235ffe24a158497f4d490191b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/f46887bc48db66c7f38f668eb7d6ae54583617ff",
-                "reference": "f46887bc48db66c7f38f668eb7d6ae54583617ff",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/563d0cdde5d862235ffe24a158497f4d490191b5",
+                "reference": "563d0cdde5d862235ffe24a158497f4d490191b5",
                 "shasum": ""
             },
             "require": {
@@ -386,7 +694,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2020-09-06T13:44:32+00:00"
+            "time": "2020-09-19T14:37:56+00:00"
         },
         {
             "name": "fideloper/proxy",
@@ -992,16 +1300,16 @@
         },
         {
             "name": "laravel/ui",
-            "version": "v2.4.0",
+            "version": "v2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/ui.git",
-                "reference": "f5398544a9cd4804a42d09ce51735e37cd51ea2d"
+                "reference": "1c69ae3e8b52fe6c9eaf83b43c6dd8ef5c3f9e2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/ui/zipball/f5398544a9cd4804a42d09ce51735e37cd51ea2d",
-                "reference": "f5398544a9cd4804a42d09ce51735e37cd51ea2d",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/1c69ae3e8b52fe6c9eaf83b43c6dd8ef5c3f9e2c",
+                "reference": "1c69ae3e8b52fe6c9eaf83b43c6dd8ef5c3f9e2c",
                 "shasum": ""
             },
             "require": {
@@ -1043,7 +1351,7 @@
                 "laravel",
                 "ui"
             ],
-            "time": "2020-09-11T15:31:52+00:00"
+            "time": "2020-09-22T16:51:51+00:00"
         },
         {
             "name": "league/commonmark",
@@ -1262,16 +1570,16 @@
         },
         {
             "name": "league/mime-type-detection",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/mime-type-detection.git",
-                "reference": "fda190b62b962d96a069fcc414d781db66d65b69"
+                "reference": "ea2fbfc988bade315acd5967e6d02274086d0f28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/fda190b62b962d96a069fcc414d781db66d65b69",
-                "reference": "fda190b62b962d96a069fcc414d781db66d65b69",
+                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/ea2fbfc988bade315acd5967e6d02274086d0f28",
+                "reference": "ea2fbfc988bade315acd5967e6d02274086d0f28",
                 "shasum": ""
             },
             "require": {
@@ -1299,7 +1607,7 @@
                 }
             ],
             "description": "Mime-type detection for Flysystem",
-            "time": "2020-08-09T10:34:01+00:00"
+            "time": "2020-09-21T18:10:53+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
@@ -1361,6 +1669,185 @@
                 "zip"
             ],
             "time": "2019-07-17T11:01:58+00:00"
+        },
+        {
+            "name": "mollie/laravel-mollie",
+            "version": "v2.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mollie/laravel-mollie.git",
+                "reference": "8c59786f7724e38cf7666315144efa5d8a1ea972"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mollie/laravel-mollie/zipball/8c59786f7724e38cf7666315144efa5d8a1ea972",
+                "reference": "8c59786f7724e38cf7666315144efa5d8a1ea972",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "mollie/mollie-api-php": "^2.11",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "^5.5",
+                "laravel/socialite": "^4.0|^5.0",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^7.5|^8.0"
+            },
+            "suggest": {
+                "laravel/socialite": "Use Mollie Connect (OAuth) to authenticate via Laravel Socialite with the Mollie API. This is needed for some endpoints."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mollie\\Laravel\\MollieServiceProvider"
+                    ],
+                    "aliases": {
+                        "Mollie": "Mollie\\Laravel\\Facades\\Mollie"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mollie\\Laravel\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Mollie B.V.",
+                    "email": "info@mollie.com"
+                }
+            ],
+            "description": "Mollie API client wrapper for Laravel & Mollie Connect provider for Laravel Socialite",
+            "homepage": "https://github.com/mollie/laravel-mollie",
+            "keywords": [
+                "Apple Pay",
+                "Przelewy24",
+                "api",
+                "bancontact",
+                "banktransfer",
+                "belfius",
+                "belfius direct net",
+                "charges",
+                "creditcard",
+                "direct debit",
+                "gateway",
+                "ideal",
+                "laravel",
+                "lumen",
+                "mistercash",
+                "mollie",
+                "payment",
+                "payments",
+                "paypal",
+                "paysafecard",
+                "podiumcadeaukaart",
+                "recurring",
+                "refunds",
+                "sepa",
+                "service",
+                "socialite",
+                "sofort",
+                "sofortbanking",
+                "subscriptions"
+            ],
+            "time": "2020-09-08T17:00:21+00:00"
+        },
+        {
+            "name": "mollie/mollie-api-php",
+            "version": "v2.23.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mollie/mollie-api-php.git",
+                "reference": "bc44a7417a734b92a770213b9f0dc6642e7b5a3c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mollie/mollie-api-php/zipball/bc44a7417a734b92a770213b9f0dc6642e7b5a3c",
+                "reference": "bc44a7417a734b92a770213b9f0dc6642e7b5a3c",
+                "shasum": ""
+            },
+            "require": {
+                "composer/ca-bundle": "^1.1",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-openssl": "*",
+                "guzzlehttp/guzzle": "^6.3 || ^7.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "eloquent/liberator": "^2.0",
+                "phpunit/phpunit": "^5.7 || ^6.5 || ^7.1"
+            },
+            "suggest": {
+                "mollie/oauth2-mollie-php": "Use OAuth to authenticate with the Mollie API. This is needed for some endpoints. Visit https://docs.mollie.com/ for more information."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mollie\\Api\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Mollie B.V.",
+                    "email": "info@mollie.com"
+                }
+            ],
+            "description": "Mollie API client library for PHP. Mollie is a European Payment Service provider and offers international payment methods such as Mastercard, VISA, American Express and PayPal, and local payment methods such as iDEAL, Bancontact, SOFORT Banking, SEPA direct debit, Belfius Direct Net, KBC Payment Button and various gift cards such as Podiumcadeaukaart and fashioncheque.",
+            "homepage": "https://www.mollie.com/en/developers",
+            "keywords": [
+                "Apple Pay",
+                "CBC",
+                "Przelewy24",
+                "api",
+                "bancontact",
+                "banktransfer",
+                "belfius",
+                "belfius direct net",
+                "charges",
+                "creditcard",
+                "direct debit",
+                "fashioncheque",
+                "gateway",
+                "gift cards",
+                "ideal",
+                "inghomepay",
+                "intersolve",
+                "kbc",
+                "klarna",
+                "mistercash",
+                "mollie",
+                "paylater",
+                "payment",
+                "payments",
+                "paypal",
+                "paysafecard",
+                "podiumcadeaukaart",
+                "recurring",
+                "refunds",
+                "sepa",
+                "service",
+                "sliceit",
+                "sofort",
+                "sofortbanking",
+                "subscriptions"
+            ],
+            "time": "2020-09-17T13:56:43+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1491,16 +1978,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.40.0",
+            "version": "2.40.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "6c7646154181013ecd55e80c201b9fd873c6ee5d"
+                "reference": "d9a76d8b7eb0f97cf3a82529393245212f40ba3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/6c7646154181013ecd55e80c201b9fd873c6ee5d",
-                "reference": "6c7646154181013ecd55e80c201b9fd873c6ee5d",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d9a76d8b7eb0f97cf3a82529393245212f40ba3b",
+                "reference": "d9a76d8b7eb0f97cf3a82529393245212f40ba3b",
                 "shasum": ""
             },
             "require": {
@@ -1566,20 +2053,20 @@
                 "datetime",
                 "time"
             ],
-            "time": "2020-09-11T19:00:58+00:00"
+            "time": "2020-09-23T08:17:37+00:00"
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.10.0",
+            "version": "v4.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "1c13d05035deff45f1230ca68bd7d74d621762d9"
+                "reference": "1b479e7592812411c20c34d9ed33db3957bde66e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/1c13d05035deff45f1230ca68bd7d74d621762d9",
-                "reference": "1c13d05035deff45f1230ca68bd7d74d621762d9",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/1b479e7592812411c20c34d9ed33db3957bde66e",
+                "reference": "1b479e7592812411c20c34d9ed33db3957bde66e",
                 "shasum": ""
             },
             "require": {
@@ -1618,7 +2105,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2020-09-19T14:52:48+00:00"
+            "time": "2020-09-23T18:23:49+00:00"
         },
         {
             "name": "opis/closure",
@@ -1683,16 +2170,16 @@
         },
         {
             "name": "org_heigl/ghostscript",
-            "version": "2.3.1",
+            "version": "2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heiglandreas/Org_Heigl_Ghostscript.git",
-                "reference": "2bcd115f047589c28243a66e6bbea993fc91da21"
+                "reference": "fd73693a3f213427b585b45fa744c9cc60679f25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heiglandreas/Org_Heigl_Ghostscript/zipball/2bcd115f047589c28243a66e6bbea993fc91da21",
-                "reference": "2bcd115f047589c28243a66e6bbea993fc91da21",
+                "url": "https://api.github.com/repos/heiglandreas/Org_Heigl_Ghostscript/zipball/fd73693a3f213427b585b45fa744c9cc60679f25",
+                "reference": "fd73693a3f213427b585b45fa744c9cc60679f25",
                 "shasum": ""
             },
             "require-dev": {
@@ -1717,7 +2204,7 @@
                 }
             ],
             "description": "A PHP-Wrapper around the Ghostscript-CLI",
-            "time": "2018-02-22T08:37:21+00:00"
+            "time": "2020-09-23T05:00:00+00:00"
         },
         {
             "name": "paragonie/random_compat",

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnToCompanies extends Migration
+class ChangeComapnyColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,10 @@ class AddColumnToCompanies extends Migration
     public function up()
     {
         Schema::table('companies', function (Blueprint $table) {
-            $table->unsignedBigInteger('customer_id')->nullable();
-            $table->foreign('customer_id')->references('id')->on('customers');
+         //   $table->dropForeign('	companies_customer_id_foreign');
+        //    $table->dropColumn('customer_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
