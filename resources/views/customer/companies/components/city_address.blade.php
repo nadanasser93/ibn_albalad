@@ -1,4 +1,4 @@
-'<div class="card-body" style="border: 1px lightgray">'+
+'<div class="card-body" id="address'+x+'" style="border: 1px lightgray">'+
 '<div class="form-group">'+
     '<label for="exampleInputName1">City</label>'+
     '<select  name="city[]" class="js-example-tags form-control select2-hidden-accessible sel" id="sel'+x+'" >'+
@@ -27,4 +27,5 @@
  '   <label for="exampleInputName1">Post Code</label>'+
  '   <input type="text" name="post_code[]"  value="" class="form-control" id="exampleInputName1" placeholder="Post Code">'+
 '</div>'+
+    '<a href="#" class="button button-red" style="    background: red;" onclick="remove(event)">-</a>' +
 '</div>'

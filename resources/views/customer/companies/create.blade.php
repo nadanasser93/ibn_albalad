@@ -8,6 +8,7 @@
                     <div class="card-header">{{ __('global.companies.create') }}</div>
 
                     <div class="card-body">
+
                         <form method="POST" action="{{ route('companies.store') }}" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="customer_id" value="{{$customer->id}}">
@@ -58,6 +59,9 @@
                                     <button type="button" id="add_address" class="btn btn-primary">
                                         Add New Address
                                     </button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                        Add MAny Images
+                                    </button>
 
                                 </div>
 
@@ -88,6 +92,9 @@
         x++;
         $('#x').val(x);
     });
+    function remove(e){ //user click on remove text
+        e.preventDefault(); $('#address'+x).remove(); x--;
+    }
 
 
 </script>
