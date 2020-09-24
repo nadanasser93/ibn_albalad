@@ -14,21 +14,26 @@
                             <input type="hidden" name="x" value="">
                             <div class="form-group">
                                 <label for="exampleInputName1">Company Name</label>
-                                <input type="text" value="{{$company->company_name}}" name="company_name" class="form-control" id="exampleInputName1" placeholder="Company Name">
+                                <input type="text" value="{{$company->company_name}}" name="company_name" required class="form-control" id="exampleInputName1" placeholder="Company Name">
                                 @error('company_name')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group" id="kvk">
-                                <label for="exampleInputName1">KVK</label>
-                                <input type="text" name="kvk" value="{{$company->kvk}}" class="form-control" id="exampleInputName1" placeholder="KVK">
-                            </div>
 
                             <div class="form-group">
                                 <label for="exampleInputName1">Phone</label>
                                 <input type="text" name="phone"  value="{{$company->phone}}" class="form-control" id="exampleInputName1" placeholder="Phone">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputName1">Job</label>
+                                <select  name="job[]" class="form-control js-example-disabled sel" multiple="multiple" id="sel" >
+                                    @foreach($jobs as $key=>$job)
+                                        <option value="{{$job->id}}"{{in_array($job->id, $company->job)?'selected':''}}>{{$job->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Main Image</label>

@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Customer Profile</h4>
-                <form class="forms-sample" method="post" action="{{route('profile')}}" enctype="multipart/form-data">
+                <form class="forms-sample" method="post" action="{{route('profile_store')}}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" value="{{$customer->id}}" name="user_id">
                     <div class="form-group">

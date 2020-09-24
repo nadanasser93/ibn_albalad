@@ -6,7 +6,7 @@
             <th class="p-3">{{ trans('global.companies.main_image') }}</th>
             <th class="p-3">{{ trans('global.companies.company_name') }}</th>
             <th class="p-3">{{ trans('global.companies.description') }}</th>
-            <th class="p-3">{{ trans('global.companies.kvk') }}</th>
+            <!--<th class="p-3">{{ trans('global.companies.kvk') }}</th>-->
             <th class="p-3">{{ trans('global.companies.phone') }}</th>
             <th class="p-3">{{ trans('admin.companies.created_at') }}</th>
             <th class=""></th>
@@ -25,7 +25,7 @@
                 </td>
                 <td class="p-3">{{$company->company_name ?? ''}}</td>
                 <td class="p-3">{{$company->description ?? ''}}</td>
-                <td class="p-3">{{$company->kvk ?? ''}}</td>
+                <!--<td class="p-3">{{$company->kvk ?? ''}}</td>-->
                 <td class="p-3">{{$company->phone ?? ''}}</td>
                 <td class="p-3">{{$company->created_at}}</td>
 

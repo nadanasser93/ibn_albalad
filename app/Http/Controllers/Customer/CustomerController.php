@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Company;
-use App\Models\Customer;
+
 use App\Services\Company\ICompanyService;
 use App\Services\Customer\ICustomerService;
 use App\User;
@@ -13,11 +13,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class CustomerController extends Controller
 {
-    private $customer_service,$company_service;
+    private $company_service;
 
-    public function __construct(ICustomerService $customer_service,ICompanyService $company_service)
+    public function __construct(ICompanyService $company_service)
     {
-        $this->customer_service = $customer_service;
+       // $this->customer_service = $customer_service;
         $this->company_service = $company_service;
     }
 
@@ -33,6 +33,7 @@ class CustomerController extends Controller
     }
     public function store(Request $request)
     {
+
         $user = User::where('id',$request->user_id)->first();
       //  dd($user);
             $request->validate([
@@ -48,7 +49,7 @@ class CustomerController extends Controller
 
 
 
-        $user->userable_type = "App\Models\Customer";
+        $user->userable_type = "customer";
         $user->customer_name = $request->customer_name;
         $user->company_name= $request->company_name;
         $user->kvk= $request->kvk;

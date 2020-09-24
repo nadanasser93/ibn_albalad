@@ -1,6 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
+    <style>
+        .select2 {
+            width: 100%!important;
+        }
+    </style>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -9,27 +14,36 @@
 
                     <div class="card-body">
 
+
                         <form method="POST" action="{{ route('companies.store') }}" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="customer_id" value="{{$customer->id}}">
                             <input type="hidden" name="x" value="">
                             <div class="form-group">
                                 <label for="exampleInputName1">Company Name</label>
-                                <input type="text" value="{{$customer->company_name}}" name="company_name" class="form-control" id="exampleInputName1" placeholder="Company Name">
+                                <input type="text" value="{{$customer->company_name}}" required name="company_name" class="form-control" id="exampleInputName1" placeholder="Company Name">
                                 @error('company_name')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group" id="kvk">
+                           <!-- <div class="form-group" id="kvk">
                                 <label for="exampleInputName1">KVK</label>
                                 <input type="text" name="kvk" value="" class="form-control" id="exampleInputName1" placeholder="KVK">
-                            </div>
+                            </div>-->
 
                             <div class="form-group">
                                 <label for="exampleInputName1">Phone</label>
                                 <input type="text" name="phone"  value="" class="form-control" id="exampleInputName1" placeholder="Phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputName1">Job</label>
+                                <select  name="job[]" class="form-control js-example-basic-multiple js-states sel" multiple="multiple" id="sel" >
+                                    @foreach($jobs as $job)
+                                        <option value="{{$job->id}}">{{$job->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Main Image</label>
@@ -53,7 +67,37 @@
                                 </div>
                             </div>
 
-
+                            <div class="card-body" id="addressdel" style="border: 1px lightgray">
+                                <input type="hidden" name="address_id" value="">
+                                <div class="form-group">
+                                    <label for="exampleInputName1">City</label>
+                                    <select  name="city[]" class="form-control js-example-disabled sel" >
+                                        @foreach($cities as $city)
+                                            <option value="{{$city->id}}">{{$city->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                               <!-- <div class="form-group">
+                                    <label for="exampleInputName1">Job</label>
+                                    <select  name="job[]" class="form-control js-example-disabled sel" id="sel1" >
+                                        @foreach($jobs as $job)
+                                            <option value="{{$job->id}}">{{$job->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>-->
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Street</label>
+                                    <input type="text" name="street[]"  value="" class="form-control" id="exampleInputName1" placeholder="Street">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">House Number</label>
+                                    <input type="text" name="house_number[]"  value="" class="form-control" id="exampleInputName1" placeholder="House Number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Post Code</label>
+                                    <input type="text" name="post_code[]"  value="" class="form-control" id="exampleInputName1" placeholder="Post Code">
+                                </div>
+                            </div>
                             <div class="form-group row mb-0 mt-2 mb-1">
                                 <div class="col-md-12 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
@@ -95,6 +139,14 @@
 
         x++;
         $('#x').val(x);
+    });
+    $(document).ready(function() {
+        $("#sel").select2({
+            tags: true
+        });
+        $(".sel").select2({
+            tags: true
+        });
     });
     function remove(e){ //user click on remove text
         e.preventDefault(); $('#address'+x).remove(); x--;

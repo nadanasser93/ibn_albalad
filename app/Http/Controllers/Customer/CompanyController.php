@@ -51,7 +51,16 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        $jobs=[];
+        for($x=0;$x<count($request->job);$x++)
+        {
+            $job=Job::where('id',$request->job[$x])->first();
+            if($job==null) {
+                $job = Job::create(['name' => $request->job[$x]]);
 
+            }
+            array_push($jobs,$job->id);
+            }
         $company = $this->company_service->create([
             'company_name'=>$request->company_name,
             'user_id'=>$request->customer_id,
@@ -59,6 +68,7 @@ class CompanyController extends Controller
             'phone'=>$request->phone,
             'description'=>$request->description,
             'email'=>$request->email,
+            'job'=>$jobs,
         ]);
 if($request->city!=null)
         for($i=0;$i<count($request->city);$i++)
@@ -66,9 +76,6 @@ if($request->city!=null)
             $city=City::where('id',$request->city[$i])->first();
             if($city==null)
                 $city=City::create(['name'=>$request->city[$i]]);
-            $job=Job::where('id',$request->job[$i])->first();
-            if($job==null)
-                $job=Job::create(['name'=>$request->job[$i]]);
             $address=new CityAddress();
             $address->city_id=$city->id;
             $address->street=$request->street[$i];
@@ -132,13 +139,25 @@ if($request->city!=null)
      */
     public function update(Request $request, $id)
     {
-      //  dd($request->all());
+       $request->validate(['company_name'=>'required']);
+        $jobs=[];
+        for($x=0;$x<count($request->job);$x++)
+        {
+            $job=Job::where('id',$request->job[$x])->first();
+            if($job==null) {
+                $job = Job::create(['name' => $request->job[$x]]);
+
+            }
+            array_push($jobs,$job->id);
+        }
         $company = $this->company_service->update($id,[
             'company_name'=>$request->company_name,
+            'user_id'=>$request->customer_id,
             'kvk'=>$request->kvk,
             'phone'=>$request->phone,
             'description'=>$request->description,
             'email'=>$request->email,
+            'job'=>$jobs,
         ]);
       //  dd($company->addresses);
         if($request->city!=null)

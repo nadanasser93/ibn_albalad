@@ -2,20 +2,20 @@
     <input type="hidden" name="address_id" value="{{$address->id}}">
     <div class="form-group">
         <label for="exampleInputName1">City</label>
-        <select  name="city[]" class="form-control js-example-disabled sel" id="sel{{$address->id}}" >
+        <select  name="city[]" class=" js-example-tags form-control sel" id="sel{{$address->id}}" >
                 @foreach($cities as $city)
                    <option value="{{$city->id}}" {{$city->id==$address->city_id?'selected':''}}>{{$city->name}}</option>
                 @endforeach
             </select>
         </div>
-    <div class="form-group">
+   <!-- <div class="form-group">
         <label for="exampleInputName1">Job</label>
         <select  name="job[]" class="form-control js-example-disabled sel" id="sel{{$address->id}}1" >
                 @foreach($jobs as $job)
                    <option value="{{$job->id}}" {{$job->id==$address->job_id?'selected':''}}>{{$job->name}}</option>
                 @endforeach
             </select>
-        </div>
+        </div>-->
     <div class="form-group">
            <label for="exampleInputName1">Street</label>
           <input type="text" name="street[]"  value="{{$address->street}}" class="form-control" id="exampleInputName1" placeholder="Street">

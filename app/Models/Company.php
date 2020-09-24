@@ -10,8 +10,16 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 class Company extends BaseModel implements HasMedia
 {
     use HasMediaTrait;
-    protected $fillable=['company_name','phone','email','bank_account','description','kvk','btw','name','user_id'];
+    protected $fillable=['company_name','phone','email','job','bank_account','description','kvk','btw','name','user_id'];
     protected $appends =['image','photos'];
+
+    public function setJobAttribute($value)
+    {
+        $this->attributes['job'] = json_encode($value,JSON_UNESCAPED_UNICODE);
+    }
+    public function getJobAttribute($value){
+        return json_decode($value);
+    }
     public function user()
     {
         return $this->morphOne('App\User', 'userable');
