@@ -9,7 +9,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 class Home extends BaseModel implements HasMedia
 {
     use HasMediaTrait;
-    protected $fillable=['post_code','street','house_number','description','city_id','company_id','customer_id','change'];
+    protected $fillable=['post_code','street','house_number','description','city_id','company_id','change'];
 
     protected $appends = ['main_image','photos'];
 
@@ -32,6 +32,6 @@ class Home extends BaseModel implements HasMedia
     }
     public function getMainImageAttribute()
     {
-        return $this->getFirstMedia('main_image');
+        return $this->getFirstMedia('image');
     }
 }

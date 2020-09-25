@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\CityAddress;
+use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Job;
 use App\Services\Company\ICompanyService;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\MediaLibrary\Models\Media;
 
 class CompanyController extends Controller
 {
@@ -40,7 +42,11 @@ class CompanyController extends Controller
         $customer=User::find($user->id);
         $cities=City::all();
         $jobs=Job::all();
-        return view('customer.companies.create',compact('customer','cities','jobs'));
+        $company = $this->company_service->create([
+            'company_name'=>'created',
+        ]);
+
+        return view('customer.companies.create',compact('customer','cities','jobs','company'));
     }
 
     /**
@@ -61,7 +67,7 @@ class CompanyController extends Controller
             }
             array_push($jobs,$job->id);
             }
-        $company = $this->company_service->create([
+        $company = $this->company_service->update($request->company_id,[
             'company_name'=>$request->company_name,
             'user_id'=>$request->customer_id,
             'kvk'=>$request->kvk,
@@ -70,7 +76,7 @@ class CompanyController extends Controller
             'email'=>$request->email,
             'job'=>$jobs,
         ]);
-if($request->city!=null)
+         if($request->city!=null)
         for($i=0;$i<count($request->city);$i++)
         {
             $city=City::where('id',$request->city[$i])->first();
@@ -84,20 +90,8 @@ if($request->city!=null)
             $address->company_id=$company->id;
             $address->save();
         }
-        if($request->hasFile('image')) {
-            $name = $request->image->getClientOriginalName();
-            $extension = $request->image->getClientOriginalExtension();
-            $mdf5 = md5($name . '_' . time()) . '.' . $extension;
-            $company->addMediaFromRequest('image')->usingFileName($mdf5)->withResponsiveImages()->toMediaCollection('image');
-        }
-        if ($request->hasFile('photos')) {
-            $fileAdders = $company->addMultipleMediaFromRequest(['photos'])
-                ->each(function ($fileAdder) {
-                    $fileAdder->toMediaCollection('photos');
 
-                });
-            // }
-        }
+
         return redirect()->route('companies.index');
     }
 
@@ -129,7 +123,45 @@ if($request->city!=null)
         $jobs=Job::all();
         return view('customer.companies.edit',compact('company','cities','jobs'));
     }
+  public function uploadMainImage(Request $request,$id){
+        $company=Company::find($id);
+      if($request->hasFile('file')) {
+          $name = $request->file->getClientOriginalName();
+          $extension = $request->file->getClientOriginalExtension();
+          $mdf5 = md5($name . '_' . time()) . '.' . $extension;
+          $company->addMediaFromRequest('file')->usingFileName($mdf5)->withResponsiveImages()->toMediaCollection('image');
+      }
+  }
+    public function uploadOtherImage(Request $request,$id){
+        $company=Company::find($id);
+        if ($request->hasFile('files')) {
+            $fileAdders = $company->addMultipleMediaFromRequest(['files'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->withResponsiveImages()->toMediaCollection('photos');
 
+                });
+        }
+    }
+    public function deleteImage($id)
+    {
+        $image=Media::find($id)->delete();
+    }
+    public function updateImage(Request $request,$id)
+    {
+       // dd($request->all());
+
+        $image=Media::find($id);
+        $company=Company::find($request->company_id);
+
+
+            //$image->delete();
+            $name = $request->image->getClientOriginalName();
+            $extension = $request->image->getClientOriginalExtension();
+            $mdf5 = md5($name . '_' . time()) . '.' . $extension;
+            $company->addMediaFromRequest('image')->usingFileName($mdf5)->withResponsiveImages()->toMediaCollection('photos');
+
+
+    }
     /**
      * Update the specified resource in storage.
      *

@@ -22,7 +22,7 @@
                 <a  class="nav-link" href="{{route('companies.index')}}">{{ trans('global.companies') }}</a>
             </li>
             <li class="nav-item">
-                <a  class="nav-link" href="#">{{ trans('global.house_excange') }}</a>
+                <a  class="nav-link" href="{{route('homes.index')}}">{{ trans('global.house_excange') }}</a>
             </li>
             <li class="nav-item">
                 <a  class="nav-link" href="#">{{ trans('global.employee_state') }}</a>

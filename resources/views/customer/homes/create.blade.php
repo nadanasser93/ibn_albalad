@@ -1,74 +1,71 @@
 @extends('layouts.admin')
 
 @section('content')
+    <style>
+        .select2 {
+            width: 100%!important;
+        }
+    </style>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('admin.homes.create') }}</div>
+                    <div class="card-header">{{ __('global.homes.create') }}</div>
 
                     <div class="card-body">
+
+
                         <form method="POST" action="{{ route('homes.store') }}" enctype="multipart/form-data">
                             @csrf
 
-                            <div class="form-group row">
-                                <label for="nameAr" class="col-md-4 col-form-label text-md-right">{{ __('admin.homes.name.ar') }}</label>
+                            <input type="hidden" name="home_id" value="{{$home->id}}">
 
-                                <div class="col-md-6">
-                                    <input id="nameAr" type="text" class="form-control" name="name[ar]" value="{{ old('name.ar') }}" required autocomplete="name" autofocus>
-                                </div>
+                            <div class="form-group">
+                                <label for="exampleInputName1">Main Image</label>
+                                <div class="dropzone" id="main_photo"></div>
                             </div>
-                            <div class="form-group row">
-                                <label for="nameEn" class="col-md-4 col-form-label text-md-right">{{ __('admin.homes.name.nl') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="nameEn" type="text" class="form-control" name="name[nl]" value="{{ old('name.nl') }}" required autocomplete="name" autofocus>
-                                </div>
+                            <div class="form-group">
+                                <label for="exampleInputName1">Other Image</label>
+                                <div class="dropzone" id="dropzonefileupload"></div>
                             </div>
-
-                            <div class="form-group row">
-                                <label for="descriptionAr" class="col-md-4 col-form-label text-md-right">{{ __('admin.homes.description.ar') }}</label>
-
-                                <div class="col-md-6">
-                                    <textarea id="descriptionAr" class="form-control" name="description[ar]"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="descriptionNl" class="col-md-4 col-form-label text-md-right">{{ __('admin.homes.description.nl') }}</label>
-
-                                <div class="col-md-6">
-                                    <textarea id="descriptionNl" class="form-control" name="description[nl]"></textarea>
-                                </div>
+                            <div class="form-group">
+                                <label for="exampleInputName1">Description</label>
+                                <textarea   class="form-control" id="exampleInputName1" name="description"></textarea>
                             </div>
 
 
-                           <!-- <div class="form-group row">
-                                <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('admin.homes.main_image') }}</label>
+                            <div class="card-body" id="addressdel" style="border: 1px lightgray">
 
-                                <div class="col-md-6">
-                                   <input type="file" class="form-control" accept="images/*" name="image_file" id="image_file">
+                                <div class="form-group">
+                                    <label for="exampleInputName1">City</label>
+                                    <select  name="city" class="form-control js-example-disabled sel" >
+                                        @foreach($cities as $city)
+                                            <option value="{{$city->id}}">{{$city->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Street</label>
+                                    <input type="text" name="street"  value="" class="form-control" id="exampleInputName1" placeholder="Street">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">House Number</label>
+                                    <input type="text" name="house_number"  value="" class="form-control" id="exampleInputName1" placeholder="House Number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Post Code</label>
+                                    <input type="text" name="post_code"  value="" class="form-control" id="exampleInputName1" placeholder="Post Code">
                                 </div>
                             </div>
-                           <div class="form-group row">
-                            <label for="image_prview" class="col-md-4 col-form-label text-md-right">{{ __('admin.homes.main_image') }}</label>
-
-                            <div class="col-md-6">
-                                <div class="img-container">
-                                    <div class="content" id="image_preview_container">
-                                        <img src="{{ asset('/images/image_preview.jpg') }}" id="image_preview">
-                                    </div>
-                                </div>
-                            </div>
-                           </div>-->
-
-                            <div class="form-group row mb-0 mt-2">
+                            <div class="form-group row mb-0 mt-2 mb-1">
                                 <div class="col-md-12 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('button.general.save') }}
                                     </button>
-                                    <!--<a href="{{route('homes.index')}}" style="color: #fff!important"  class="btn btn-dark" type="submit">Back</a>-->
                                 </div>
+
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -79,34 +76,115 @@
 @endsection
 @push('footer-scripts')
 <script>
+    //var add_address= $("#add_address");
+    var x =0;
+    $(document).ready(function() {
+        $("#sel").select2({
+            tags: true
+        });
+        $(".sel").select2({
+            tags: true
+        });
+    });
 
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.readAsDataURL(input.files[0]);
+    Dropzone.autoDiscover = false;
+    $('#main_photo').dropzone({
+        url:"{{asset('customer/homes/upload_image/'.$home->id)}}",
+        paramName:'file',
+        autoDiscover:false,
+        uploadMultiple:false,
+        maxFiles:1,
+        maxFilessize:3, // MB
+        acceptedFiles:'image/*',
+        dictDefaultMessage:'Select Main Photo',
+        dictRemoveFile:'Delete',
+        params:{
+            _token:'{{ csrf_token() }}'
+        },
+        addRemoveLinks:true,
+        removedfile:function(file)
+        {
+            //file.fid
+            $.ajax({
+                dataType:'json',
+                type:'post',
+                url:'',
+                data:{_token:'{{ csrf_token() }}'}
+            });
+            var fmock;
+            return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
 
-            reader.onload = function (e) {
-                //.
-                $('#image_preview_container img')[0].src = e.target.result;
-                $('#image_preview_container img')[0].srcset = e.target.result;
-            }
+
+        },
+        init:function(){
+
+                @if(!empty($product->photo))
+            var mock = {name: '{{ $product->title }}',size: '',type: '' };
+            this.emit('addedfile',mock);
+            this.options.thumbnail.call(this,mock,'{{ url('storage/'.$product->photo) }}');
+            $('.dz-progress').remove();
+            @endif
+
+                this.on('sending',function(file,xhr,formData){
+                formData.append('fid','');
+                file.fid = '';
+            });
+
+            this.on('success',function(file,response){
+                file.fid = response.id;
+            });
+
+
         }
-    }
-    $("#image_file").on("change", function (e) {
+    });
+    $('#dropzonefileupload').dropzone({
+        url:"{{asset('customer/homes/upload_others/'.$home->id)}}",
+        paramName:'files',
+        autoDiscover:false,
+        uploadMultiple:false,
+        maxFiles:15,
+        maxFilessize:3, // MB
+        acceptedFiles:'image/*',
+        dictDefaultMessage:'Click Here To Upload Files',
+        dictRemoveFile:'{{ trans('admin.delete') }}',
+        addRemoveLinks: true,
+        params:{
+            _token:'{{ csrf_token() }}'
+        },
+        removedfile:function(file)
+        {
+            //file.fid
+            $.ajax({
+                dataType:'json',
+                type:'post',
+                url:'',
+                data:{_token:'{{ csrf_token() }}'}
+            });
+            var fmock;
+            return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
 
-        var count=1;
-        const maxAllowedSize = 2 ; // 2 MB
-        var file = e.currentTarget.files[0]; // puts all files into an array
-        var filesize = ((file.size/1024)/1024).toFixed(4); // MB
-        if(filesize > maxAllowedSize){
-            $('.alert-container').show()
-            $('.alert').addClass('bg-danger').append("max file size is 2 MB please upload a file less than 2 MB");
-        }else{
-            readURL(this);
-            $('.alert-container').hide()
+
+        },
+        init:function(){
+
+                @if(!empty($product->photo))
+            var mock = {name: '{{ $product->title }}',size: '',type: '' };
+            this.emit('addedfile',mock);
+            this.options.thumbnail.call(this,mock,'{{ url('storage/'.$product->photo) }}');
+            $('.dz-progress').remove();
+            @endif
+
+                this.on('sending',function(file,xhr,formData){
+                formData.append('fid','');
+                file.fid = '';
+            });
+
+            this.on('success',function(file,response){
+                file.fid = response.id;
+            });
+
 
         }
-
     });
 </script>
 @endpush

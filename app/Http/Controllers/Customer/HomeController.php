@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
-use App\Services\Customer\ICustomerService;
+use App\Models\City;
+use App\Models\CityAddress;
+use App\Models\Home;
+use App\Services\Home\IHomeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +14,7 @@ class HomeController extends Controller
 {
     private $home_service;
 
-    public function __construct(ICustomerService $home_service)
+    public function __construct(IHomeService $home_service)
     {
         $this->home_service = $home_service;
     }
@@ -20,7 +23,7 @@ class HomeController extends Controller
     {
 
         $homes = $this->home_service->all();
-        return view('customers.homes.index',compact('homes'));
+        return view('customer.homes.index',compact('homes'));
     }
 
     /**
@@ -28,10 +31,32 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function uploadMainImage(Request $request,$id){
+        $home=Home::find($id);
+        if($request->hasFile('file')) {
+            $name = $request->file->getClientOriginalName();
+            $extension = $request->file->getClientOriginalExtension();
+            $mdf5 = md5($name . '_' . time()) . '.' . $extension;
+            $home->addMediaFromRequest('file')->usingFileName($mdf5)->withResponsiveImages()->toMediaCollection('image');
+        }
+    }
+    public function uploadOtherImage(Request $request,$id){
+        $home=Home::find($id);
+        if ($request->hasFile('files')) {
+            $fileAdders = $home->addMultipleMediaFromRequest(['files'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->withResponsiveImages()->toMediaCollection('photos');
+
+                });
+        }
+    }
     public function create()
     {
+        $cities=City::all();
+        $home = $this->home_service->create([
 
-        return view('customers.homes.create');
+        ]);
+        return view('customer.homes.create',compact('cities','home'));
     }
 
     /**
@@ -42,8 +67,11 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        $request['customer_id']= Auth::user()->userable_id;
-        $home = $this->home_service->create($request->all());
+        $city=City::where('id',$request->city)->first();
+        if($city==null)
+            $city=City::create(['name'=>$request->city]);
+        $request['city_id']=$city->id;
+        $home = $this->home_service->update($request->home_id,$request->all());
         return redirect()->route('homes.index');
     }
 
@@ -57,7 +85,7 @@ class HomeController extends Controller
     {
         //
         $home= $this->home_service->find($id);
-        return view('customers.periods.show',compact('home'));
+        return view('customer.homes.show',compact('home'));
     }
 
     /**
@@ -68,9 +96,9 @@ class HomeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cities=City::all();
         $home = $this->home_service->find($id);
-        return view('admin.periods.edit',compact('home'));
+        return view('customer.homes.edit',compact('home','cities'));
     }
 
     /**
@@ -82,7 +110,10 @@ class HomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $city=City::where('id',$request->city)->first();
+        if($city==null)
+            $city=City::create(['name'=>$request->city]);
+        $request['city_id']=$city->id;
         $home = $this->home_service->update($id,$request->all());
 
         return redirect()->route('homes.index');

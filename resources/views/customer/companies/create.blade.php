@@ -18,6 +18,7 @@
                         <form method="POST" action="{{ route('companies.store') }}" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="customer_id" value="{{$customer->id}}">
+                            <input type="hidden" name="company_id" value="{{$company->id}}">
                             <input type="hidden" name="x" value="">
                             <div class="form-group">
                                 <label for="exampleInputName1">Company Name</label>
@@ -47,11 +48,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Main Image</label>
-                                <input type="file" name="image"  value="" class="form-control" id="exampleInputName1">
+                                <div class="dropzone" id="main_photo"></div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Other Image</label>
-                                <input type="file" class="form-control" name="photos" multiple>
+                                <div class="dropzone" id="dropzonefileupload"></div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Description</label>
@@ -151,8 +152,105 @@
     function remove(e){ //user click on remove text
         e.preventDefault(); $('#address'+x).remove(); x--;
     }
+    Dropzone.autoDiscover = false;
+    $('#main_photo').dropzone({
+        url:"{{asset('customer/companies/upload_image/'.$company->id)}}",
+        paramName:'file',
+        autoDiscover:false,
+        uploadMultiple:false,
+        maxFiles:1,
+        maxFilessize:3, // MB
+        acceptedFiles:'image/*',
+        dictDefaultMessage:'Select Main Photo',
+        dictRemoveFile:'Delete',
+        params:{
+            _token:'{{ csrf_token() }}'
+        },
+        addRemoveLinks:true,
+        removedfile:function(file)
+        {
+            //file.fid
+            $.ajax({
+                dataType:'json',
+                type:'post',
+                url:'',
+                data:{_token:'{{ csrf_token() }}'}
+            });
+            var fmock;
+            return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
 
 
+        },
+        init:function(){
+
+                @if(!empty($product->photo))
+            var mock = {name: '{{ $product->title }}',size: '',type: '' };
+            this.emit('addedfile',mock);
+            this.options.thumbnail.call(this,mock,'{{ url('storage/'.$product->photo) }}');
+            $('.dz-progress').remove();
+            @endif
+
+                this.on('sending',function(file,xhr,formData){
+                formData.append('fid','');
+                file.fid = '';
+            });
+
+            this.on('success',function(file,response){
+                file.fid = response.id;
+            });
+
+
+        }
+    });
+    $('#dropzonefileupload').dropzone({
+        url:"{{asset('customer/companies/upload_others/'.$company->id)}}",
+        paramName:'files',
+        autoDiscover:false,
+        uploadMultiple:false,
+        maxFiles:15,
+        maxFilessize:3, // MB
+        acceptedFiles:'image/*',
+        dictDefaultMessage:'Click Here To Upload Files',
+        dictRemoveFile:'{{ trans('admin.delete') }}',
+        addRemoveLinks: true,
+        params:{
+            _token:'{{ csrf_token() }}'
+        },
+        removedfile:function(file)
+        {
+            //file.fid
+            $.ajax({
+                dataType:'json',
+                type:'post',
+                url:'',
+                data:{_token:'{{ csrf_token() }}'}
+            });
+            var fmock;
+            return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
+
+
+        },
+        init:function(){
+
+                @if(!empty($product->photo))
+            var mock = {name: '{{ $product->title }}',size: '',type: '' };
+            this.emit('addedfile',mock);
+            this.options.thumbnail.call(this,mock,'{{ url('storage/'.$product->photo) }}');
+            $('.dz-progress').remove();
+            @endif
+
+                this.on('sending',function(file,xhr,formData){
+                formData.append('fid','');
+                file.fid = '';
+            });
+
+            this.on('success',function(file,response){
+                file.fid = response.id;
+            });
+
+
+        }
+    });
 </script>
 @endpush
 

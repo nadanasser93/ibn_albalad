@@ -53,6 +53,8 @@ Route::group(['prefix' => 'customer', 'namespace' => 'Customer','middleware'=>'c
     Route::get('/homes/edit/{id}', 'HomeController@edit')->name('homes.edit');
     Route::post('/homes/update/{id}', 'HomeController@update')->name('homes.update');
     Route::get('/homes/destroy/{id}', 'HomeController@destroy')->name('homes.destroy');
+    Route::post('/homes/upload_image/{id}', 'HomeController@uploadMainImage')->name('homes.upload');
+    Route::post('/homes/upload_others/{id}', 'HomeController@uploadOtherImage')->name('homes.upload_others');
 
     Route::get('companies', 'CompanyController@index')->name('companies.index');
     Route::get('/companies/create', 'CompanyController@create')->name('companies.create');
@@ -61,4 +63,8 @@ Route::group(['prefix' => 'customer', 'namespace' => 'Customer','middleware'=>'c
     Route::post('/companies/update/{id}', 'CompanyController@update')->name('companies.update');
     Route::get('/companies/destroy/{id}', 'CompanyController@destroy')->name('companies.destroy');
     Route::get('/address/destroy/{id}', 'CompanyController@destroyAddress')->name('address.destroy');
+    Route::post('/companies/upload_image/{id}', 'CompanyController@uploadMainImage')->name('companies.upload');
+    Route::post('/companies/upload_others/{id}', 'CompanyController@uploadOtherImage')->name('companies.upload_others');
+    Route::get('/companies/deleteImage/{id}', 'CompanyController@deleteImage')->name('companies.deleteImage');
+    Route::post('/updateImage/{id}', 'CompanyController@updateImage')->name('companies.updateImage');
 });
