@@ -10,39 +10,36 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('global.homes.create') }}</div>
+                    <div class="card-header">{{ __('global.employees.create') }}</div>
 
                     <div class="card-body">
 
 
-                        <form method="POST" action="{{ route('homes.store') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('employees.store') }}" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="user_id" value="{{$user->id}}">
-                            <input type="hidden" name="home_id" value="{{$home->id}}">
+                            <input type="hidden" name="employee_id" value="{{$employee->id}}">
+                            <div class="form-group">
+                                <label for="exampleInputName1">Title</label>
+                                <input type="text" name="title"  value="" class="form-control" id="exampleInputName1" placeholder="Title">
+                            </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Phone</label>
                                 <input type="text" name="phone"  value="" class="form-control" id="exampleInputName1" placeholder="Phone">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputName1">Area</label>
-                                <input type="text" name="area"  value="" class="form-control" id="exampleInputName1" placeholder="Area">
+                                <label for="exampleInputName1">Email</label>
+                                <input type="text" name="email"  value="" class="form-control" id="exampleInputName1" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputName1">Rooms Count</label>
-                                <input type="text" name="rooms_count"  value="" class="form-control" id="exampleInputName1" placeholder="Rooms Count">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputName1">House Type</label>
-                                <input type="text" name="house_type"  value="" class="form-control" id="exampleInputName1" placeholder="House Type">
+                                <label for="exampleInputName1">Contacter Name</label>
+                                <input type="text" name="contactor_name"  value="" class="form-control" id="exampleInputName1" placeholder="Contacter Name">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Main Image</label>
                                 <div class="dropzone" id="main_photo"></div>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputName1">Other Image</label>
-                                <div class="dropzone" id="dropzonefileupload"></div>
-                            </div>
+
                             <div class="form-group">
                                 <label for="exampleInputName1">Description</label>
                                 <textarea   class="form-control" id="exampleInputName1" name="description"></textarea>
@@ -104,7 +101,7 @@
 
     Dropzone.autoDiscover = false;
     $('#main_photo').dropzone({
-        url:"{{asset('customer/homes/upload_image/'.$home->id)}}",
+        url:"{{asset('customer/employees/upload_image/'.$employee->id)}}",
         paramName:'file',
         autoDiscover:false,
         uploadMultiple:false,
@@ -142,13 +139,7 @@
                 }
 
             });
-            {{--@php  $file=\Spatie\MediaLibrary\Models\Media::latest()->first() @endphp
-                @if(!empty($company->main_image))
-            var mock = {name: '{{ $company->title }}',size: '',type: '' };
-            this.emit('addedfile',mock);
-            this.options.thumbnail.call(this,mock,'{{ url($company->main_image->getFullUrl()) }}');
-            $('.dz-progress').remove();
-            @endif--}}
+
 
                 this.on('sending',function(file,xhr,formData){
                 formData.append('fid','');
@@ -162,55 +153,7 @@
 
         }
     });
-    $('#dropzonefileupload').dropzone({
-        url:"{{asset('customer/homes/upload_others/'.$home->id)}}",
-        paramName:'files',
-        autoDiscover:false,
-        uploadMultiple:false,
-        maxFiles:5,
-        maxFilessize:3, // MB
-        acceptedFiles:'image/*',
-        dictDefaultMessage:'Click Here To Upload Files',
-        dictRemoveFile:'{{ trans('admin.delete') }}',
-        addRemoveLinks: true,
-        params:{
-            _token:'{{ csrf_token() }}'
-        },
-        removedfile:function(file)
-        {
-            //file.fid
-            $.ajax({
-                dataType:'json',
-                type:'post',
-                url:'',
-                data:{_token:'{{ csrf_token() }}'}
-            });
-            var fmock;
-            return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
 
-
-        },
-        init:function(){
-
-                @if(!empty($product->photo))
-            var mock = {name: '{{ $product->title }}',size: '',type: '' };
-            this.emit('addedfile',mock);
-            this.options.thumbnail.call(this,mock,'{{ url('storage/'.$product->photo) }}');
-            $('.dz-progress').remove();
-            @endif
-
-                this.on('sending',function(file,xhr,formData){
-                formData.append('fid','');
-                file.fid = '';
-            });
-
-            this.on('success',function(file,response){
-                file.fid = response.id;
-            });
-
-
-        }
-    });
 </script>
 @endpush
 

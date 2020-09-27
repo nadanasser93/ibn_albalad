@@ -7,6 +7,8 @@ use App\Services\Company\CompanyService;
 use App\Services\Company\ICompanyService;
 use App\Services\Customer\CustomerService;
 use App\Services\Customer\ICustomerService;
+use App\Services\Employee\EmployeeService;
+use App\Services\Employee\IEmployeeService;
 use App\Services\Home\HomeService;
 use App\Services\Home\IHomeService;
 use App\Services\Period\IPeriodService;
@@ -29,6 +31,10 @@ class ServicesServiceProvider extends ServiceProvider
         $this->app->bind(
             ICustomerService::class,
             CustomerService::class
+        );
+        $this->app->bind(
+            IEmployeeService::class,
+            EmployeeService::class
         );
         $this->app->bind(
             ICompanyService::class,

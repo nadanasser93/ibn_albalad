@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-sm">
     <div class="container">
     <!-- Brand -->
-    <a class="navbar-brand" style="margin-top: -1.5em;" href="{{route('home')}}"><img src="{{asset('frontend/images/Logo.png')}}"  style="width: 100px"></a>
+    <a class="navbar-brand" style="margin-top: -1.5em;" href="{{route('home')}}">Ibn ALbalad</a>
 
     <!-- Links -->
     <ul class="navbar-nav">
@@ -25,7 +25,7 @@
                 <a  class="nav-link" href="{{route('homes.index')}}">{{ trans('global.house_excange') }}</a>
             </li>
             <li class="nav-item">
-                <a  class="nav-link" href="#">{{ trans('global.employee_state') }}</a>
+                <a  class="nav-link" href="{{route('employees.index')}}">{{ trans('global.employee_state') }}</a>
             </li>
             <li class="nav-item">
                 <a  class="nav-link" href="#">{{ trans('global.order_employee') }}</a>

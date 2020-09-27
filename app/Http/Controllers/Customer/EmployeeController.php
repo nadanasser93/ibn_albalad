@@ -5,27 +5,31 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\CityAddress;
-use App\Models\Home;
-use App\Services\Home\IHomeService;
+use App\Models\Employee;
+use App\Services\Employee\IEmployeeService;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class EmployeeController extends Controller
 {
-    private $home_service;
+    private $employee_service;
 
-    public function __construct(IHomeService $home_service)
+    public function __construct(IEmployeeService $employee_service)
     {
-        $this->home_service = $home_service;
+        $this->employee_service = $employee_service;
     }
 
     public function index()
     {
         $user=Auth::user();
-        $homes = $this->home_service->all();
-        $homes=$homes->where('user_id',$user->id);
-        return view('customer.homes.index',compact('homes'));
+        $employees = $this->employee_service->all();
+       /* $enp=Employee::where('title','')->get();
+        foreach ($enp as $com)
+            $com->delete();*/
+
+        $employees=$employees->where('user_id',$user->id);
+        return view('customer.employees.index',compact('employees'));
     }
 
     /**
@@ -34,33 +38,24 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function uploadMainImage(Request $request,$id){
-        $home=Home::find($id);
+        $employees=Employee::find($id);
         if($request->hasFile('file')) {
             $name = $request->file->getClientOriginalName();
             $extension = $request->file->getClientOriginalExtension();
             $mdf5 = md5($name . '_' . time()) . '.' . $extension;
-            $home->addMediaFromRequest('file')->usingFileName($mdf5)->withResponsiveImages()->toMediaCollection('image');
+            $employees->addMediaFromRequest('file')->usingFileName($mdf5)->withResponsiveImages()->toMediaCollection('employee_image');
         }
     }
-    public function uploadOtherImage(Request $request,$id){
-        $home=Home::find($id);
-        if ($request->hasFile('files')) {
-            $fileAdders = $home->addMultipleMediaFromRequest(['files'])
-                ->each(function ($fileAdder) {
-                    $fileAdder->withResponsiveImages()->toMediaCollection('photos');
 
-                });
-        }
-    }
     public function create()
     {
         $cities=City::all();
         $user=Auth::user();
         $user=User::find($user->id);
-        $home = $this->home_service->create([
+        $employee = $this->employee_service->create([
 
         ]);
-        return view('customer.homes.create',compact('cities','home','user'));
+        return view('customer.employees.create',compact('cities','employee','user'));
     }
 
     /**
@@ -77,8 +72,8 @@ class HomeController extends Controller
         if($city!=null)
         $request['city_id']=$city->id;
         $request['user_id']=$request->user_id;
-        $home = $this->home_service->update($request->home_id,$request->all());
-        return redirect()->route('homes.index');
+        $employee = $this->employee_service->update($request->employee_id,$request->all());
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -90,8 +85,8 @@ class HomeController extends Controller
     public function show($id)
     {
         //
-        $home= $this->home_service->find($id);
-        return view('customer.homes.show',compact('home'));
+        $employee= $this->employee_service->find($id);
+        return view('customer.employees.show',compact('employee'));
     }
 
     /**
@@ -104,8 +99,8 @@ class HomeController extends Controller
     {
         $cities=City::all();
 
-        $home = $this->home_service->find($id);
-        return view('customer.homes.edit',compact('home','cities'));
+        $employee = $this->employee_service->find($id);
+        return view('customer.employees.edit',compact('employee','cities'));
     }
 
     /**
@@ -122,9 +117,9 @@ class HomeController extends Controller
             $city=City::create(['name'=>$request->city]);
         if($city!=null)
         $request['city_id']=$city->id;
-        $home = $this->home_service->update($id,$request->all());
+        $employee = $this->employee_service->update($id,$request->all());
 
-        return redirect()->route('homes.index');
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -136,7 +131,7 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
-        $this->home_service->delete($id);
+        $this->employee_service->delete($id);
         return \redirect()->back();
     }
 }

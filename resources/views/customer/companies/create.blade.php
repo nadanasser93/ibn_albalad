@@ -6,8 +6,22 @@
             width: 100%!important;
         }
     </style>
+
     <div class="container">
+        @if (session('messg'))
+        <div class="alert done bg-success alert-dismissible w-100" role="alert" style="color:#fff">
+
+
+                    {{ session('messg') }}
+
+
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        @endif
         <div class="row justify-content-center">
+
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('global.companies.create') }}</div>
@@ -169,26 +183,36 @@
         addRemoveLinks:true,
         removedfile:function(file)
         {
-            //file.fid
             $.ajax({
                 dataType:'json',
-                type:'post',
-                url:'',
-                data:{_token:'{{ csrf_token() }}'}
+                type:'get',
+                url: '{{ asset('customer/companies/deleteImage') }}/'+file.fid,
+               // data:{_token:'{{ csrf_token() }}',id:file.fid}
             });
             var fmock;
             return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
 
 
+
         },
         init:function(){
 
-                @if(!empty($product->photo))
-            var mock = {name: '{{ $product->title }}',size: '',type: '' };
+            this.on("addedfile", function (file) {
+
+                if (this.files.length > 1) {
+                    console.log(this.files)
+                    alert("You can Select upto 1 Pictures for Venue Profile.", "error");
+                    this.removeFile(this.files[0]);
+                }
+
+            });
+            {{--@php  $file=\Spatie\MediaLibrary\Models\Media::latest()->first() @endphp
+                @if(!empty($company->main_image))
+            var mock = {name: '{{ $company->title }}',size: '',type: '' };
             this.emit('addedfile',mock);
-            this.options.thumbnail.call(this,mock,'{{ url('storage/'.$product->photo) }}');
+            this.options.thumbnail.call(this,mock,'{{ url($company->main_image->getFullUrl()) }}');
             $('.dz-progress').remove();
-            @endif
+            @endif--}}
 
                 this.on('sending',function(file,xhr,formData){
                 formData.append('fid','');
@@ -207,7 +231,7 @@
         paramName:'files',
         autoDiscover:false,
         uploadMultiple:false,
-        maxFiles:15,
+        maxFiles:5,
         maxFilessize:3, // MB
         acceptedFiles:'image/*',
         dictDefaultMessage:'Click Here To Upload Files',

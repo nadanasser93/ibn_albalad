@@ -18,7 +18,7 @@ Route::get('cache',function()
     $exitCode = Artisan::call('cache:clear');
     $exitCode = Artisan::call('config:clear');
     $exitCode = Artisan::call('config:cache');
-    //$exitCode = Artisan::call('storage:link');
+    $exitCode = Artisan::call('storage:link');
 
 });
 Route::get('/', function () {
@@ -55,6 +55,15 @@ Route::group(['prefix' => 'customer', 'namespace' => 'Customer','middleware'=>'c
     Route::get('/homes/destroy/{id}', 'HomeController@destroy')->name('homes.destroy');
     Route::post('/homes/upload_image/{id}', 'HomeController@uploadMainImage')->name('homes.upload');
     Route::post('/homes/upload_others/{id}', 'HomeController@uploadOtherImage')->name('homes.upload_others');
+
+    Route::get('employees', 'EmployeeController@index')->name('employees.index');
+    Route::get('/employees/create', 'EmployeeController@create')->name('employees.create');
+    Route::post('/employees/store', 'EmployeeController@store')->name('employees.store');
+    Route::get('/employees/edit/{id}', 'EmployeeController@edit')->name('employees.edit');
+    Route::post('/employees/update/{id}', 'EmployeeController@update')->name('employees.update');
+    Route::get('/employees/destroy/{id}', 'EmployeeController@destroy')->name('employees.destroy');
+    Route::post('/employees/upload_image/{id}', 'EmployeeController@uploadMainImage')->name('employees.upload');
+
 
     Route::get('companies', 'CompanyController@index')->name('companies.index');
     Route::get('/companies/create', 'CompanyController@create')->name('companies.create');

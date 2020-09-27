@@ -25,7 +25,10 @@ class CompanyController extends Controller
     public function index()
     {
         $customer=Auth::user();
-        //dd( $customer);
+       /* $coms=Company::where('company_name','created')->get();
+        foreach ($coms as $com)
+            $com->delete();*/
+
         $companies = $this->company_service->all();
         $companies=$companies->where('user_id',$customer->id);
         return view('customer.companies.index',compact('companies'));
@@ -42,6 +45,7 @@ class CompanyController extends Controller
         $customer=User::find($user->id);
         $cities=City::all();
         $jobs=Job::all();
+
         $company = $this->company_service->create([
             'company_name'=>'created',
         ]);
@@ -58,15 +62,20 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         $jobs=[];
-        for($x=0;$x<count($request->job);$x++)
-        {
-            $job=Job::where('id',$request->job[$x])->first();
-            if($job==null) {
-                $job = Job::create(['name' => $request->job[$x]]);
+        if(isset($request->job))
+            if(count($request->job)<=3) {
+           // dd($request->job);
+                for ($x = 0; $x < count($request->job); $x++) {
+                    $job = Job::where('id', $request->job[$x])->first();
+                    if ($job == null) {
+                        $job = Job::create(['name' => $request->job[$x]]);
 
+                    }
+                    array_push($jobs, $job->id);
+                }
             }
-            array_push($jobs,$job->id);
-            }
+            else
+                return redirect()->back()->with('messg',"You Can Select Only Three Jobs");
         $company = $this->company_service->update($request->company_id,[
             'company_name'=>$request->company_name,
             'user_id'=>$request->customer_id,
@@ -80,9 +89,10 @@ class CompanyController extends Controller
         for($i=0;$i<count($request->city);$i++)
         {
             $city=City::where('id',$request->city[$i])->first();
-            if($city==null)
+            if($city==null&&$request->city!=null)
                 $city=City::create(['name'=>$request->city[$i]]);
             $address=new CityAddress();
+            if($city!=null)
             $address->city_id=$city->id;
             $address->street=$request->street[$i];
             $address->house_number=$request->house_number[$i];
@@ -173,18 +183,23 @@ class CompanyController extends Controller
     {
        $request->validate(['company_name'=>'required']);
         $jobs=[];
-        for($x=0;$x<count($request->job);$x++)
-        {
-            $job=Job::where('id',$request->job[$x])->first();
-            if($job==null) {
-                $job = Job::create(['name' => $request->job[$x]]);
+        if(isset($request->job))
+            if(count($request->job)<=3) {
+              //  dd($request->job);
+                for ($x = 0; $x < count($request->job); $x++) {
+                    $job = Job::where('id', $request->job[$x])->first();
+                    if ($job == null) {
+                        $job = Job::create(['name' => $request->job[$x]]);
 
+                    }
+                    array_push($jobs, $job->id);
+                }
             }
-            array_push($jobs,$job->id);
-        }
+            else
+        return redirect()->back()->with('messg',"You Can Select Only Three Jobs");
         $company = $this->company_service->update($id,[
             'company_name'=>$request->company_name,
-            'user_id'=>$request->customer_id,
+           // 'user_id'=>$request->customer_id,
             'kvk'=>$request->kvk,
             'phone'=>$request->phone,
             'description'=>$request->description,
@@ -196,7 +211,7 @@ class CompanyController extends Controller
             for($i=0;$i<count($request->city);$i++)
             {
                 $city=City::where('id',$request->city[$i])->first();
-                if($city==null)
+                if($city==null&&$request->city!=null)
                     $city=City::create(['name'=>$request->city[$i]]);
                 $job=Job::where('id',$request->job[$i])->first();
                 if($job==null)
@@ -205,8 +220,9 @@ class CompanyController extends Controller
                 $address=new CityAddress();
                 else
                 $address=CityAddress::find($request->address_id);
+                if($city!=null)
                 $address->city_id=$city->id;
-                $address->job_id=$job->id;
+               // $address->job_id=$job->id;
                 $address->street=$request->street[$i];
                 $address->house_number=$request->house_number[$i];
                 $address->post_code=$request->post_code[$i];

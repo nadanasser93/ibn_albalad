@@ -1,3 +1,8 @@
+<style>
+    .fa,.fas{
+        color: #000!important;
+    }
+</style>
 <div class="row overflow-auto w-100 ">
     <table id="users" class="table table table-bordered display w-100 ">
 
@@ -21,7 +26,9 @@
 
             <tr>
                 <td class="p-3">
-                 {{$company->main_image}}
+                    @if($company->main_image&&$company->main_image->getFullUrl()!=null)
+                    <img style="max-height: 300px" id="{{$company->main_image->id}}" class="image"  src="{{str_replace('storage','public/storage',$company->main_image->getFullUrl()) }}" />
+@endif
                 </td>
                 <td class="p-3">{{$company->company_name ?? ''}}</td>
                 <td class="p-3">{{$company->description ?? ''}}</td>
@@ -30,8 +37,8 @@
                 <td class="p-3">{{$company->created_at}}</td>
 
 
-                <td class=" p-2" ><a href="{{ route('companies.edit',$company) }}"><i class="fas fa-edit"></i></a></td>
-                <td class=" p-2" ><a href="{{ route('companies.destroy' ,$company) }}"><i class="fas fa-trash"></i></a> </td>
+                <td class=" p-2" ><a href="{{ route('companies.edit',$company) }}" style="color: black!important;"><i class="fas fa-edit" style="color: black!important;"></i></a></td>
+                <td class=" p-2" ><a href="{{ route('companies.destroy' ,$company) }}" style="color: black!important;"><i class="fas fa-trash" style="color: black!important;"></i></a> </td>
 
             </tr>
         @endforeach

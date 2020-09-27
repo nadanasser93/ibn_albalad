@@ -6,39 +6,23 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('global.companies.create') }}</div>
+                    <div class="card-header">{{ __('global.employees.create') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('homes.update',$home) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('employees.update',$employee) }}" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
-                                <label for="exampleInputName1">Phone</label>
-                                <input type="text" name="phone"  value="{{$home->phone}}" class="form-control" id="exampleInputName1" placeholder="Phone">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputName1">Area</label>
-                                <input type="text" name="area"  value="{{$home->area}}" class="form-control" id="exampleInputName1" placeholder="Area">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputName1">Rooms Count</label>
-                                <input type="text" name="rooms_count"  value="{{$home->rooms_count}}" class="form-control" id="exampleInputName1" placeholder="Rooms Count">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputName1">House Type</label>
-                                <input type="text" name="house_type"  value="{{$home->house_type}}" class="form-control" id="exampleInputName1" placeholder="House Type">
-                            </div>
-                            @if($home->main_image&&$home->main_image->getFullUrl()!=null)
+                            @if($employee->employee_image&&$employee->employee_image->getFullUrl()!=null)
                             <div class="card-body ">
-                                <div class="col-12 image-item" data-order="" id="{{$home->main_image->id}}">
+                                <div class="col-12 image-item" data-order="" id="{{$employee->employee_image->id}}">
                                     <div class=" overlay">
 
-                                        <img style="max-height: 300px" id="{{$home->main_image->id}}" class="image"  src="{{str_replace('storage','public/storage',$home->main_image->getFullUrl())}}" />
+                                        <img style="max-height: 300px" id="{{$employee->employee_image->id}}" class="image"  src="{{str_replace('storage','public/storage',$employee->employee_image->getFullUrl()) }}" />
 
                                         <div class="middle row ml-1" >
 
-                                            <a class="fancybox-thumb btn btn-dark" rel="fancybox-thumb" href="{{ $home->main_image->getFullUrl() }}"  style="margin-top: 0.5em;"><i class="fa fa-eye"></i></a>
-                                            <!--<a class=" btn btn-dark" data-toggle="modal" onclick="croppi('photo','{{$home->main_image->getFullUrl()}}')" data-target="#editImage" style="margin-top: 0.5em;color: #fff"><i class="fa fa-edit"></i></a>-->
-                                            <a class=" btn btn-dark"  onclick="im_delete('{{$home->main_image->id}}')"   style="margin-top: 0.5em;color: #fff"><i class="fa fa-trash"></i></a>
+                                            <a class="fancybox-thumb btn btn-dark" rel="fancybox-thumb" href="{{ $employee->employee_image->getFullUrl() }}"  style="margin-top: 0.5em;"><i class="fa fa-eye"></i></a>
+                                            <!--<a class=" btn btn-dark" data-toggle="modal" onclick="croppi('photo','{{$employee->employee_image->getFullUrl()}}')" data-target="#editImage" style="margin-top: 0.5em;color: #fff"><i class="fa fa-edit"></i></a>-->
+                                            <a class=" btn btn-dark"  onclick="im_delete('{{$employee->employee_image->id}}')"   style="margin-top: 0.5em;color: #fff"><i class="fa fa-trash"></i></a>
 
                                         </div>
                                     </div>
@@ -49,33 +33,25 @@
                                 <label for="exampleInputName1">Main Image</label>
                                 <div class="dropzone" id="main_photo"></div>
                             </div>
-                            <div class="row">
-                            @foreach($home->photos as $image)
-                                <div class="col-4 image-item" data-order="" id="{{$image->id}}">
-                                    <div class="overlay mx-3 my-3" style="width: 200px;height: 200px;">
-
-                                        <img id="{{$image->id}}" class="image"  src="{{ str_replace('storage','public/storage',$image->getFullUrl())}}"  style="width: 200px;height: 200px;" />
-
-
-
-                                        <div class="middle row ml-1">
-
-                                            <a class="fancybox-thumb btn btn-dark" rel="fancybox-thumb" href="{{ $image->getFullUrl() }}"  style="margin-top: 0.5em;"><i class="fa fa-eye"></i></a>
-                                           <!-- <a class=" btn btn-dark" data-toggle="modal" onclick="croppi('photo','{{ $image->getFullUrl() }}')" data-target="#editImage" style="margin-top: 0.5em;color: #fff"><i class="fa fa-edit"></i></a>-->
-                                            <a class=" btn btn-dark"  onclick="im_delete('{{$image->id}}')"   style="margin-top: 0.5em;color: #fff"><i class="fa fa-trash"></i></a>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
+                            <div class="form-group">
+                                <label for="exampleInputName1">Title</label>
+                                <input type="text" name="title"  value="{{$employee->title}}" class="form-control" id="exampleInputName1" placeholder="Title">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputName1">Other Image</label>
-                                <div class="dropzone" id="dropzonefileupload"></div>
+                                <label for="exampleInputName1">Phone</label>
+                                <input type="text" name="phone"  value="{{$employee->phone}}" class="form-control" id="exampleInputName1" placeholder="Phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputName1">Email</label>
+                                <input type="text" name="email"  value="{{$employee->email}}" class="form-control" id="exampleInputName1" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputName1">Contacter Name</label>
+                                <input type="text" name="contactor_name"  value="{{$employee->contactor_name}}" class="form-control" id="exampleInputName1" placeholder="Contacter Name">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Description</label>
-                                <textarea   class="form-control" id="exampleInputName1" name="description">{{$home->description}}</textarea>
+                                <textarea   class="form-control" id="exampleInputName1" name="description">{{$employee->description}}</textarea>
                             </div>
 
                             <div class="card-body" id="addressdel" style="border: 1px lightgray">
@@ -84,21 +60,21 @@
                                     <label for="exampleInputName1">City</label>
                                     <select  name="city" class="form-control js-example-disabled sel" >
                                         @foreach($cities as $city)
-                                            <option value="{{$city->id}}" {{$home->city_id==$city->id?'selected':''}}>{{$city->name}}</option>
+                                            <option value="{{$city->id}}" {{$employee->city_id==$city->id?'selected':''}}>{{$city->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputName1">Street</label>
-                                    <input type="text" name="street"  value="{{$home->street}}" class="form-control" id="exampleInputName1" placeholder="Street">
+                                    <input type="text" name="street"  value="{{$employee->street}}" class="form-control" id="exampleInputName1" placeholder="Street">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputName1">House Number</label>
-                                    <input type="text" name="house_number"  value="{{$home->house_number}}" class="form-control" id="exampleInputName1" placeholder="House Number">
+                                    <input type="text" name="house_number"  value="{{$employee->house_number}}" class="form-control" id="exampleInputName1" placeholder="House Number">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputName1">Post Code</label>
-                                    <input type="text" name="post_code"  value="{{$home->post_code}}" class="form-control" id="exampleInputName1" placeholder="Post Code">
+                                    <input type="text" name="post_code"  value="{{$employee->post_code}}" class="form-control" id="exampleInputName1" placeholder="Post Code">
                                 </div>
                             </div>
                             <div class="form-group row mb-0 mt-2 mb-1">
@@ -166,7 +142,7 @@
         });
         Dropzone.autoDiscover = false;
         $('#main_photo').dropzone({
-            url:"{{asset('customer/homes/upload_image/'.$home->id)}}",
+            url:"{{asset('customer/employees/upload_image/'.$employee->id)}}",
             paramName:'file',
             autoDiscover:false,
             uploadMultiple:false,
@@ -179,65 +155,6 @@
                 _token:'{{ csrf_token() }}'
             },
             addRemoveLinks:true,
-            removedfile:function(file)
-            {
-                //file.fid
-                $.ajax({
-                    dataType:'json',
-                    type:'post',
-                    url:'',
-                    data:{_token:'{{ csrf_token() }}'}
-                });
-                var fmock;
-                return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
-
-
-            },
-            init:function(){
-
-                this.on("addedfile", function (file) {
-
-                    if (this.files.length > 1) {
-                        console.log(this.files)
-                        alert("You can Select upto 1 Pictures for Venue Profile.", "error");
-                        this.removeFile(this.files[0]);
-                    }
-
-                });
-                {{--@php  $file=\Spatie\MediaLibrary\Models\Media::latest()->first() @endphp
-                    @if(!empty($company->main_image))
-                var mock = {name: '{{ $company->title }}',size: '',type: '' };
-                this.emit('addedfile',mock);
-                this.options.thumbnail.call(this,mock,'{{ url($company->main_image->getFullUrl()) }}');
-                $('.dz-progress').remove();
-                @endif--}}
-
-                    this.on('sending',function(file,xhr,formData){
-                    formData.append('fid','');
-                    file.fid = '';
-                });
-
-                this.on('success',function(file,response){
-                    file.fid = response.id;
-                });
-
-
-            }
-        });
-        $('#dropzonefileupload').dropzone({
-            url:"{{asset('customer/homes/upload_others/'.$home->id)}}",
-            paramName:'files',
-            autoDiscover:false,
-            uploadMultiple:false,
-            maxFiles:5,
-            maxFilessize:3, // MB
-            acceptedFiles:'image/*',
-            dictDefaultMessage:'Click Here To Upload Files',
-            dictRemoveFile:'{{ trans('admin.delete') }}',
-            addRemoveLinks: true,
-            params:{
-                _token:'{{ csrf_token() }}'
-            },
             removedfile:function(file)
             {
                 $.ajax({
@@ -254,12 +171,15 @@
             },
             init:function(){
 
-                    @if(!empty($home->main_image))
-                var mock = {name: '{{ $home->title }}',size: '',type: '' };
-                this.emit('addedfile',mock);
-                this.options.thumbnail.call(this,mock,'{{ url($home->main_image->getFullUrl()) }}');
-                $('.dz-progress').remove();
-                @endif
+                this.on("addedfile", function (file) {
+
+                    if (this.files.length > 1) {
+                        console.log(this.files)
+                        alert("You can Select upto 1 Pictures for Venue Profile.", "error");
+                        this.removeFile(this.files[0]);
+                    }
+
+                });
 
                     this.on('sending',function(file,xhr,formData){
                     formData.append('fid','');
@@ -273,6 +193,7 @@
 
             }
         });
+
         function im_delete(id){
             $.ajax({
                 url: '{{ asset('customer/companies/deleteImage') }}/'+id,
@@ -323,7 +244,7 @@
                 $.ajax({
                     url: '{{ asset('customer/updateImage') }}/'+id,
                     type: 'post',
-                    data: {"image": response, _token: _token,"'company_id":{{$home->id}} },
+                    data: {"image": response, _token: _token,"'company_id":{{$employee->id}} },
                     dataType: "json",
                     success: function (data) {
                         console.log(data)

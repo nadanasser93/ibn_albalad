@@ -3,6 +3,18 @@
 @section('content')
 
     <div class="container">
+        @if (session('messg'))
+        <div class="alert done bg-success alert-dismissible w-100" role="alert" style="color:#fff">
+
+
+                    {{ session('messg') }}
+
+
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        @endif
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -36,11 +48,12 @@
                                     @endforeach
                                 </select>
                             </div>
+                            @if($company->main_image&&$company->main_image->getFullUrl()!=null)
                             <div class="card-body ">
-                                <div class="col-12 image-item" data-order="" id="{{$company->main_image->id}}">
+                                <div class="col-12 image-item" data-order="" id="">
                                     <div class=" overlay">
 
-                                        <img style="max-height: 300px" id="{{$company->main_image->id}}" class="image"  src="{{$company->main_image->getFullUrl() }}" />
+                                        <img style="max-height: 300px" id="{{$company->main_image->id}}" class="image"  src="{{str_replace('storage','public/storage',$company->main_image->getFullUrl()) }}" />
 
                                         <div class="middle row ml-1" >
 
@@ -52,6 +65,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                             <div class="form-group">
                                 <label for="exampleInputName1">Main Image</label>
                                 <div class="dropzone" id="main_photo"></div>
@@ -61,7 +75,7 @@
                                 <div class="col-4 image-item" data-order="" id="{{$image->id}}">
                                     <div class="overlay mx-3 my-3" style="width: 200px;height: 200px;">
 
-                                        <img id="{{$image->id}}" class="image"  src="{{$image->getFullUrl() }}"  style="width: 200px;height: 200px;" />
+                                        <img id="{{$image->id}}" class="image"  src="{{str_replace('storage','public/storage',$image->getFullUrl()) }}"  style="width: 200px;height: 200px;" />
 
 
 
@@ -206,21 +220,36 @@
             addRemoveLinks:true,
             removedfile:function(file)
             {
-                //file.fid
                 $.ajax({
                     dataType:'json',
-                    type:'post',
-                    url:'',
-                    data:{_token:'{{ csrf_token() }}'}
+                    type:'get',
+                    url: '{{ asset('customer/companies/deleteImage') }}/'+file.fid,
+                    // data:{_token:'{{ csrf_token() }}',id:file.fid}
                 });
                 var fmock;
                 return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
 
 
+
             },
             init:function(){
 
+                this.on("addedfile", function (file) {
 
+                    if (this.files.length > 1) {
+                        console.log(this.files)
+                        alert("You can Select upto 1 Pictures for Venue Profile.", "error");
+                        this.removeFile(this.files[0]);
+                    }
+
+                });
+                {{--@php  $file=\Spatie\MediaLibrary\Models\Media::latest()->first() @endphp
+                    @if(!empty($company->main_image))
+                var mock = {name: '{{ $company->title }}',size: '',type: '' };
+                this.emit('addedfile',mock);
+                this.options.thumbnail.call(this,mock,'{{ url($company->main_image->getFullUrl()) }}');
+                $('.dz-progress').remove();
+                @endif--}}
 
                     this.on('sending',function(file,xhr,formData){
                     formData.append('fid','');
@@ -229,7 +258,6 @@
 
                 this.on('success',function(file,response){
                     file.fid = response.id;
-                    window.location.reload();
                 });
 
 
@@ -240,7 +268,7 @@
             paramName:'files',
             autoDiscover:false,
             uploadMultiple:false,
-            maxFiles:15,
+            maxFiles:5,
             maxFilessize:3, // MB
             acceptedFiles:'image/*',
             dictDefaultMessage:'Click Here To Upload Files',
