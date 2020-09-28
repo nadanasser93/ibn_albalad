@@ -59,7 +59,7 @@
                         {{ __('Logout') }}
                     </a>
 
-                    <form id="logoutForm" action="{{ '/'.app()->getLocale().'/logout' }}" method="POST" style="display: none;">
+                    <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                 </div>

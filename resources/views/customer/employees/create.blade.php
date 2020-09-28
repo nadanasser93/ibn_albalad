@@ -1,11 +1,9 @@
-@extends('layouts.admin')
 
-@section('content')
-    <style>
-        .select2 {
-            width: 100%!important;
-        }
-    </style>
+<style>
+    .select2 {
+        width: 100%!important;
+    }
+</style>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -15,10 +13,10 @@
                     <div class="card-body">
 
 
-                        <form method="POST" action="{{ route('employees.store') }}" enctype="multipart/form-data">
+                        <form method="POST" id="employee_form" action="{{ route('employees.store') }}" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="user_id" value="{{$user->id}}">
-                            <input type="hidden" name="employee_id" value="{{$employee->id}}">
+                            <input type="hidden" name="user_id" value="{{$customer!=null?$customer->id:''}}">
+                            <input type="hidden" name="employee_id" value="">
                             <div class="form-group">
                                 <label for="exampleInputName1">Title</label>
                                 <input type="text" name="title"  value="" class="form-control" id="exampleInputName1" placeholder="Title">
@@ -37,7 +35,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Main Image</label>
-                                <div class="dropzone" id="main_photo"></div>
+                                <div class="dropzone" id="main_photo1"></div>
                             </div>
 
                             <div class="form-group">
@@ -71,7 +69,7 @@
                             </div>
                             <div class="form-group row mb-0 mt-2 mb-1">
                                 <div class="col-md-12 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary" onclick="stepper1.next()">
                                         {{ __('button.general.save') }}
                                     </button>
                                 </div>
@@ -85,7 +83,6 @@
         </div>
     </div>
 
-@endsection
 @push('footer-scripts')
 <script>
     //var add_address= $("#add_address");
@@ -100,60 +97,22 @@
     });
 
     Dropzone.autoDiscover = false;
-    $('#main_photo').dropzone({
-        url:"{{asset('customer/employees/upload_image/'.$employee->id)}}",
-        paramName:'file',
-        autoDiscover:false,
-        uploadMultiple:false,
-        maxFiles:1,
-        maxFilessize:3, // MB
-        acceptedFiles:'image/*',
-        dictDefaultMessage:'Select Main Photo',
-        dictRemoveFile:'Delete',
-        params:{
-            _token:'{{ csrf_token() }}'
-        },
-        addRemoveLinks:true,
-        removedfile:function(file)
-        {
-            $.ajax({
-                dataType:'json',
-                type:'get',
-                url: '{{ asset('customer/companies/deleteImage') }}/'+file.fid,
-                // data:{_token:'{{ csrf_token() }}',id:file.fid}
-            });
-            var fmock;
-            return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
 
+    $("#employee_form").submit(function(event){
+        event.preventDefault();  // this prevents the form from submitting
+     //   var post_url = $(this).attr("action"); //get form action url
+        var post_url="{{asset('customer/employees/store/')}}/"+employee_id
+        var request_method = $(this).attr("method"); //get form GET/POST method
+        var form_data = $(this).serialize(); //Encode form elements for submission
 
-
-        },
-        init:function(){
-
-            this.on("addedfile", function (file) {
-
-                if (this.files.length > 1) {
-                    console.log(this.files)
-                    alert("You can Select upto 1 Pictures for Venue Profile.", "error");
-                    this.removeFile(this.files[0]);
-                }
-
-            });
-
-
-                this.on('sending',function(file,xhr,formData){
-                formData.append('fid','');
-                file.fid = '';
-            });
-
-            this.on('success',function(file,response){
-                file.fid = response.id;
-            });
-
-
-        }
+        $.ajax({
+            url : post_url,
+            type: request_method,
+            data : form_data
+        }).done(function(response){ //
+         //   swal('Data Saved Successfully');
+        });
     });
-
 </script>
 @endpush
 

@@ -1,11 +1,9 @@
-@extends('layouts.admin')
 
-@section('content')
-    <style>
-        .select2 {
-            width: 100%!important;
-        }
-    </style>
+<style>
+    .select2 {
+        width: 100%!important;
+    }
+</style>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -15,10 +13,10 @@
                     <div class="card-body">
 
 
-                        <form method="POST" action="{{ route('homes.store') }}" enctype="multipart/form-data">
+                        <form method="POST" id="home_form" action="{{ route('homes.store') }}" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="user_id" value="{{$user->id}}">
-                            <input type="hidden" name="home_id" value="{{$home->id}}">
+                            <input type="hidden" name="user_id" value="{{$customer!=null?$customer->id:''}}">
+                            <input type="hidden" name="home_id" value="">
                             <div class="form-group">
                                 <label for="exampleInputName1">Phone</label>
                                 <input type="text" name="phone"  value="" class="form-control" id="exampleInputName1" placeholder="Phone">
@@ -37,11 +35,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Main Image</label>
-                                <div class="dropzone" id="main_photo"></div>
+                                <div class="dropzone" id="main_photo2"></div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Other Image</label>
-                                <div class="dropzone" id="dropzonefileupload"></div>
+                                <div class="dropzone" id="dropzonefileupload2"></div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Description</label>
@@ -74,7 +72,7 @@
                             </div>
                             <div class="form-group row mb-0 mt-2 mb-1">
                                 <div class="col-md-12 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary" onclick="stepper1.next()">
                                         {{ __('button.general.save') }}
                                     </button>
                                 </div>
@@ -88,7 +86,6 @@
         </div>
     </div>
 
-@endsection
 @push('footer-scripts')
 <script>
     //var add_address= $("#add_address");
@@ -103,113 +100,21 @@
     });
 
     Dropzone.autoDiscover = false;
-    $('#main_photo').dropzone({
-        url:"{{asset('customer/homes/upload_image/'.$home->id)}}",
-        paramName:'file',
-        autoDiscover:false,
-        uploadMultiple:false,
-        maxFiles:1,
-        maxFilessize:3, // MB
-        acceptedFiles:'image/*',
-        dictDefaultMessage:'Select Main Photo',
-        dictRemoveFile:'Delete',
-        params:{
-            _token:'{{ csrf_token() }}'
-        },
-        addRemoveLinks:true,
-        removedfile:function(file)
-        {
-            $.ajax({
-                dataType:'json',
-                type:'get',
-                url: '{{ asset('customer/companies/deleteImage') }}/'+file.fid,
-                // data:{_token:'{{ csrf_token() }}',id:file.fid}
-            });
-            var fmock;
-            return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
 
+    $("#home_form").submit(function(event){
+        event.preventDefault();  // this prevents the form from submitting
+       // var post_url = $(this).attr("action"); //get form action url
+        var post_url="{{asset('customer/homes/store/')}}/"+home_id
+        var request_method = $(this).attr("method"); //get form GET/POST method
+        var form_data = $(this).serialize(); //Encode form elements for submission
 
-
-        },
-        init:function(){
-
-            this.on("addedfile", function (file) {
-
-                if (this.files.length > 1) {
-                    console.log(this.files)
-                    alert("You can Select upto 1 Pictures for Venue Profile.", "error");
-                    this.removeFile(this.files[0]);
-                }
-
-            });
-            {{--@php  $file=\Spatie\MediaLibrary\Models\Media::latest()->first() @endphp
-                @if(!empty($company->main_image))
-            var mock = {name: '{{ $company->title }}',size: '',type: '' };
-            this.emit('addedfile',mock);
-            this.options.thumbnail.call(this,mock,'{{ url($company->main_image->getFullUrl()) }}');
-            $('.dz-progress').remove();
-            @endif--}}
-
-                this.on('sending',function(file,xhr,formData){
-                formData.append('fid','');
-                file.fid = '';
-            });
-
-            this.on('success',function(file,response){
-                file.fid = response.id;
-            });
-
-
-        }
-    });
-    $('#dropzonefileupload').dropzone({
-        url:"{{asset('customer/homes/upload_others/'.$home->id)}}",
-        paramName:'files',
-        autoDiscover:false,
-        uploadMultiple:false,
-        maxFiles:5,
-        maxFilessize:3, // MB
-        acceptedFiles:'image/*',
-        dictDefaultMessage:'Click Here To Upload Files',
-        dictRemoveFile:'{{ trans('admin.delete') }}',
-        addRemoveLinks: true,
-        params:{
-            _token:'{{ csrf_token() }}'
-        },
-        removedfile:function(file)
-        {
-            //file.fid
-            $.ajax({
-                dataType:'json',
-                type:'post',
-                url:'',
-                data:{_token:'{{ csrf_token() }}'}
-            });
-            var fmock;
-            return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
-
-
-        },
-        init:function(){
-
-                @if(!empty($product->photo))
-            var mock = {name: '{{ $product->title }}',size: '',type: '' };
-            this.emit('addedfile',mock);
-            this.options.thumbnail.call(this,mock,'{{ url('storage/'.$product->photo) }}');
-            $('.dz-progress').remove();
-            @endif
-
-                this.on('sending',function(file,xhr,formData){
-                formData.append('fid','');
-                file.fid = '';
-            });
-
-            this.on('success',function(file,response){
-                file.fid = response.id;
-            });
-
-
-        }
+        $.ajax({
+            url : post_url,
+            type: request_method,
+            data : form_data
+        }).done(function(response){ //
+          //  swal('Data Saved Successfully');
+        });
     });
 </script>
 @endpush

@@ -60,7 +60,8 @@ class HomeController extends Controller
         $home = $this->home_service->create([
 
         ]);
-        return view('customer.homes.create',compact('cities','home','user'));
+        return $home->id;
+       // return view('customer.homes.create',compact('cities','home','user'));
     }
 
     /**
@@ -69,7 +70,7 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$home_id)
     {
         $city=City::where('id',$request->city)->first();
         if($city==null&&$request->city!=null)
@@ -77,7 +78,7 @@ class HomeController extends Controller
         if($city!=null)
         $request['city_id']=$city->id;
         $request['user_id']=$request->user_id;
-        $home = $this->home_service->update($request->home_id,$request->all());
+        $home = $this->home_service->update($home_id,$request->all());
         return redirect()->route('homes.index');
     }
 

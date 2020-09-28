@@ -1,12 +1,9 @@
-@extends('layouts.admin')
 
-@section('content')
-    <style>
-        .select2 {
-            width: 100%!important;
-        }
-    </style>
-
+<style>
+    .select2 {
+        width: 100%!important;
+    }
+</style>
     <div class="container">
         @if (session('messg'))
         <div class="alert done bg-success alert-dismissible w-100" role="alert" style="color:#fff">
@@ -25,14 +22,12 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('global.companies.create') }}</div>
-
+                    <div class="alert alert-danger job-error" style="display:none"></div>
                     <div class="card-body">
-
-
-                        <form method="POST" action="{{ route('companies.store') }}" enctype="multipart/form-data">
+                        <form method="POST" id="company_form" action="" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="customer_id" value="{{$customer->id}}">
-                            <input type="hidden" name="company_id" value="{{$company->id}}">
+                            <input type="hidden" name="company_id" value="">
                             <input type="hidden" name="x" value="">
                             <div class="form-group">
                                 <label for="exampleInputName1">Company Name</label>
@@ -113,9 +108,9 @@
                                     <input type="text" name="post_code[]"  value="" class="form-control" id="exampleInputName1" placeholder="Post Code">
                                 </div>
                             </div>
-                            <div class="form-group row mb-0 mt-2 mb-1">
+                            <div class="form-group row mb-0 mt-2 mb-1 address">
                                 <div class="col-md-12 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary" onclick="">
                                         {{ __('button.general.save') }}
                                     </button>
                                     <!--<a href="{{route('homes.index')}}" style="color: #fff!important"  class="btn btn-dark" type="submit">Back</a>-->
@@ -137,7 +132,7 @@
         </div>
     </div>
 {{--@include('customer.companies.components.images',['company'=>null])--}}
-@endsection
+
 @push('footer-scripts')
 <script>
     //var add_address= $("#add_address");
@@ -145,7 +140,7 @@
     $("#add_address").click(function(e){
         e.preventDefault();
 
-        $('.mb-1').before(
+        $('.address').before(
             @include('customer.companies.components.city_address')
         );
         $(".sel").select2({
@@ -162,118 +157,43 @@
         $(".sel").select2({
             tags: true
         });
+
     });
     function remove(e){ //user click on remove text
         e.preventDefault(); $('#address'+x).remove(); x--;
     }
     Dropzone.autoDiscover = false;
-    $('#main_photo').dropzone({
-        url:"{{asset('customer/companies/upload_image/'.$company->id)}}",
-        paramName:'file',
-        autoDiscover:false,
-        uploadMultiple:false,
-        maxFiles:1,
-        maxFilessize:3, // MB
-        acceptedFiles:'image/*',
-        dictDefaultMessage:'Select Main Photo',
-        dictRemoveFile:'Delete',
-        params:{
-            _token:'{{ csrf_token() }}'
-        },
-        addRemoveLinks:true,
-        removedfile:function(file)
-        {
-            $.ajax({
-                dataType:'json',
-                type:'get',
-                url: '{{ asset('customer/companies/deleteImage') }}/'+file.fid,
-               // data:{_token:'{{ csrf_token() }}',id:file.fid}
-            });
-            var fmock;
-            return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
 
+    $("#company_form").submit(function(event){
+        event.preventDefault();  // this prevents the form from submitting
+       // var post_url = $(this).attr("action"); //get form action url
+        var post_url="{{asset('customer/companies/store/')}}/"+company_id
+        var request_method = $(this).attr("method"); //get form GET/POST method
+        var form_data = $(this).serialize(); //Encode form elements for submission
 
-
-        },
-        init:function(){
-
-            this.on("addedfile", function (file) {
-
-                if (this.files.length > 1) {
-                    console.log(this.files)
-                    alert("You can Select upto 1 Pictures for Venue Profile.", "error");
-                    this.removeFile(this.files[0]);
+        $.ajax({
+            url : post_url,
+            type: request_method,
+            data : form_data,
+            success:function(data) { //
+                console.log(data)
+                if(data.errors!=undefined) {
+                    jQuery('.job-error').show();
+                    jQuery('.job-error').append('<p>' + data.errors + '</p>');
                 }
-
-            });
-            {{--@php  $file=\Spatie\MediaLibrary\Models\Media::latest()->first() @endphp
-                @if(!empty($company->main_image))
-            var mock = {name: '{{ $company->title }}',size: '',type: '' };
-            this.emit('addedfile',mock);
-            this.options.thumbnail.call(this,mock,'{{ url($company->main_image->getFullUrl()) }}');
-            $('.dz-progress').remove();
-            @endif--}}
-
-                this.on('sending',function(file,xhr,formData){
-                formData.append('fid','');
-                file.fid = '';
-            });
-
-            this.on('success',function(file,response){
-                file.fid = response.id;
-            });
-
-
-        }
-    });
-    $('#dropzonefileupload').dropzone({
-        url:"{{asset('customer/companies/upload_others/'.$company->id)}}",
-        paramName:'files',
-        autoDiscover:false,
-        uploadMultiple:false,
-        maxFiles:5,
-        maxFilessize:3, // MB
-        acceptedFiles:'image/*',
-        dictDefaultMessage:'Click Here To Upload Files',
-        dictRemoveFile:'{{ trans('admin.delete') }}',
-        addRemoveLinks: true,
-        params:{
-            _token:'{{ csrf_token() }}'
-        },
-        removedfile:function(file)
-        {
-            //file.fid
-            $.ajax({
-                dataType:'json',
-                type:'post',
-                url:'',
-                data:{_token:'{{ csrf_token() }}'}
-            });
-            var fmock;
-            return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
-
-
-        },
-        init:function(){
-
-                @if(!empty($product->photo))
-            var mock = {name: '{{ $product->title }}',size: '',type: '' };
-            this.emit('addedfile',mock);
-            this.options.thumbnail.call(this,mock,'{{ url('storage/'.$product->photo) }}');
-            $('.dz-progress').remove();
-            @endif
-
-                this.on('sending',function(file,xhr,formData){
-                formData.append('fid','');
-                file.fid = '';
-            });
-
-            this.on('success',function(file,response){
-                file.fid = response.id;
-            });
-
-
-        }
+                if (data.success == 'Success')
+                    stepper1.next()
+            },
+            error:function (data) {
+                console.log(data)
+                jQuery.each(data.responseJSON.errors, function (key, value) {
+                    jQuery('.job-error').show();
+                    jQuery('.job-error').append('<p>' + value + '</p>');
+                });
+                if (data.responseJSON.errors.length == 0)
+                    stepper1.next()
+            }
+        });
     });
 </script>
 @endpush

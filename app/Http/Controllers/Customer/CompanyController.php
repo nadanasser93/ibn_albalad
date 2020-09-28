@@ -49,8 +49,8 @@ class CompanyController extends Controller
         $company = $this->company_service->create([
             'company_name'=>'created',
         ]);
-
-        return view('customer.companies.create',compact('customer','cities','jobs','company'));
+         return $company->id;
+       // return view('customer.companies.create',compact('customer','cities','jobs','company',''));
     }
 
     /**
@@ -59,7 +59,7 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$company_id)
     {
         $jobs=[];
         if(isset($request->job))
@@ -75,8 +75,8 @@ class CompanyController extends Controller
                 }
             }
             else
-                return redirect()->back()->with('messg',"You Can Select Only Three Jobs");
-        $company = $this->company_service->update($request->company_id,[
+            return response()->json(['errors'=>'You Can Select Only Three Jobs']);
+          $company = $this->company_service->update($company_id,[
             'company_name'=>$request->company_name,
             'user_id'=>$request->customer_id,
             'kvk'=>$request->kvk,
@@ -102,7 +102,7 @@ class CompanyController extends Controller
         }
 
 
-        return redirect()->route('companies.index');
+        return response()->json(['success'=>'Success']);
     }
 
     /**

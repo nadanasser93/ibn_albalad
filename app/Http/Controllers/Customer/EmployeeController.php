@@ -55,7 +55,8 @@ class EmployeeController extends Controller
         $employee = $this->employee_service->create([
 
         ]);
-        return view('customer.employees.create',compact('cities','employee','user'));
+         return $employee->id;
+       // return view('customer.employees.create',compact('cities','employee','user'));
     }
 
     /**
@@ -64,7 +65,7 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$employee_id)
     {
         $city=City::where('id',$request->city)->first();
         if($city==null&&$request->city!=null)
@@ -72,7 +73,7 @@ class EmployeeController extends Controller
         if($city!=null)
         $request['city_id']=$city->id;
         $request['user_id']=$request->user_id;
-        $employee = $this->employee_service->update($request->employee_id,$request->all());
+        $employee = $this->employee_service->update($employee_id,$request->all());
         return redirect()->route('employees.index');
     }
 
