@@ -76,6 +76,7 @@ class CompanyController extends Controller
             }
             else
             return response()->json(['errors'=>'You Can Select Only Three Jobs']);
+      //  dd($company_id,$request->all());
           $company = $this->company_service->update($company_id,[
             'company_name'=>$request->company_name,
             'user_id'=>$request->customer_id,

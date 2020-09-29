@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Models\Company;
+use App\Models\Employee;
+use App\Models\Home;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -65,5 +68,17 @@ class User extends Authenticatable
     public function userable()
     {
         return $this->morphTo();
+    }
+    public function homes()
+    {
+        return $this->hasMany(Home::class,'user_id');
+    }
+    public function companies()
+    {
+        return $this->hasMany(Company::class,'user_id');
+    }
+    public function employees()
+    {
+        return $this->hasMany(Employee::class,'user_id');
     }
 }

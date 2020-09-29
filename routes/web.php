@@ -49,7 +49,7 @@ Route::post('profile_store', 'Customer\CustomerController@store')->name('profile
 Route::group(['prefix' => 'customer', 'namespace' => 'Customer'], function () {
 
 
-    Route::get('/newService', 'CustomerController@newService')->name('newService');
+    Route::get('/getAll', 'CustomerController@getAll')->name('getAll');
 
     Route::get('homes', 'HomeController@index')->name('homes.index');
     Route::get('/homes/create', 'HomeController@create')->name('homes.create');

@@ -27,7 +27,7 @@
                         <form method="POST" id="company_form" action="" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="customer_id" value="{{$customer->id}}">
-                            <input type="hidden" name="company_id" value="">
+
                             <input type="hidden" name="x" value="">
                             <div class="form-group">
                                 <label for="exampleInputName1">Company Name</label>
@@ -113,6 +113,7 @@
                                     <button type="submit" class="btn btn-primary" onclick="">
                                         {{ __('button.general.save') }}
                                     </button>
+                                    <button class="btn btn-primary" onclick="stepper1.next()">Pay</button>
                                     <!--<a href="{{route('homes.index')}}" style="color: #fff!important"  class="btn btn-dark" type="submit">Back</a>-->
                                     <button type="button" id="add_address" class="btn btn-primary">
                                         Add New Address
@@ -181,8 +182,8 @@
                     jQuery('.job-error').show();
                     jQuery('.job-error').append('<p>' + data.errors + '</p>');
                 }
-                if (data.success == 'Success')
-                    stepper1.next()
+                else
+                    newServ();
             },
             error:function (data) {
                 console.log(data)
@@ -190,8 +191,8 @@
                     jQuery('.job-error').show();
                     jQuery('.job-error').append('<p>' + value + '</p>');
                 });
-                if (data.responseJSON.errors.length == 0)
-                    stepper1.next()
+                //if (data.responseJSON.errors.length == 0)
+                //    stepper1.next()
             }
         });
     });

@@ -13,10 +13,10 @@
                     <div class="card-body">
 
 
-                        <form method="POST" id="employee_form" action="{{ route('employees.store') }}" enctype="multipart/form-data">
+                        <form method="POST" id="employee_form" action="" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="user_id" value="{{$customer!=null?$customer->id:''}}">
-                            <input type="hidden" name="employee_id" value="">
+
                             <div class="form-group">
                                 <label for="exampleInputName1">Title</label>
                                 <input type="text" name="title"  value="" class="form-control" id="exampleInputName1" placeholder="Title">
@@ -69,9 +69,10 @@
                             </div>
                             <div class="form-group row mb-0 mt-2 mb-1">
                                 <div class="col-md-12 offset-md-4">
-                                    <button type="submit" class="btn btn-primary" onclick="stepper1.next()">
+                                    <button type="submit" class="btn btn-primary" onclick="">
                                         {{ __('button.general.save') }}
                                     </button>
+                                    <button class="btn btn-primary" onclick="stepper1.next()">Pay</button>
                                 </div>
 
                             </div>
@@ -110,7 +111,7 @@
             type: request_method,
             data : form_data
         }).done(function(response){ //
-         //   swal('Data Saved Successfully');
+            newServ()
         });
     });
 </script>

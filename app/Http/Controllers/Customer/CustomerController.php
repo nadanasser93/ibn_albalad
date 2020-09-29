@@ -27,25 +27,10 @@ class CustomerController extends Controller
         $this->home_service = $home_service;
         $this->employee_service = $employee_service;
     }
-    public function newService(){
-      /*  $coms=Company::where('company_name','created')->get();
-        foreach ($coms as $com)
-            $com->forceDelete();
-        $emp=Employee::where('title','')->get();
-        foreach ($emp as $e)
-            $e->forceDelete();
-        $homes=Home::where('post_code','')->get();
-        foreach ($homes as $h)
-            $h->forceDelete();*/
-        $company = $this->company_service->create([
-            'company_name'=>'created',
-        ]);
-        $employee = $this->employee_service->create([
-
-        ]);
-        $home = $this->home_service->create([
-
-        ]);
+    public function getAll(){
+        $customer=Auth::user();
+        $jobs=Job::all();
+        return view('customer.all_services',compact('customer','jobs'));
     }
     public function profile(){
         $customer=Auth::user();

@@ -13,10 +13,10 @@
                     <div class="card-body">
 
 
-                        <form method="POST" id="home_form" action="{{ route('homes.store') }}" enctype="multipart/form-data">
+                        <form method="POST" id="home_form" action="" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="user_id" value="{{$customer!=null?$customer->id:''}}">
-                            <input type="hidden" name="home_id" value="">
+
                             <div class="form-group">
                                 <label for="exampleInputName1">Phone</label>
                                 <input type="text" name="phone"  value="" class="form-control" id="exampleInputName1" placeholder="Phone">
@@ -72,9 +72,10 @@
                             </div>
                             <div class="form-group row mb-0 mt-2 mb-1">
                                 <div class="col-md-12 offset-md-4">
-                                    <button type="submit" class="btn btn-primary" onclick="stepper1.next()">
+                                    <button type="submit" class="btn btn-primary">
                                         {{ __('button.general.save') }}
                                     </button>
+                                    <button class="btn btn-primary" onclick="stepper1.next()">Pay</button>
                                 </div>
 
                             </div>
@@ -113,9 +114,31 @@
             type: request_method,
             data : form_data
         }).done(function(response){ //
-          //  swal('Data Saved Successfully');
+            newServ()
         });
     });
+    function newServ() {
+
+        $('form')[1].reset()
+        $('form')[2].reset()
+        $('form')[3].reset()
+        jQuery('.job-error').hide();
+        jQuery('.alert-danger').hide();
+        $("#sel").val("");
+        $("#sel").trigger("change");
+      //  console.log(drop1[0],drop2,drop3,drop4,drop5)
+      /*  if(drop1!=undefined)
+            drop1[0].dropzone.removeAllFiles();
+        if(drop2!=undefined)
+            drop2[0].dropzone.removeAllFiles();
+        if(drop3!=undefined)
+            drop3[0].dropzone.removeAllFiles();
+        if(drop4!=undefined)
+            drop4[0].dropzone.removeAllFiles();
+        if(drop5!=undefined)
+            drop5[0].dropzone.removeAllFiles();*/
+        stepper1.to(2)
+    }
 </script>
 @endpush
 

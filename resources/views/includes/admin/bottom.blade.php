@@ -25,6 +25,6 @@
 
 
 <script src="{{asset('js/croppie.js')}}"></script>
-<script src="{{asset('js/stepper.js')}}"></script>
+
 
 

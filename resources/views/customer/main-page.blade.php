@@ -58,7 +58,6 @@
                             </div>
                             <!--<button class="btn btn-primary" onclick="stepper1.next()">Next</button>-->
                         </div>
-
                         <div id="test-l-3" class="content">
                             <div  id="company11">
                                 @include('customer.companies.create')
@@ -85,7 +84,8 @@
 @push('footer-scripts')
 <script>
     var stepper1Node = document.querySelector('#stepper1')
-    var stepper1 = new Stepper(document.querySelector('#stepper1'))
+    var stepper1 = new Stepper(document.querySelector('#stepper1')
+    )
 
     stepper1Node.addEventListener('show.bs-stepper', function (event) {
         console.warn('show.bs-stepper', event)
@@ -93,19 +93,17 @@
     stepper1Node.addEventListener('shown.bs-stepper', function (event) {
         console.warn('shown.bs-stepper', event)
     })
-
-    var stepper2 = new Stepper(document.querySelector('#stepper2'), {
-        linear: false,
-        animation: true
-    })
-    var stepper3 = new Stepper(document.querySelector('#stepper3'), {
-        animation: true
-    })
-    var stepper4 = new Stepper(document.querySelector('#stepper4'))
     function selectService(x){
-        $('form')[1].reset()
-        $('form')[2].reset()
-        $('form')[3].reset()
+        if(drop1!=undefined)
+            drop1[0].dropzone.removeAllFiles(true);
+        if(drop2!=undefined)
+            drop2[0].dropzone.removeAllFiles(true);
+        if(drop3!=undefined)
+            drop3[0].dropzone.removeAllFiles(true);
+        if(drop4!=undefined)
+            drop4[0].dropzone.removeAllFiles(true);
+        if(drop5!=undefined)
+            drop5[0].dropzone.removeAllFiles(true);
         if(this.x>0)
         {
             for(i=0;i<this.x;i++)
@@ -113,21 +111,21 @@
         }
         if(x===1)
         {
-            console.log(x)
+
             $('#employee').hide()
             $('#home').hide()
             $('#company11').show()
 
         }
         else if(x===2) {
-            console.log(x)
+
             $('#company11').hide()
             $('#home').hide()
             $('#employee').show()
 
         }
         else if(x===3) {
-            console.log(x)
+
             $('#company11').hide()
             $('#employee').hide()
             $('#home').show()
@@ -137,6 +135,7 @@
 
     }
     var company_id,employee_id,home_id;
+    var drop1,drop2,drop3,drop4,drop5;
     function createCompany() {
         $.ajax({
             url: '{{asset("customer/companies/create")}}',
@@ -144,7 +143,7 @@
             success: function (response) {
                 company_id=response
                 $('#company_id').val(company_id)
-                $('#main_photo').dropzone({
+                drop1= $('#main_photo').dropzone({
                     url:"{{asset('customer/companies/upload_image')}}/"+company_id,
                     paramName:'file',
                     autoDiscover:false,
@@ -152,7 +151,7 @@
                     maxFiles:1,
                     maxFilessize:3, // MB
                     acceptedFiles:'image/*',
-                    dictDefaultMessage:'Select Main Photo',
+                    dictDefaultMessage:'<i class="fa fa-plus fa-fw fa-5x add-photo" style="color:#d0cece!important"></i>',
                     dictRemoveFile:'Delete',
                     params:{
                         _token:'{{ csrf_token() }}'
@@ -181,7 +180,7 @@
                                 alert("You can Select upto 1 Pictures for Venue Profile.", "error");
                                 this.removeFile(this.files[0]);
                             }
-
+                          //  this.removeAllFiles( true );
                         });
 
                         this.on('sending',function(file,xhr,formData){
@@ -196,15 +195,15 @@
 
                     }
                 });
-                $('#dropzonefileupload').dropzone({
+                drop2= $('#dropzonefileupload').dropzone({
                     url:"{{asset('customer/companies/upload_others/')}}/"+company_id,
                     paramName:'files',
                     autoDiscover:false,
                     uploadMultiple:false,
                     maxFiles:5,
-                    maxFilessize:3, // MB
+                    maxFilessize:30, // MB
                     acceptedFiles:'image/*',
-                    dictDefaultMessage:'Click Here To Upload Files',
+                    dictDefaultMessage:'<i class="fa fa-plus fa-fw fa-5x add-photo" style="color:#d0cece!important"></i>',
                     dictRemoveFile:'{{ trans('admin.delete') }}',
                     addRemoveLinks: true,
                     params:{
@@ -248,15 +247,15 @@
             success: function (response) {
                 employee_id=response
                 $('#employee_id').val(employee_id)
-                $('#main_photo1').dropzone({
-                    url:"{{asset('customer/employees/upload_image')}}/"+home_id,
+                drop3= $('#main_photo1').dropzone({
+                    url:"{{asset('customer/employees/upload_image')}}/"+employee_id,
                     paramName:'file',
                     autoDiscover:false,
                     uploadMultiple:false,
                     maxFiles:1,
                     maxFilessize:3, // MB
                     acceptedFiles:'image/*',
-                    dictDefaultMessage:'Select Main Photo',
+                    dictDefaultMessage:'<i class="fa fa-plus fa-fw fa-5x add-photo" style="color:#d0cece!important"></i>',
                     dictRemoveFile:'Delete',
                     params:{
                         _token:'{{ csrf_token() }}'
@@ -312,7 +311,7 @@
                 console.log(response)
                 home_id=response
                 $('#home_id').val(home_id)
-                $('#main_photo2').dropzone({
+                drop4= $('#main_photo2').dropzone({
                     url:"{{asset('customer/homes/upload_image/')}}/"+home_id,
                     paramName:'file',
                     autoDiscover:false,
@@ -320,7 +319,7 @@
                     maxFiles:1,
                     maxFilessize:3, // MB
                     acceptedFiles:'image/*',
-                    dictDefaultMessage:'Select Main Photo',
+                    dictDefaultMessage:'<i class="fa fa-plus fa-fw fa-5x add-photo" style="color:#d0cece!important"></i>',
                     dictRemoveFile:'Delete',
                     params:{
                         _token:'{{ csrf_token() }}'
@@ -371,15 +370,15 @@
 
                     }
                 });
-                $('#dropzonefileupload2').dropzone({
+                drop5= $('#dropzonefileupload2').dropzone({
                     url:"{{asset('customer/homes/upload_others/')}}/"+home_id,
                     paramName:'files',
                     autoDiscover:false,
                     uploadMultiple:false,
                     maxFiles:5,
-                    maxFilessize:3, // MB
+                    maxFilessize:30, // MB
                     acceptedFiles:'image/*',
-                    dictDefaultMessage:'Click Here To Upload Files',
+                    dictDefaultMessage:'<i class="fa fa-plus fa-fw fa-5x add-photo" style="color:#d0cece!important"></i>',
                     dictRemoveFile:'{{ trans('admin.delete') }}',
                     addRemoveLinks: true,
                     params:{

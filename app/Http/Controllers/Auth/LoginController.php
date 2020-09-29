@@ -45,7 +45,7 @@ class LoginController extends Controller
             return 'dashboard';
         }
         else{
-            return 'profile';
+            return 'customer/getAll';
         }
 
     }
