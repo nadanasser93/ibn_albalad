@@ -72,7 +72,7 @@
                                     <button type="submit" class="btn btn-primary" onclick="">
                                         {{ __('button.general.save') }}
                                     </button>
-                                    <button class="btn btn-primary" onclick="stepper1.next()">Pay</button>
+                                    <!--<button class="btn btn-primary" onclick="stepper1.next()">Pay</button>-->
                                 </div>
 
                             </div>

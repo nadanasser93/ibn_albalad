@@ -73,8 +73,9 @@
                                 @include('customer.homes.create')
                             </div>
                             <!--<button class="btn btn-primary" onclick="stepper1.next()">Next</button>-->
-
+                            <button class="btn btn-primary" onclick="stepper1.next()">Pay</button>
                         </div>
+
                         <div id="test-l-4" class="content">
                         @include('customer.payment')
 
