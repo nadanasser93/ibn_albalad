@@ -77,7 +77,7 @@
 <div id="app">
     @stack('modals')
 
-    @include('includes.admin.header')
+   {{-- @include('includes.admin.header')--}}
 
 
 

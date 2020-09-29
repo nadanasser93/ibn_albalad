@@ -117,28 +117,7 @@
             newServ()
         });
     });
-    function newServ() {
 
-        $('form')[1].reset()
-        $('form')[2].reset()
-        $('form')[3].reset()
-        jQuery('.job-error').hide();
-        jQuery('.alert-danger').hide();
-        $("#sel").val("");
-        $("#sel").trigger("change");
-      //  console.log(drop1[0],drop2,drop3,drop4,drop5)
-      /*  if(drop1!=undefined)
-            drop1[0].dropzone.removeAllFiles();
-        if(drop2!=undefined)
-            drop2[0].dropzone.removeAllFiles();
-        if(drop3!=undefined)
-            drop3[0].dropzone.removeAllFiles();
-        if(drop4!=undefined)
-            drop4[0].dropzone.removeAllFiles();
-        if(drop5!=undefined)
-            drop5[0].dropzone.removeAllFiles();*/
-        stepper1.to(2)
-    }
 </script>
 @endpush
 

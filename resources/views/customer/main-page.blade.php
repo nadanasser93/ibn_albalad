@@ -54,6 +54,10 @@
                                       <button class="btn btn-primary" style="margin-top: 3em" value="Your Home" onclick="createHome();selectService(3);stepper1.next()">Your Home</button>
 
                             </div>
+    <div class="col-md-4">
+                                      <button class="btn btn-primary" id="none" style="margin-top: 3em;display: none" value="No" onclick="stepper1.to(4)">No</button>
+
+                            </div>
 </div>
                             </div>
                             <!--<button class="btn btn-primary" onclick="stepper1.next()">Next</button>-->
@@ -84,8 +88,7 @@
 @push('footer-scripts')
 <script>
     var stepper1Node = document.querySelector('#stepper1')
-    var stepper1 = new Stepper(document.querySelector('#stepper1')
-    )
+    var stepper1 = new Stepper(document.querySelector('#stepper1'))
 
     stepper1Node.addEventListener('show.bs-stepper', function (event) {
         console.warn('show.bs-stepper', event)
@@ -109,6 +112,8 @@
             for(i=0;i<this.x;i++)
                  $('#address'+i).remove();
         }
+        $("#kvk1").css('display','none');
+        $("#kvk1").val('')
         if(x===1)
         {
 
@@ -421,6 +426,18 @@
                 });
             }
         });
+    }
+    function newServ() {
+
+        $('form')[1].reset()
+        $('form')[2].reset()
+        $('form')[3].reset()
+        jQuery('.job-error').hide();
+        jQuery('.alert-danger').hide();
+        $("#sel").val("");
+        $("#sel").trigger("change");
+        stepper1.to(2)
+        $('#none').show();
     }
 </script>
 @endpush

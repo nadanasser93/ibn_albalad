@@ -80,6 +80,7 @@ class CompanyController extends Controller
           $company = $this->company_service->update($company_id,[
             'company_name'=>$request->company_name,
             'user_id'=>$request->customer_id,
+            'type'=>$request->com_type,
             'kvk'=>$request->kvk,
             'phone'=>$request->phone,
             'description'=>$request->description,
@@ -200,8 +201,8 @@ class CompanyController extends Controller
         return redirect()->back()->with('messg',"You Can Select Only Three Jobs");
         $company = $this->company_service->update($id,[
             'company_name'=>$request->company_name,
-           // 'user_id'=>$request->customer_id,
             'kvk'=>$request->kvk,
+            'type'=>$request->com_type,
             'phone'=>$request->phone,
             'description'=>$request->description,
             'email'=>$request->email,
@@ -229,13 +230,8 @@ class CompanyController extends Controller
                 $address->post_code=$request->post_code[$i];
                 $address->save();
             }
-        if($request->hasFile('image')) {
-            $name = $request->image->getClientOriginalName();
-            $extension = $request->image->getClientOriginalExtension();
-            $mdf5 = md5($name . '_' . time()) . '.' . $extension;
-            $company->addMediaFromRequest('image')->usingFileName($mdf5)->withResponsiveImages()->toMediaCollection('image');
-        }
-        return redirect()->route('companies.index');
+
+        return redirect()->route('getAll');
 
     }
 

@@ -8,7 +8,7 @@
                 <form class="forms-sample" method="post" id="my_form" action="{{route('profile_store')}}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" value="{{$customer->id}}" name="user_id">
-                    <div class="form-group">
+                   <!-- <div class="form-group">
                         <div class="row">
                             <div class="col-md-1">  <label for="customer">Customer</label></div>
                             <div class="col-md-5">
@@ -22,8 +22,8 @@
                     </div>
                     <div class="form-group" id="kvk" style="{{$customer->customer_type==1?'display: none':'display: block'}}">
                         <label for="exampleInputName1">KVK</label>
-                        <input type="text" name="kvk" value="{{$customer->kvk}}" class="form-control" id="exampleInputName1" placeholder="KVK">
-                    </div>
+                        <input type="text" name="kvk" value="" class="form-control" id="exampleInputName1" placeholder="KVK">
+                    </div>-->
                     <div class="form-group">
                         <label for="exampleInputName1">Name</label>
                         <input type="text" value="{{$customer->customer_name}}" name="customer_name" class="form-control" id="exampleInputName1" placeholder="Name">

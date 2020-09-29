@@ -30,6 +30,22 @@
 
                             <input type="hidden" name="x" value="">
                             <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-1">  <label for="customer">Customer</label></div>
+                                    <div class="col-md-5">
+
+                                        <input type="radio" name="com_type" class="form-control" id="customer" value="customer" placeholder="Name" {{$customer->customer_type==1?'checked':''}}></div>
+                                    <div class="col-md-1">  <label for="customer">Company</label></div>
+                                    <div class="col-md-5">
+                                        <input type="radio" name="com_type" class="form-control" id="company" value="company" placeholder="Name" {{$customer->customer_type==2?'checked':''}}>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="kvk1" style="{{$customer->customer_type==1?'display: none':'display: block'}}">
+                                <label for="exampleInputName1">KVK</label>
+                                <input type="text" name="kvk" value="{{$customer->kvk}}" class="form-control" id="exampleInputName1" placeholder="KVK">
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleInputName1">Company Name</label>
                                 <input type="text" value="{{$customer->company_name}}" required name="company_name" class="form-control" id="exampleInputName1" placeholder="Company Name">
                                 @error('company_name')
@@ -38,10 +54,7 @@
                                     </span>
                                 @enderror
                             </div>
-                           <!-- <div class="form-group" id="kvk">
-                                <label for="exampleInputName1">KVK</label>
-                                <input type="text" name="kvk" value="" class="form-control" id="exampleInputName1" placeholder="KVK">
-                            </div>-->
+
 
                             <div class="form-group">
                                 <label for="exampleInputName1">Phone</label>
@@ -113,14 +126,12 @@
                                     <button type="submit" class="btn btn-primary" onclick="">
                                         {{ __('button.general.save') }}
                                     </button>
-                                    <button class="btn btn-primary" onclick="stepper1.next()">Pay</button>
+
                                     <!--<a href="{{route('homes.index')}}" style="color: #fff!important"  class="btn btn-dark" type="submit">Back</a>-->
                                     <button type="button" id="add_address" class="btn btn-primary">
                                         Add New Address
                                     </button>
-                                   <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                        Add Any Images
-                                    </button>-->
+                                    <button class="btn btn-primary" onclick="stepper1.next()">Pay</button>
 
                                 </div>
 
@@ -136,6 +147,16 @@
 
 @push('footer-scripts')
 <script>
+    $(document).ready(function(){
+        $('input[name="com_type"]').click(function(){
+            var inputValue = $(this).attr("value");
+            var target = $("#kvk1");
+            if(inputValue==='company')
+                target.css('display','block')
+            else
+                target.css('display','none')
+        });
+    });
     //var add_address= $("#add_address");
     var x =0;
     $("#add_address").click(function(e){
@@ -183,7 +204,7 @@
                     jQuery('.job-error').append('<p>' + data.errors + '</p>');
                 }
                 else
-                    newServ();
+                newServ();
             },
             error:function (data) {
                 console.log(data)

@@ -120,7 +120,7 @@ class EmployeeController extends Controller
         $request['city_id']=$city->id;
         $employee = $this->employee_service->update($id,$request->all());
 
-        return redirect()->route('employees.index');
+        return redirect()->route('getAll');
     }
 
     /**
