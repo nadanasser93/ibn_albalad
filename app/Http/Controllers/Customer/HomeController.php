@@ -79,7 +79,7 @@ class HomeController extends Controller
         $request['city_id']=$city->id;
         $request['user_id']=$request->user_id;
         $home = $this->home_service->update($home_id,$request->all());
-        return redirect()->route('customer.all_services');
+        return redirect()->route('getAll');
     }
 
     /**
