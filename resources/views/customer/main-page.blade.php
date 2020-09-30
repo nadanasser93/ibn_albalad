@@ -140,8 +140,57 @@
         }
 
     }
+
     var company_id,employee_id,home_id;
     var drop1,drop2,drop3,drop4,drop5;
+
+    function getSubscripts(type) {
+        if(type==='homes')
+            className='homesubscription'
+        else  if(type==='companies')
+            className='companysubscription'
+        else
+            className='employeesubscription'
+        $.ajax({    //create an ajax request to display.php
+            type: "GET",
+            url: "{{asset('customer/getSubscriptionType')}}/"+type,
+            dataType: "JSON",   //expect html to be returned
+            success: function(response){
+
+                for(i=0;i<response.length;i++) {
+
+                    $('.'+className).append(
+                        @include('customer.components.subscriptions')
+                    )
+                }
+            }
+
+        });
+    }
+    function orderNow(subscription_id,type,e) {
+        e.preventDefault()
+        if(type==='homes')
+            id=home_id
+        else  if(type==='companies')
+            id = company_id
+        else
+            id=employee_id
+         _token   = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({    //create an ajax request to display.php
+            type: "POST",
+            url: "{{asset('customer/orderNow')}}",
+            data:{
+                type:type,
+                subscription_id:subscription_id,
+                id:id,
+                _token: _token
+            },   //expect html to be returned
+            success: function(response){
+                swal(response)
+            }
+
+        });
+    }
     function createCompany() {
         $.ajax({
             url: '{{asset("customer/companies/create")}}',
@@ -245,6 +294,8 @@
 
                     }
                 });
+                getSubscripts('companies')
+
             }
         });
     }
@@ -309,6 +360,8 @@
 
                     }
                 });
+                getSubscripts('employees')
+
             }
         });
     }
@@ -360,14 +413,6 @@
                             }
 
                         });
-                        {{--@php  $file=\Spatie\MediaLibrary\Models\Media::latest()->first() @endphp
-                            @if(!empty($company->main_image))
-                        var mock = {name: '{{ $company->title }}',size: '',type: '' };
-                        this.emit('addedfile',mock);
-                        this.options.thumbnail.call(this,mock,'{{ url($company->main_image->getFullUrl()) }}');
-                        $('.dz-progress').remove();
-                        @endif--}}
-
                             this.on('sending',function(file,xhr,formData){
                             formData.append('fid','');
                             file.fid = '';
@@ -430,6 +475,8 @@
 
                     }
                 });
+                getSubscripts('homes')
+
             }
         });
     }

@@ -9,6 +9,7 @@ use App\Models\Company;
 use App\Models\Employee;
 use App\Models\Home;
 use App\Models\Job;
+use App\Models\Subscription;
 use App\Services\Company\ICompanyService;
 use App\Services\Customer\ICustomerService;
 use App\Services\Employee\IEmployeeService;
@@ -39,6 +40,39 @@ class CustomerController extends Controller
         $jobs=Job::all();
 
         return view('customer.main-page', compact('customer','cities','jobs'));
+    }
+    public function getSubscriptionType($type){
+        $subscriptions=Subscription::where('subscription_for',$type)->get();
+        foreach ($subscriptions as $subscription) {
+            if ($subscription->most_chosen == 1)
+                $subscription->most_chosen = 'most chosen';
+            else
+                $subscription->most_chosen = '';
+            $subscription->price_incl = $subscription->price_incl-$subscription->discount;
+        }
+        $subscriptions =json_decode($subscriptions);
+        return $subscriptions;
+    }
+    public function orderNow(Request $request)
+    {
+        if($request->type==='homes') {
+            $home = Home::find($request->id);
+            $home->subscription_id=$request->subscription_id;
+            $home->update();
+        }
+        else  if($request->type==='companies')
+        {
+            $company = Company::find($request->id);
+            $company->subscription_id=$request->subscription_id;
+            $company->update();
+        }
+        else
+        {
+            $employee = Employee::find($request->id);
+            $employee->subscription_id=$request->subscription_id;
+            $employee->update();
+        }
+        return response()->json(['success'=>'Success']);
     }
     public function store(Request $request)
     {

@@ -70,6 +70,9 @@
                                     <input type="text" name="post_code"  value="" class="form-control" id="exampleInputName1" placeholder="Post Code">
                                 </div>
                             </div>
+                            <div class="homesubscription row">
+
+                            </div>
                             <div class="form-group row mb-0 mt-2 mb-1">
                                 <div class="col-md-12 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
