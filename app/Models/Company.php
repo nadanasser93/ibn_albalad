@@ -10,7 +10,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 class Company extends BaseModel implements HasMedia
 {
     use HasMediaTrait;
-    protected $fillable=['company_name','phone','email','job','bank_account','description','kvk','name','user_id','type'];
+    protected $fillable=['company_name','phone','email','job','bank_account','description','kvk','name','user_id','type','subscription_id'];
     protected $appends =['image','photos'];
 
     public function setJobAttribute($value)

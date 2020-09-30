@@ -11,7 +11,7 @@ class Employee extends BaseModel implements HasMedia
 {
     use HasMediaTrait;
     protected $fillable=['post_code','street','house_number','description','city_id','title','user_id',
-        'phone','email','contactor_name'
+        'phone','email','contactor_name','subscription_id'
     ];
 
     protected $appends = ['employee_image'];
