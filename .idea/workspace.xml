@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20e1c948-7ca9-4766-a16f-3169ea5b0426" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/customer/components/subscriptions.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SubscriptionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SubscriptionController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Customer/CustomerController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Customer/CustomerController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/companies/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/companies/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/employees/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/employees/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/homes/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/homes/create.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/main-page.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/main-page.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/profile.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/profile.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -67,24 +59,24 @@
       <file leaf-file-name="main-page.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/customer/main-page.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="494" column="9" lean-forward="true" selection-start-line="494" selection-start-column="9" selection-end-line="494" selection-end-column="9" />
+            <state relative-caret-position="334">
+              <caret line="188" column="42" lean-forward="false" selection-start-line="188" selection-start-column="42" selection-end-line="188" selection-end-column="42" />
               <folding>
                 <element signature="e#5190#6202#0#HTML" expanded="false" />
-                <element signature="e#7782#12000#0#HTML" expanded="false" />
-                <element signature="e#8062#10197#0#HTML" expanded="false" />
-                <element signature="e#10257#11922#0#HTML" expanded="false" />
-                <element signature="e#12031#14473#0#HTML" expanded="false" />
-                <element signature="e#12315#14395#0#HTML" expanded="false" />
-                <element signature="e#14500#19064#0#HTML" expanded="false" />
-                <element signature="e#14806#16881#0#HTML" expanded="false" />
-                <element signature="e#16942#18990#0#HTML" expanded="false" />
-                <element signature="e#19088#19374#0#HTML" expanded="false" />
-                <marker date="1601505892331" expanded="true" signature="8516:8539" ph="..." />
-                <marker date="1601505892331" expanded="true" signature="10715:10738" ph="..." />
-                <marker date="1601505892331" expanded="true" signature="12771:12794" ph="..." />
-                <marker date="1601505892331" expanded="true" signature="15255:15278" ph="..." />
-                <marker date="1601505892331" expanded="true" signature="17394:17417" ph="..." />
+                <element signature="e#7796#12014#0#HTML" expanded="false" />
+                <element signature="e#8076#10211#0#HTML" expanded="false" />
+                <element signature="e#10271#11936#0#HTML" expanded="false" />
+                <element signature="e#12045#14487#0#HTML" expanded="false" />
+                <element signature="e#12329#14409#0#HTML" expanded="false" />
+                <element signature="e#14514#19078#0#HTML" expanded="false" />
+                <element signature="e#14820#16895#0#HTML" expanded="false" />
+                <element signature="e#16956#19004#0#HTML" expanded="false" />
+                <element signature="e#19102#19388#0#HTML" expanded="false" />
+                <marker date="1601505968645" expanded="true" signature="8530:8553" ph="..." />
+                <marker date="1601505968645" expanded="true" signature="10729:10752" ph="..." />
+                <marker date="1601505968645" expanded="true" signature="12785:12808" ph="..." />
+                <marker date="1601505968645" expanded="true" signature="15269:15292" ph="..." />
+                <marker date="1601505968645" expanded="true" signature="17408:17431" ph="..." />
               </folding>
             </state>
           </provider>
@@ -399,7 +391,7 @@
       <workItem from="1601031813612" duration="77826000" />
       <workItem from="1601291490488" duration="26654000" />
       <workItem from="1601379435250" duration="18680000" />
-      <workItem from="1601413556790" duration="35415000" />
+      <workItem from="1601413556790" duration="35496000" />
     </task>
     <task id="LOCAL-00001" summary="pro">
       <created>1597429908880</created>
@@ -464,11 +456,18 @@
       <option name="project" value="LOCAL" />
       <updated>1601489620263</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="subscription">
+      <created>1601505939454</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1601505939456</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="320502000" />
+    <option name="totallyTimeSpent" value="320583000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
@@ -943,24 +942,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/customer/main-page.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="494" column="9" lean-forward="true" selection-start-line="494" selection-start-column="9" selection-end-line="494" selection-end-column="9" />
+        <state relative-caret-position="334">
+          <caret line="188" column="42" lean-forward="false" selection-start-line="188" selection-start-column="42" selection-end-line="188" selection-end-column="42" />
           <folding>
             <element signature="e#5190#6202#0#HTML" expanded="false" />
-            <element signature="e#7782#12000#0#HTML" expanded="false" />
-            <element signature="e#8062#10197#0#HTML" expanded="false" />
-            <element signature="e#10257#11922#0#HTML" expanded="false" />
-            <element signature="e#12031#14473#0#HTML" expanded="false" />
-            <element signature="e#12315#14395#0#HTML" expanded="false" />
-            <element signature="e#14500#19064#0#HTML" expanded="false" />
-            <element signature="e#14806#16881#0#HTML" expanded="false" />
-            <element signature="e#16942#18990#0#HTML" expanded="false" />
-            <element signature="e#19088#19374#0#HTML" expanded="false" />
-            <marker date="1601505892331" expanded="true" signature="8516:8539" ph="..." />
-            <marker date="1601505892331" expanded="true" signature="10715:10738" ph="..." />
-            <marker date="1601505892331" expanded="true" signature="12771:12794" ph="..." />
-            <marker date="1601505892331" expanded="true" signature="15255:15278" ph="..." />
-            <marker date="1601505892331" expanded="true" signature="17394:17417" ph="..." />
+            <element signature="e#7796#12014#0#HTML" expanded="false" />
+            <element signature="e#8076#10211#0#HTML" expanded="false" />
+            <element signature="e#10271#11936#0#HTML" expanded="false" />
+            <element signature="e#12045#14487#0#HTML" expanded="false" />
+            <element signature="e#12329#14409#0#HTML" expanded="false" />
+            <element signature="e#14514#19078#0#HTML" expanded="false" />
+            <element signature="e#14820#16895#0#HTML" expanded="false" />
+            <element signature="e#16956#19004#0#HTML" expanded="false" />
+            <element signature="e#19102#19388#0#HTML" expanded="false" />
+            <marker date="1601505968645" expanded="true" signature="8530:8553" ph="..." />
+            <marker date="1601505968645" expanded="true" signature="10729:10752" ph="..." />
+            <marker date="1601505968645" expanded="true" signature="12785:12808" ph="..." />
+            <marker date="1601505968645" expanded="true" signature="15269:15292" ph="..." />
+            <marker date="1601505968645" expanded="true" signature="17408:17431" ph="..." />
           </folding>
         </state>
       </provider>

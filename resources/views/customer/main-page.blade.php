@@ -186,7 +186,7 @@
                 _token: _token
             },   //expect html to be returned
             success: function(response){
-                swal(response)
+                swal("Thanks For Order Now")
             }
 
         });
