@@ -20,21 +20,9 @@ class Company extends BaseModel implements HasMedia
     public function getJobAttribute($value){
         return json_decode($value);
     }
-    public function user()
-    {
-        return $this->morphOne('App\User', 'userable');
-    }
     public function addresses()
     {
         return $this->hasMany(CityAddress::class,'company_id');//->withPivot('company_name', 'company_address','company_phone','company_description','image');
-    }
-    public function homes()
-    {
-        return $this->hasMany(Home::class,'home_id');
-    }
-    public function orders()
-    {
-        return $this->morphMany('App\Models\Order', 'orderable');
     }
     public function registerMediaCollections()
     {

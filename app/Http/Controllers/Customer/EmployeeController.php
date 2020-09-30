@@ -53,7 +53,7 @@ class EmployeeController extends Controller
         $user=Auth::user();
         $user=User::find($user->id);
         $employee = $this->employee_service->create([
-
+            'user_id'=>$user->id,
         ]);
          return $employee->id;
        // return view('customer.employees.create',compact('cities','employee','user'));

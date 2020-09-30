@@ -48,6 +48,7 @@ class CompanyController extends Controller
 
         $company = $this->company_service->create([
             'company_name'=>'created',
+            'user_id'=>$user->id,
         ]);
          return $company->id;
        // return view('customer.companies.create',compact('customer','cities','jobs','company',''));
