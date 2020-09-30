@@ -34,26 +34,10 @@ class CustomerController extends Controller
     }
     public function profile(){
         $customer=Auth::user();
-      /* $coms=Company::where('company_name','created')->get();
-       foreach ($coms as $com)
-           $com->forceDelete();
-        $emp=Employee::where('title','')->get();
-        foreach ($emp as $e)
-            $e->forceDelete();
-        $homes=Home::where('post_code','')->get();
-        foreach ($homes as $h)
-            $h->forceDelete();*/
+
         $cities=City::all();
         $jobs=Job::all();
-      /*  $company = $this->company_service->create([
-            'company_name'=>'created',
-        ]);
-        $employee = $this->employee_service->create([
 
-        ]);
-        $home = $this->home_service->create([
-
-        ]);*/
         return view('customer.main-page', compact('customer','cities','jobs'));
     }
     public function store(Request $request)
@@ -69,20 +53,11 @@ class CustomerController extends Controller
             return response()->json(['errors'=>$validator->errors()->all()]);
         }
 
-        if ($request['type'] == 'customer')
-            $request['customer_type']=1;
-          else
-              $request['customer_type']=2;
-
-
-
-        $user->userable_type = "customer";
         $user->customer_name = $request->customer_name;
         $user->company_name= $request->company_name;
-        $user->kvk= $request->kvk;
         $user->phone= $request->phone;
         $user->email= $request->email;
-        $user->customer_type= $request->customer_type;
+
 
             $user->update();
 

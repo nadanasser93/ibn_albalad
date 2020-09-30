@@ -155,7 +155,8 @@
                     autoDiscover:false,
                     uploadMultiple:false,
                     maxFiles:1,
-                    maxFilessize:3, // MB
+                    maxFilessize:15, // MB
+                    timeout: 500000,
                     acceptedFiles:'image/*',
                     dictDefaultMessage:'<i class="fa fa-plus fa-fw fa-5x add-photo" style="color:#d0cece!important"></i>',
                     dictRemoveFile:'Delete',
@@ -207,7 +208,8 @@
                     autoDiscover:false,
                     uploadMultiple:false,
                     maxFiles:5,
-                    maxFilessize:30, // MB
+                    maxFilessize:40, // MB
+                    timeout: 5000000,
                     acceptedFiles:'image/*',
                     dictDefaultMessage:'<i class="fa fa-plus fa-fw fa-5x add-photo" style="color:#d0cece!important"></i>',
                     dictRemoveFile:'{{ trans('admin.delete') }}',
@@ -259,7 +261,8 @@
                     autoDiscover:false,
                     uploadMultiple:false,
                     maxFiles:1,
-                    maxFilessize:3, // MB
+                    maxFilessize:15, // MB
+                    timeout: 5000000,
                     acceptedFiles:'image/*',
                     dictDefaultMessage:'<i class="fa fa-plus fa-fw fa-5x add-photo" style="color:#d0cece!important"></i>',
                     dictRemoveFile:'Delete',
@@ -323,7 +326,8 @@
                     autoDiscover:false,
                     uploadMultiple:false,
                     maxFiles:1,
-                    maxFilessize:3, // MB
+                    maxFilessize:15, // MB
+                    timeout: 5000000,
                     acceptedFiles:'image/*',
                     dictDefaultMessage:'<i class="fa fa-plus fa-fw fa-5x add-photo" style="color:#d0cece!important"></i>',
                     dictRemoveFile:'Delete',
@@ -382,7 +386,8 @@
                     autoDiscover:false,
                     uploadMultiple:false,
                     maxFiles:5,
-                    maxFilessize:30, // MB
+                    maxFilessize:50, // MB
+                    timeout: 50000000,
                     acceptedFiles:'image/*',
                     dictDefaultMessage:'<i class="fa fa-plus fa-fw fa-5x add-photo" style="color:#d0cece!important"></i>',
                     dictRemoveFile:'{{ trans('admin.delete') }}',

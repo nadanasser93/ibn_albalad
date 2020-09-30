@@ -26,7 +26,7 @@ class User extends Authenticatable
     const USER_ROLE_CUSTOMER_USER = 'customer';
 
     protected $fillable = [
-        'name', 'email', 'password','userable_id','userable_type','customer_name','phone','company_name','phone','kvk','customer_type'
+        'name', 'email', 'password','customer_name','phone','company_name','phone',
     ];
 
     /**
