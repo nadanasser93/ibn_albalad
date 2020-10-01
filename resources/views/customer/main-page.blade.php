@@ -143,7 +143,6 @@
         }
 
     }
-
     var company_id,employee_id,home_id;
     var drop1,drop2,drop3,drop4,drop5;
     function storeOrder() {
@@ -527,6 +526,35 @@
         $("#sel").trigger("change");
         stepper1.to(step)
         $('#none').show();
+    }
+    function getCustomerOrders() {
+        $.ajax({    //create an ajax request to display.php
+            type: "GET",
+            url: "{{asset('customer/getCustomerOrders')}}",
+            dataType: "JSON",   //expect html to be returned
+            success: function(response){
+
+                phone='';email='';subscription_name='';image='';
+                for(i=0;i<response.order.services.length;i++) {
+                    if(response.order.services[i].service!==null) {
+                        phone =response.order.services[i].service.phone
+                        email =response.order.services[i].service.email
+                        if(response.order.services[i].service.image!==undefined)
+                        image="{{asset('public/storage')}}/"+response.order.services[i].service.image.id+"/"+response.order.services[i].service.image.file_name
+                        if(response.order.services[i].service.employee_image!==undefined)
+                            image="{{asset('public/storage')}}/"+response.order.services[i].service.employee_image.id+"/"+response.order.services[i].service.employee_image.file_name
+                        if(response.order.services[i].service.main_image!==undefined)
+                            image="{{asset('public/storage')}}/"+response.order.services[i].service.main_image.id+"/"+response.order.services[i].service.main_image.file_name
+                        if(response.order.services[i].service.subscription!==null) {
+                            subscription_name =response.order.services[i].service.subscription.name
+
+                        }
+                      }
+                            $("#orders tbody").append(@include('customer.components.table-content'))
+                    }
+                }
+
+        });
     }
 </script>
 @endpush

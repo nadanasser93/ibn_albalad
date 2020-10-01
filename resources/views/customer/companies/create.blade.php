@@ -34,16 +34,16 @@
                                     <div class="col-md-1">  <label for="customer">Customer</label></div>
                                     <div class="col-md-5">
 
-                                        <input type="radio" name="com_type" class="form-control" id="customer" value="customer" placeholder="Name" {{$customer->customer_type==1?'checked':''}}></div>
+                                        <input type="radio" name="com_type" class="form-control" id="customer" value="customer" placeholder="Name"></div>
                                     <div class="col-md-1">  <label for="customer">Company</label></div>
                                     <div class="col-md-5">
-                                        <input type="radio" name="com_type" class="form-control" id="company" value="company" placeholder="Name" {{$customer->customer_type==2?'checked':''}}>
+                                        <input type="radio" name="com_type" class="form-control" id="company" value="company" placeholder="Name">
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group" id="kvk1" style="{{$customer->customer_type==1?'display: none':'display: block'}}">
+                            <div class="form-group" id="kvk1" style="display: none">
                                 <label for="exampleInputName1">KVK</label>
-                                <input type="text" name="kvk" value="{{$customer->kvk}}" class="form-control" id="exampleInputName1" placeholder="KVK">
+                                <input type="text" name="kvk" value="" class="form-control" id="exampleInputName1" placeholder="KVK">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Company Name</label>
@@ -202,6 +202,7 @@
                 else {
                     newServ(step);
                     storeServiceOrder('companies');
+                    getCustomerOrders();
                 }
 
             },

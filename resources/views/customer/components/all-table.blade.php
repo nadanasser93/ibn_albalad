@@ -44,8 +44,8 @@
 
             <tr>
                 <td class="p-3">
-                    @if($company->main_image&&$company->main_image->getFullUrl()!=null)
-                        <img style="max-height: 300px;width: 150px;height: 100px;" id="{{$company->main_image->id}}" class="image"  src="{{str_replace('storage','public/storage',$company->main_image->getFullUrl()) }}" />
+                    @if($company->image&&$company->image->getFullUrl()!=null)
+                        <img style="max-height: 300px;width: 150px;height: 100px;" id="{{$company->image->id}}" class="image"  src="{{str_replace('storage','public/storage',$company->image->getFullUrl()) }}" />
                     @endif
                 </td>
                 <td class="p-3">Company</td>

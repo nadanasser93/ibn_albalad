@@ -26,6 +26,22 @@
 
                             <input type="hidden" name="x" value="">
                             <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-1">  <label for="customer">Customer</label></div>
+                                    <div class="col-md-5">
+
+                                        <input type="radio" name="com_type" class="form-control" id="customer" value="customer" placeholder="Name" {{$company->type=='Customer'?'checked':''}}></div>
+                                    <div class="col-md-1">  <label for="customer">Company</label></div>
+                                    <div class="col-md-5">
+                                        <input type="radio" name="com_type" class="form-control" id="company" value="company" placeholder="Name" {{$company->type=='Company'?'checked':''}}>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="kvk1" style="{{$company->type=='Company'?'display: none':'display: block'}}">
+                                <label for="exampleInputName1">KVK</label>
+                                <input type="text" name="kvk" value="{{$company->kvk}}" class="form-control" id="exampleInputName1" placeholder="KVK">
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleInputName1">Company Name</label>
                                 <input type="text" value="{{$company->company_name}}" name="company_name" required class="form-control" id="exampleInputName1" placeholder="Company Name">
                                 @error('company_name')
@@ -48,18 +64,18 @@
                                     @endforeach
                                 </select>
                             </div>
-                            @if($company->main_image&&$company->main_image->getFullUrl()!=null)
+                            @if($company->image&&$company->image->getFullUrl()!=null)
                             <div class="card-body ">
                                 <div class="col-12 image-item" data-order="" id="">
                                     <div class=" overlay">
 
-                                        <img style="max-height: 300px" id="{{$company->main_image->id}}" class="image"  src="{{str_replace('storage','public/storage',$company->main_image->getFullUrl()) }}" />
+                                        <img style="max-height: 300px" id="{{$company->image->id}}" class="image"  src="{{str_replace('storage','public/storage',$company->image->getFullUrl()) }}" />
 
                                         <div class="middle row ml-1" >
 
-                                            <a class="fancybox-thumb btn btn-dark" rel="fancybox-thumb" href="{{ $company->main_image->getFullUrl() }}"  style="margin-top: 0.5em;"><i class="fa fa-eye"></i></a>
-                                            <!--<a class=" btn btn-dark" data-toggle="modal" onclick="croppi('photo','{{$company->main_image->getFullUrl()}}')" data-target="#editImage" style="margin-top: 0.5em;color: #fff"><i class="fa fa-edit"></i></a>-->
-                                            <a class=" btn btn-dark"  onclick="im_delete('{{$company->main_image->id}}')"   style="margin-top: 0.5em;color: #fff"><i class="fa fa-trash"></i></a>
+                                            <a class="fancybox-thumb btn btn-dark" rel="fancybox-thumb" href="{{ $company->image->getFullUrl() }}"  style="margin-top: 0.5em;"><i class="fa fa-eye"></i></a>
+                                            <!--<a class=" btn btn-dark" data-toggle="modal" onclick="croppi('photo','{{$company->image->getFullUrl()}}')" data-target="#editImage" style="margin-top: 0.5em;color: #fff"><i class="fa fa-edit"></i></a>-->
+                                            <a class=" btn btn-dark"  onclick="im_delete('{{$company->image->id}}')"   style="margin-top: 0.5em;color: #fff"><i class="fa fa-trash"></i></a>
 
                                         </div>
                                     </div>

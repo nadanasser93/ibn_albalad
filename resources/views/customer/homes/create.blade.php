@@ -120,6 +120,7 @@
         }).done(function(response){ //
             newServ(step)
             storeServiceOrder('homes');
+            getCustomerOrders();
         });
     }
 

@@ -194,7 +194,6 @@ class CompanyController extends Controller
         $jobs=[];
         if(isset($request->job))
             if(count($request->job)<=3) {
-              //  dd($request->job);
                 for ($x = 0; $x < count($request->job); $x++) {
                     $job = Job::where('id', $request->job[$x])->first();
                     if ($job == null) {

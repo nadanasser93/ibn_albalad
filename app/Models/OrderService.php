@@ -10,5 +10,7 @@ class OrderService extends BaseModel
     public function order(){
         return $this->belongsTo(Order::class,'order_id');
     }
-
+public function service(){
+        return $this->morphTo('service');
+}
 }

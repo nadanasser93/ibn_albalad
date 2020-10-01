@@ -117,6 +117,7 @@
         }).done(function(response){ //
             newServ(step)
             storeServiceOrder('employees');
+            getCustomerOrders();
         });
     }
 </script>

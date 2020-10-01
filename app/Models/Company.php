@@ -34,11 +34,14 @@ class Company extends BaseModel implements HasMedia
     {
         return $this->getMedia('photos');
     }
-    public function getMainImageAttribute()
+    public function getImageAttribute()
     {
         return $this->getFirstMedia('image');
     }
     public function orderServices(){
-        return $this->morphMany(OrderService::class, 'serviceable');
+        return $this->morphMany('App\Models\OrderService', 'service');
+    }
+    public function subscription(){
+        return $this->belongsTo(Subscription::class,'subscription_id');
     }
 }
