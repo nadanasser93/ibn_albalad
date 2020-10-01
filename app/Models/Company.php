@@ -38,4 +38,7 @@ class Company extends BaseModel implements HasMedia
     {
         return $this->getFirstMedia('image');
     }
+    public function orderServices(){
+        return $this->morphMany(OrderService::class, 'serviceable');
+    }
 }

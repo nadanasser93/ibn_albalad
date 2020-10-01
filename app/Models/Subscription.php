@@ -64,9 +64,6 @@ class Subscription extends BaseModel implements HasMedia
     {
         return $this->getFirstMedia('image');
     }
-    public function orders()
-    {
-        return $this->belongsToMany(Order::class, 'subscription_orders');
-    }
+
 
 }

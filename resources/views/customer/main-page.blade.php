@@ -73,7 +73,7 @@
                                 @include('customer.homes.create')
                             </div>
                             <!--<button class="btn btn-primary" onclick="stepper1.next()">Next</button>-->
-                            <button class="btn btn-primary" onclick="stepper1.next()">Pay</button>
+                            <button class="btn btn-primary" onclick="storeOrder()">Pay</button>
                         </div>
 
                         <div id="test-l-4" class="content">
@@ -97,7 +97,10 @@
     stepper1Node.addEventListener('shown.bs-stepper', function (event) {
         console.warn('shown.bs-stepper', event)
     })
+    var service;
     function selectService(x){
+        service=x
+        console.log(service)
         if(drop1!=undefined)
             drop1[0].dropzone.removeAllFiles(true);
         if(drop2!=undefined)
@@ -143,7 +146,40 @@
 
     var company_id,employee_id,home_id;
     var drop1,drop2,drop3,drop4,drop5;
+    function storeOrder() {
+        if(service===3) {
+            submitHome(event,4)
 
+        }
+        else  if(service===1) {
+            submitCompany(event,4)
+        }
+        else if(service===2){
+            submitEmployee(event,4)
+        }
+
+    }
+    function storeServiceOrder(type) {
+        if(type==='homes')
+            id=home_id
+        else  if(type==='companies')
+            id = company_id
+        else
+            id=employee_id
+        _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type: "POST",
+            url: "{{asset('customer/storeServiceOrder')}}",
+            data:{
+                _token: _token,
+                type:type,
+                id:id,
+            },
+            success: function(response){
+                //  swal("Thanks For Order Now")
+            }
+        });
+    }
     function getSubscripts(type) {
         if(type==='homes')
             className='homesubscription'
@@ -184,7 +220,7 @@
                 subscription_id:subscription_id,
                 id:id,
                 _token: _token
-            },   //expect html to be returned
+            },
             success: function(response){
                 swal("Thanks For Order Now")
             }
@@ -480,7 +516,7 @@
             }
         });
     }
-    function newServ() {
+    function newServ(step) {
 
         $('form')[1].reset()
         $('form')[2].reset()
@@ -489,7 +525,7 @@
         jQuery('.alert-danger').hide();
         $("#sel").val("");
         $("#sel").trigger("change");
-        stepper1.to(2)
+        stepper1.to(step)
         $('#none').show();
     }
 </script>

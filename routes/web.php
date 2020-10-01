@@ -53,6 +53,9 @@ Route::group(['prefix' => 'customer', 'namespace' => 'Customer'], function () {
     Route::get('/getSubscriptionType/{type}', 'CustomerController@getSubscriptionType')->name('getSubscriptionType');
     Route::post('/orderNow', 'CustomerController@orderNow')->name('orderNow');
 
+    Route::post('/storeOrder', 'OrderController@storeOrder')->name('storeOrder');
+    Route::post('/storeServiceOrder', 'OrderController@storeServiceOrder')->name('storeServiceOrder');
+
     Route::get('homes', 'HomeController@index')->name('homes.index');
     Route::get('/homes/create', 'HomeController@create')->name('homes.create');
     Route::post('/homes/store/{home_id}', 'HomeController@store')->name('homes.store');

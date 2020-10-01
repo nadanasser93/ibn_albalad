@@ -56,9 +56,7 @@ class Order extends Model
         'amount_incl',
     ];
 
-
-    public function subscriptions()
-    {
-        return $this->belongsToMany(Subscription::class, 'subscription_orders');
+    public function services(){
+        return $this->hasMany(OrderService::class,'order_id');
     }
 }

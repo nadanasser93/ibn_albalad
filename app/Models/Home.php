@@ -18,9 +18,6 @@ class Home extends BaseModel implements HasMedia
     public function city(){
         return $this->belongsTo(City::class,'city_id');
     }
-    public function company(){
-        return $this->belongsTo(Company::class,'company_id');
-    }
 
     public function registerMediaCollections()
     {
@@ -35,5 +32,8 @@ class Home extends BaseModel implements HasMedia
     public function getMainImageAttribute()
     {
         return $this->getFirstMedia('image');
+    }
+    public function orderServices(){
+        return $this->morphMany(OrderService::class, 'serviceable');
     }
 }

@@ -100,14 +100,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                               <!-- <div class="form-group">
-                                    <label for="exampleInputName1">Job</label>
-                                    <select  name="job[]" class="form-control js-example-disabled sel" id="sel1" >
-                                        @foreach($jobs as $job)
-                                            <option value="{{$job->id}}">{{$job->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>-->
+
                                 <div class="form-group">
                                     <label for="exampleInputName1">Street</label>
                                     <input type="text" name="street[]"  value="" class="form-control" id="exampleInputName1" placeholder="Street">
@@ -126,7 +119,7 @@
                             </div>
                             <div class="form-group row mb-0 mt-2 mb-1 address">
                                 <div class="col-md-12 offset-md-4">
-                                    <button type="submit" class="btn btn-primary" onclick="">
+                                    <button type="button" onclick="submitCompany(event,2)" class="btn btn-primary">
                                         {{ __('button.general.save') }}
                                     </button>
 
@@ -134,7 +127,7 @@
                                     <button type="button" id="add_address" class="btn btn-primary">
                                         Add New Address
                                     </button>
-                                    <!--<button class="btn btn-primary" onclick="stepper1.next()">Pay</button>-->
+
 
                                 </div>
 
@@ -189,12 +182,12 @@
     }
     Dropzone.autoDiscover = false;
 
-    $("#company_form").submit(function(event){
-        event.preventDefault();  // this prevents the form from submitting
-       // var post_url = $(this).attr("action"); //get form action url
+    function submitCompany(e,step){
+        e.preventDefault();  // this prevents the form from submitting
+        form=$("#company_form");
         var post_url="{{asset('customer/companies/store/')}}/"+company_id
-        var request_method = $(this).attr("method"); //get form GET/POST method
-        var form_data = $(this).serialize(); //Encode form elements for submission
+        var request_method = form.attr("method"); //get form GET/POST method
+        var form_data = form.serialize(); //Encode form elements for submission
 
         $.ajax({
             url : post_url,
@@ -206,8 +199,11 @@
                     jQuery('.job-error').show();
                     jQuery('.job-error').append('<p>' + data.errors + '</p>');
                 }
-                else
-                newServ();
+                else {
+                    newServ(step);
+                    storeServiceOrder('companies');
+                }
+
             },
             error:function (data) {
                 console.log(data)
@@ -219,7 +215,7 @@
                 //    stepper1.next()
             }
         });
-    });
+    }
 </script>
 @endpush
 

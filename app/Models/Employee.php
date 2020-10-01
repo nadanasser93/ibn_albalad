@@ -32,4 +32,7 @@ class Employee extends BaseModel implements HasMedia
     {
         return $this->getFirstMedia('employee_image');
     }
+    public function orderServices(){
+        return $this->morphMany(OrderService::class, 'serviceable');
+    }
 }
