@@ -9,6 +9,7 @@ use App\Models\Company;
 use App\Models\Employee;
 use App\Models\Home;
 use App\Models\Job;
+use App\Models\Order;
 use App\Models\Subscription;
 use App\Services\Company\ICompanyService;
 use App\Services\Customer\ICustomerService;
@@ -35,11 +36,11 @@ class CustomerController extends Controller
     }
     public function profile(){
         $customer=Auth::user();
-
         $cities=City::all();
         $jobs=Job::all();
-
-        return view('customer.main-page', compact('customer','cities','jobs'));
+        $request['user_id']=$customer->id;
+        $order=Order::create(['user_id'=>$customer->id]);
+        return view('customer.main-page', compact('customer','cities','jobs','order'));
     }
     public function getSubscriptionType($type){
         $subscriptions=Subscription::where('subscription_for',$type)->get();

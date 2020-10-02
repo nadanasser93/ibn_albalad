@@ -1,6 +1,4 @@
-
-
-    <div class="col-md-8 mx-auto  grid-margin stretch-card">
+<div class="col-md-8 mx-auto  grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Customer Profile</h4>
@@ -8,6 +6,7 @@
                 <form class="forms-sample" method="post" id="my_form" action="{{route('profile_store')}}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" value="{{$customer->id}}" name="user_id">
+                    <input type="hidden" value="{{$order->id}}" name="order_id" id="order_id">
                     <div class="form-group">
                         <label for="exampleInputName1">Name</label>
                         <input type="text" value="{{$customer->customer_name}}" name="customer_name" class="form-control" id="exampleInputName1" placeholder="Name">

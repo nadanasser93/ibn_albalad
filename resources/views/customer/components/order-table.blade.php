@@ -3,7 +3,6 @@
 
         <thead>
         <tr class="">
-            <th class="p-3">{{ trans('global.image') }}</th>
             <th class="p-3">{{ trans('global.customer') }}</th>
             <th class="p-3">{{ trans('global.company') }}</th>
             <th class="p-3">{{ trans('global.service') }}</th>
@@ -27,7 +26,7 @@
     <script>
 
         $(document).ready( function () {
-            $('#orders').DataTable();
+            //$('#orders').DataTable();
         } );
 
 

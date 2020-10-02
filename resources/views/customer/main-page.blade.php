@@ -165,6 +165,7 @@
             id = company_id
         else
             id=employee_id
+        order_id=$('#order_id').val()
         _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: "POST",
@@ -173,6 +174,7 @@
                 _token: _token,
                 type:type,
                 id:id,
+                order_id:order_id,
             },
             success: function(response){
                 //  swal("Thanks For Order Now")
@@ -204,6 +206,7 @@
     }
     function orderNow(subscription_id,type,e) {
         e.preventDefault()
+
         if(type==='homes')
             id=home_id
         else  if(type==='companies')
@@ -528,25 +531,28 @@
         $('#none').show();
     }
     function getCustomerOrders() {
+        var table=$('#orders').DataTable();
+        table.rows().remove().draw();
+        order_id=$('#order_id').val()
         $.ajax({    //create an ajax request to display.php
             type: "GET",
-            url: "{{asset('customer/getCustomerOrders')}}",
+            url: "{{asset('customer/getCustomerOrders')}}/"+order_id,
             dataType: "JSON",   //expect html to be returned
             success: function(response){
 
                 phone='';email='';subscription_name='';image='';
-                for(i=0;i<response.order.services.length;i++) {
-                    if(response.order.services[i].service!==null) {
-                        phone =response.order.services[i].service.phone
-                        email =response.order.services[i].service.email
-                        if(response.order.services[i].service.image!==undefined)
+                for(i=0;i<response.services.length;i++) {
+                    if(response.services[i].service!==null) {
+                        phone =response.services[i].service.phone
+                        email =response.services[i].service.email
+                        {{-- if(response.order.services[i].service.image!==undefined && response.order.services[i].service.image!==null)
                         image="{{asset('public/storage')}}/"+response.order.services[i].service.image.id+"/"+response.order.services[i].service.image.file_name
-                        if(response.order.services[i].service.employee_image!==undefined)
+                        if(response.order.services[i].service.employee_image!==undefined&&response.order.services[i].service.employee_image!==null)
                             image="{{asset('public/storage')}}/"+response.order.services[i].service.employee_image.id+"/"+response.order.services[i].service.employee_image.file_name
-                        if(response.order.services[i].service.main_image!==undefined)
-                            image="{{asset('public/storage')}}/"+response.order.services[i].service.main_image.id+"/"+response.order.services[i].service.main_image.file_name
-                        if(response.order.services[i].service.subscription!==null) {
-                            subscription_name =response.order.services[i].service.subscription.name
+                        if(response.order.services[i].service.main_image!==undefined&& response.order.services[i].service.main_image!==null)
+                            image="{{asset('public/storage')}}/"+response.order.services[i].service.main_image.id+"/"+response.order.services[i].service.main_image.file_name--}}
+                        if(response.services[i].service.subscription!==null) {
+                            subscription_name =response.services[i].service.subscription.name
 
                         }
                       }

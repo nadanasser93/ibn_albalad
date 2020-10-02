@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,5 +59,8 @@ class Order extends Model
 
     public function services(){
         return $this->hasMany(OrderService::class,'order_id');
+    }
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
     }
 }
