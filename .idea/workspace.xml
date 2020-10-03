@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20e1c948-7ca9-4766-a16f-3169ea5b0426" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Models/MolliePayment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Services/Payment/IPaymentService.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Services/Payment/PaymentService.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/mollie.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2020_10_02_205324_create_mollie_payments_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.env" afterPath="$PROJECT_DIR$/.env" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Customer/OrderController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Customer/OrderController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/ServicesServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/ServicesServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap/app.php" afterPath="$PROJECT_DIR$/bootstrap/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/companies/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/companies/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/components/order-table.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/components/order-table.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/components/table-content.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/components/table-content.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/main-page.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/main-page.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/payment.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/payment.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/customer/profile.blade.php" afterPath="$PROJECT_DIR$/resources/views/customer/profile.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,33 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OrderController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OrderController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Customer/OrderController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="64" column="53" lean-forward="true" selection-start-line="64" selection-start-column="53" selection-end-line="64" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PaymentService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Services/Payment/PaymentService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="43" column="44" lean-forward="false" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
-              <folding>
-                <element signature="e#40#69#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="31" column="22" lean-forward="true" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+            <state relative-caret-position="284">
+              <caret line="52" column="38" lean-forward="true" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -65,9 +28,23 @@
       <file leaf-file-name="payment.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/customer/payment.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="71" lean-forward="false" selection-start-line="6" selection-start-column="71" selection-end-line="6" selection-end-column="71" />
-              <folding />
+            <state relative-caret-position="151">
+              <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+              <folding>
+                <element signature="e#296#315#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PaymentService.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Services/Payment/PaymentService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="53" column="23" lean-forward="false" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
+              <folding>
+                <element signature="e#40#69#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -122,11 +99,28 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="main-page.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/customer/main-page.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="167" column="32" lean-forward="false" selection-start-line="167" selection-start-column="32" selection-end-line="167" selection-end-column="32" />
+              <folding>
+                <marker date="1601723341500" expanded="true" signature="9966:9989" ph="..." />
+                <marker date="1601723341500" expanded="true" signature="12165:12188" ph="..." />
+                <marker date="1601723341500" expanded="true" signature="14179:14202" ph="..." />
+                <marker date="1601723341500" expanded="true" signature="16663:16686" ph="..." />
+                <marker date="1601723341500" expanded="true" signature="18802:18825" ph="..." />
+                <marker date="1601723341500" expanded="true" signature="23335:23353" ph="..." />
+                <marker date="1601723341500" expanded="true" signature="23410:23428" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>start_</find>
       <find>be</find>
       <find>desc mx-auto</find>
       <find>price_incl</find>
@@ -156,6 +150,7 @@
       <find>Mollie\Laravel\MollieServiceProvider</find>
       <find>mo</find>
       <find>MollieServiceProvider</find>
+      <find>$('#order_id')</find>
     </findStrings>
     <replaceStrings>
       <replace>Customer</replace>
@@ -256,14 +251,14 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/customer/companies/create.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_10_02_205324_create_mollie_payments_table.php" />
-        <option value="$PROJECT_DIR$/resources/views/customer/main-page.blade.php" />
         <option value="$PROJECT_DIR$/app/Providers/ServicesServiceProvider.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Customer/OrderController.php" />
-        <option value="$PROJECT_DIR$/resources/views/customer/payment.blade.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/bootstrap/app.php" />
         <option value="$PROJECT_DIR$/app/Services/Payment/PaymentService.php" />
+        <option value="$PROJECT_DIR$/resources/views/customer/main-page.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/customer/payment.blade.php" />
       </list>
     </option>
   </component>
@@ -465,7 +460,7 @@
       <workItem from="1601031813612" duration="77826000" />
       <workItem from="1601291490488" duration="26654000" />
       <workItem from="1601379435250" duration="18680000" />
-      <workItem from="1601413556790" duration="96282000" />
+      <workItem from="1601413556790" duration="98452000" />
     </task>
     <task id="LOCAL-00001" summary="pro">
       <created>1597429908880</created>
@@ -565,11 +560,18 @@
       <option name="project" value="LOCAL" />
       <updated>1601641937877</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="buying">
+      <created>1601720947470</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1601720947471</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="381369000" />
+    <option name="totallyTimeSpent" value="383539000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
@@ -632,7 +634,8 @@
     <MESSAGE value="subscription" />
     <MESSAGE value="orders" />
     <MESSAGE value="repairing" />
-    <option name="LAST_COMMIT_MESSAGE" value="repairing" />
+    <MESSAGE value="buying" />
+    <option name="LAST_COMMIT_MESSAGE" value="buying" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -976,32 +979,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/customer/main-page.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="159" column="4" lean-forward="false" selection-start-line="159" selection-start-column="4" selection-end-line="181" selection-end-column="5" />
-          <folding>
-            <element signature="e#5204#6233#0#HTML" expanded="false" />
-            <element signature="e#6353#6583#0#HTML" expanded="false" />
-            <element signature="e#6621#7254#0#HTML" expanded="false" />
-            <element signature="e#7288#8358#0#HTML" expanded="false" />
-            <element signature="e#8405#9075#0#HTML" expanded="false" />
-            <element signature="e#9105#13374#0#HTML" expanded="false" />
-            <element signature="e#13405#15847#0#HTML" expanded="false" />
-            <element signature="e#15874#20438#0#HTML" expanded="false" />
-            <element signature="e#20466#20755#0#HTML" expanded="false" />
-            <element signature="e#20789#23474#0#HTML" expanded="false" />
-            <marker date="1601672724545" expanded="true" signature="9932:9955" ph="..." />
-            <marker date="1601672724545" expanded="true" signature="12131:12154" ph="..." />
-            <marker date="1601672724545" expanded="true" signature="14145:14168" ph="..." />
-            <marker date="1601672724545" expanded="true" signature="16629:16652" ph="..." />
-            <marker date="1601672724545" expanded="true" signature="18768:18791" ph="..." />
-            <marker date="1601672724545" expanded="true" signature="23301:23319" ph="..." />
-            <marker date="1601672724545" expanded="true" signature="23376:23394" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Providers/ServicesServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="52">
@@ -1058,14 +1035,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/customer/payment.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="71" lean-forward="false" selection-start-line="6" selection-start-column="71" selection-end-line="6" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
@@ -1074,21 +1043,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Services/Payment/PaymentService.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Customer/OrderController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="43" column="44" lean-forward="false" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
+        <state relative-caret-position="284">
+          <caret line="52" column="38" lean-forward="true" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/customer/main-page.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="167" column="32" lean-forward="false" selection-start-line="167" selection-start-column="32" selection-end-line="167" selection-end-column="32" />
           <folding>
-            <element signature="e#40#69#0#PHP" expanded="true" />
+            <marker date="1601723341500" expanded="true" signature="9966:9989" ph="..." />
+            <marker date="1601723341500" expanded="true" signature="12165:12188" ph="..." />
+            <marker date="1601723341500" expanded="true" signature="14179:14202" ph="..." />
+            <marker date="1601723341500" expanded="true" signature="16663:16686" ph="..." />
+            <marker date="1601723341500" expanded="true" signature="18802:18825" ph="..." />
+            <marker date="1601723341500" expanded="true" signature="23335:23353" ph="..." />
+            <marker date="1601723341500" expanded="true" signature="23410:23428" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Customer/OrderController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/customer/payment.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="64" column="53" lean-forward="true" selection-start-line="64" selection-start-column="53" selection-end-line="64" selection-end-column="53" />
-          <folding />
+        <state relative-caret-position="151">
+          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding>
+            <element signature="e#296#315#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/Payment/PaymentService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="53" column="23" lean-forward="false" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
+          <folding>
+            <element signature="e#40#69#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

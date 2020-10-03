@@ -165,6 +165,7 @@
         else
             id=employee_id
         order_id=$('#order_id').val()
+        $('#order').val(order_id)
         _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: "POST",
