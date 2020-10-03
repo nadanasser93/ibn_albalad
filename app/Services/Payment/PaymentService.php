@@ -56,6 +56,8 @@ class PaymentService implements IPaymentService
         $data['mollie_payment_id']=$payment_mollie->id;
         $data['status']=$payment_mollie->status;
         $data['currency']='EUR';
+        $data['description']=$payment_mollie->description;
+        $data['webhookUrl']=$payment_mollie->webhookUrl;
         $data['method']=$payment_mollie->method;
         $payement =  MolliePayment::create($data);
 

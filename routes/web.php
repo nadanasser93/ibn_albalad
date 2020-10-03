@@ -58,9 +58,7 @@ Route::group(['prefix' => 'customer', 'namespace' => 'Customer'], function () {
     Route::post('/storeOrder', 'OrderController@storeOrder')->name('storeOrder');
 
     Route::post('/order-now/order','OrderController@Order')->name('order-now.order');
-    Route::view('/order-now/order',function(){
-
-    })->name('order.success');
+    Route::get('/order-now/success','CustomerController@profile')->name('order.success');
 
     Route::get('homes', 'HomeController@index')->name('homes.index');
     Route::get('/homes/create', 'HomeController@create')->name('homes.create');
