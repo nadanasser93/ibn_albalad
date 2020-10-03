@@ -1,0 +1,42 @@
+@import "variables";
+@import "functions";
+
+/*-----------------------------------------------------------------------------------
+
+[Quick View] (Section)
+
+# Quick View (wrapper)
+# Heading (h1)
+# Carousel pagination
+
+-----------------------------------------------------------------------------------*/
+
+/* Quick view wrapper */
+.site-quick-view {
+  margin: 0;
+  clear: both;
+  width: 100%;
+  padding-bottom: rem(100);
+  padding-top: rem(130);
+
+  h1 {
+    /* Heading */
+    margin-bottom: rem(80);
+  }
+
+  .slide {
+    margin: 0;
+    padding: 0 rem(15);
+    display: block;
+  }
+
+  .swiper-button-prev {
+    /* Carousel pagination */
+    @include small_min {
+      margin-top: rem(60);
+    }
+    @include small_max {
+      margin-top: rem(-50);
+    }
+  }
+}

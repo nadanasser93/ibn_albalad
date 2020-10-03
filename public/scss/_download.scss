@@ -1,0 +1,27 @@
+@import "variables";
+@import "functions";
+
+/*-----------------------------------------------------------------------------------
+
+[Download] (Section)
+
+# Download Section (wrapper)
+
+-----------------------------------------------------------------------------------*/
+
+/* Download section wrapper */
+.site-download {
+  margin: 0;
+  display: block;
+  clear: both;
+  background: #2B8DD9 url("../images/download-bg.png") no-repeat center;
+  background-size: cover;
+  padding-bottom: rem(70);
+
+  @include medium_max {
+    padding-bottom: 0;
+    //background: $section_bg;
+    background: #2B8DD9;
+  }
+
+}

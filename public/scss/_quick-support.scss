@@ -1,0 +1,236 @@
+@import "variables";
+@import "functions";
+
+/*-----------------------------------------------------------------------------------
+
+[Quick Support] (Section)
+
+# Quick Support (wrapper)
+# Heading (h1)
+# .site-info (class)
+# .site-box (class)
+# Images
+# Icons
+# Typography
+# Contact form
+
+-----------------------------------------------------------------------------------*/
+
+/* Quick support wrapper */
+.site-quick-support {
+  background: url("../images/map.png") no-repeat center;
+  background-size: cover;
+  padding-bottom: rem(150);
+  overflow: hidden;
+
+  @include large_max {
+    padding-bottom: rem(100);
+  }
+
+  h1 {
+    /* Heading */
+    margin-bottom: rem(70);
+  }
+
+  .site-info {
+    /* info (class) */
+    width: 100%;
+    clear: both;
+    text-align: center;
+    font-size: 0;
+  }
+
+  .site-box {
+    /* box (class) */
+    clear: both;
+    position: relative;
+    z-index: 10;
+    padding: rem(20) 0;
+    width: (100%/3);
+
+    @include large_max {
+      padding-left: rem(50);
+      padding-right: rem(50);
+    }
+
+    @include medium_max {
+      padding-left: rem(20);
+      padding-right: rem(20);
+    }
+
+    @include small_max {
+      display: block;
+      width: 100%;
+    }
+
+    &.last:after {
+      display: none;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      display: block;
+      clear: both;
+      width: 0.063rem;
+      height: 3.563rem;
+      opacity: 0.5;
+      background-color: $color_header_BG;
+      margin-top: auto;
+      margin-bottom: auto;
+
+      @include small_max {
+        display: none;
+      }
+    }
+  }
+
+  figure {
+    /* Image */
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+    clear: both;
+  }
+
+  i.fa, span {
+    /* Icons */
+    width: 1rem;
+    height: 1.063rem;
+    color: $color_orange;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 2.563rem;
+    text-align: center;
+  }
+
+  p, address {
+    /* Typography */
+    color: $paragraph_second;
+    font-family: inherit;
+    font-size: 0.813rem;
+    font-weight: 400;
+    padding: rem(18) 0;
+    display: block;
+    width: 100%;
+    clear: both;
+    font-style: normal;
+    margin: rem(12) 0 0;
+    @include transition('color');
+
+    &:hover {
+      color: $color_orange;
+    }
+  }
+}
+
+.site-contact-form {
+  /*  CONTACT FORM */
+  padding: 0;
+  display: block;
+  width: 100%;
+  clear: both;
+  margin: rem(60) 0 0;
+
+  table {
+    width: 100%;
+  }
+
+  @include small_max {
+
+    max-width: rem(400);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: rem(10);
+    padding-right: rem(10);
+
+    table, tr, td, th, tbody {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  input, textarea {
+    /* Input fields */
+    width: 100%;
+    height: 2.813rem;
+    background-color: $input_bg;
+    padding: 0 rem(15);
+    border-radius: rem(2);
+    color: $paragraph_second;
+    font-family: inherit;
+    font-size: 0.850rem;
+    font-weight: 400;
+    line-height: 2.813rem;
+    border: rem(1) solid $input_bg;
+    box-sizing: border-box;
+    @include transition('border-color');
+    display: block;
+    margin: 0;
+
+    &:focus {
+      border-color: $color_orange;
+    }
+  }
+
+  textarea {
+    height: 6.5rem;
+    resize: none;
+    position: relative;
+    top: rem(1);
+  }
+
+  input[type=submit], button[type=submit] {
+    /* Input submit field */
+
+    i.fa {
+      display: none;
+      padding: 0;
+      color: $color_white;
+      line-height: normal;
+      font-size: rem(16);
+      @include transition('color');
+      margin: 0 0 0 rem(10);
+    }
+
+    &:hover {
+      i.fa {
+        color: $color_orange;
+      }
+    }
+
+    @include small_max {
+      width: 100%;
+    }
+  }
+
+  label {
+    margin-bottom: rem(14);
+    display: block;
+    margin-right: rem(15);
+
+    &.last {
+      /* last (class) */
+      margin-right: 0;
+    }
+
+    &.move {
+      /* Move (class) */
+      margin-top: rem(20);
+      display: inline-block;
+      margin-right: 0;
+
+      @include small_max {
+        display: block;
+        margin-top: rem(30);
+      }
+    }
+
+    @include small_max {
+      margin-right: 0;
+    }
+  }
+}

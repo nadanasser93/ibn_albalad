@@ -1,0 +1,143 @@
+@import "variables";
+@import "functions";
+
+/*-----------------------------------------------------------------------------------
+
+[Amazing Features]
+
+# Amazing feature (wrapper)
+# Features (Features holder class)
+# move (move class)
+# Images
+# Icons
+# Heading
+# Paragraph
+# Device
+
+-----------------------------------------------------------------------------------*/
+
+/* Amazing Features wrapper */
+.site-amazing-features {
+  background: url("../images/features-bg.png") no-repeat center rem(55);
+  background-size: cover;
+  padding-bottom: rem(10);
+
+  @include small_max {
+    background: none;
+  }
+
+  .features {
+    /* Features */
+    max-width: rem(300);
+    display: inline-block;
+    margin-bottom: rem(50);
+    position: relative;
+    cursor: pointer;
+    z-index: 10;
+
+    &:hover {
+      /* Features mouse hover */
+      h5 {
+        color: $color_orange;
+      }
+
+      figure {
+        border-color: $color_orange;
+        box-shadow: 0 0 0.938rem rgba(2, 3, 3, 0.19);
+
+        &:before {
+          background: $color_orange;
+        }
+      }
+
+      span, i.fa {
+        color: $color_white;
+      }
+    }
+
+    &.move {
+      /* Move Class */
+      top: rem(90);
+
+      @include small_max {
+        top: 0;
+      }
+    }
+
+    figure {
+      /* Image */
+      border-radius: rem(100);
+      width: 6.25rem;
+      height: 6.25rem;
+      border: 0.125rem solid $color_border;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: rem(36);
+      background: $color_white;
+      @include transition('border-color, box-shadow');
+      position: relative;
+      z-index: 1;
+      box-shadow: none;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        display: block;
+        height: 100%;
+        background: $color_white;
+        border-radius: rem(100);
+        border: rem(8) solid $color_white;
+        z-index: -1;
+        @include transition('background');
+      }
+    }
+  }
+
+  span, i.fa {
+    /* Icons */
+    display: inline-block;
+    font-size: 3rem;
+    line-height: 6.25rem;
+    color: $color_border;
+    @include transition('color');
+  }
+
+  h5 {
+    /* Heading */
+    color: $color_slider_BG;
+    font-family: inherit;
+    font-size: rem(20);
+    font-weight: 700;
+    line-height: rem(14);
+    margin: 0 0 rem(28);
+    padding: 0;
+    display: block;
+    clear: both;
+    width: 100%;
+    @include transition('color');
+  }
+
+  p {
+    /* Paragraph */
+    color: $paragraph_second;
+    font-family: inherit;
+    font-size: rem(13);
+    font-weight: 400;
+    line-height: rem(26);
+    margin: 0;
+    padding: 0;
+    display: block;
+    clear: both;
+    width: 100%;
+  }
+
+  .device {
+    /* Device holder */
+    margin-top: rem(40);
+  }
+}

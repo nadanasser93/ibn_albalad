@@ -1,0 +1,21 @@
+@import "variables";
+@import "functions";
+
+/*-----------------------------------------------------------------------------------
+
+[Preloader]
+
+# Preloader (overlay)
+# .preloader (class)
+
+-----------------------------------------------------------------------------------*/
+.loadingoverlay {
+  /* Overlay */
+  background-size: 40px !important;
+}
+
+.preloader {
+  /* preloader (class) */
+  opacity: 0;
+  visibility: hidden;
+}

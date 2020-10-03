@@ -1,0 +1,94 @@
+@import "variables";
+@import "functions";
+
+/*-----------------------------------------------------------------------------------
+
+[Footer] (Section)
+
+# Footer Section (wrapper)
+# Logo
+# Social Icons
+# Copyright
+
+-----------------------------------------------------------------------------------*/
+
+/* Footer Section wrapper */
+.site-footer {
+  margin: 0;
+  padding: rem(100) 0 rem(90);
+  display: block;
+  width: 100%;
+  clear: both;
+  text-align: center;
+  background: #1F3542 url("../images/footer-bg.png") no-repeat center;
+  background-size: cover;
+  color: $color_white;
+
+  @include medium_max{
+    background: #1F3542;
+  }
+
+  .site-logo {
+    /* LOGO */
+    width: 100%;
+    clear: both;
+    height: auto;
+    display: block;
+    margin: rem(30) 0;
+
+    a {
+      display: inline-block;
+    }
+  }
+}
+
+.site-social-icons {
+  /* SOCIAL ICONS */
+  width: 100%;
+  clear: both;
+
+  a {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0.063rem solid $social_icons;
+    border-radius: rem(200);
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    margin: rem(3);
+    @include transition('background, color, border-color');
+
+    &:hover {
+      background: $color_orange;
+      color: $color_white;
+      border-color: $color_orange;
+    }
+  }
+
+  i.fa, span {
+    color: white;
+    font-size: 0.938rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.site-copyright {
+  /* COPYRIGHT */
+  color: $copyright;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.563rem;
+  width: 100%;
+  clear: both;
+  margin-top: rem(20);
+}

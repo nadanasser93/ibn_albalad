@@ -1,0 +1,122 @@
+@import "variables";
+@import "functions";
+
+/*-----------------------------------------------------------------------------------
+
+[Twitter] (Section)
+
+# Twitter section (wrapper)
+# Heading (h1)
+# .tweet (class for hold tweets)
+# .date (class for hold tweets date)
+# Carousel slider
+
+-----------------------------------------------------------------------------------*/
+
+/* Twitter section wrapper */
+.site-twitter {
+  margin: 0;
+  display: block;
+  width: 100%;
+  clear: both;
+  color: $color_white;
+  padding-bottom: rem(120);
+  text-align: center;
+  background: #2b8dd9;
+
+  h1 {
+    /* Heading */
+    margin-bottom: rem(45);
+  }
+
+  .tweet {
+    /* Tweet (class) */
+
+    ul, li {
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+
+    li {
+      font-size: rem(14);
+      font-family: inherit;
+
+      p {
+        font-weight: 400;
+        margin-bottom: 0;
+        font-family: inherit;
+        font-size: 0.813rem;
+        line-height: 1.625rem;
+        //color: $paragraph;
+        color: white;
+      }
+
+      a {
+        font-weight: 400;
+        font-family: inherit;
+        font-size: 0.813rem;
+        //color: $twitter_color;
+        color: #1f3542;
+      }
+
+      .date {
+        /* date (class) */
+        font-weight: 700;
+        font-family: inherit;
+        font-size: rem(14);
+        margin-top: rem(2);
+        //color: $color_orange;
+        color: white;
+      }
+    }
+  }
+
+  .swiper-container {
+    /* carousel container */
+    margin-bottom: rem(50);
+    margin-top: rem(20);
+    text-align: center;
+
+    span {
+      width: 100%;
+      text-align: center;
+      display: block;
+    }
+  }
+
+  .swiper-pagination {
+    /* Carousel pagination */
+    margin-top: rem(20);
+  }
+
+  .swiper-button-prev {
+    /* Carousel navigation */
+
+    @include small_min {
+      left: 0;
+    }
+
+    @include large_min {
+      left: rem(40);
+    }
+
+    @include small_max {
+      top: rem(-60);
+    }
+  }
+
+  .swiper-button-next {
+
+    @include small_min {
+      left: auto;
+      right: 0;
+    }
+
+    @include large_min {
+      right: rem(40);
+    }
+
+  }
+
+}

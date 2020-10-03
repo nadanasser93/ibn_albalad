@@ -1,0 +1,53 @@
+/*-----------------------------------------------------------------------------------
+
+[Table of contents]
+
+1. Base (Global style for some elements)
+2. Header (Main navigation)
+3. Slider (Header Slider)
+4. Store Icons (Section)
+5. Amazing Features (Section)
+6. How It Works (Section)
+7. More Features (Section)
+8. Download (Section)
+9. Download Icons (Section)
+10. Quick View (Section)
+11. Accordion (Section)
+12. Team (Section)
+13. Testimonial (Section)
+14. Packages (Section)
+15. Statistic (Section)
+16. Twitter (Section)
+17. Quick Support (Section)
+18. Subscribe (Section)
+19. Footer (Section)
+20. Custom Scroll Bar
+21. Scroll back to top button
+22. Preloader (Preloader will be show until the website content fully load)
+
+-----------------------------------------------------------------------------------*/
+// Components
+@import "variables";
+@import "functions";
+@import "base";
+@import "header";
+@import "slider";
+@import "store-icons";
+@import "amazing-features";
+@import "how-it-works";
+@import "more-features";
+@import "download";
+@import "download-icons";
+@import "quick-view";
+@import "accordion";
+@import "team";
+@import "testtimonial";
+@import "packages";
+@import "statistic";
+@import "twitter";
+@import "quick-support";
+@import "subscribe";
+@import "footer";
+@import "scrollbar";
+@import "scroll-top";
+@import "preloader";

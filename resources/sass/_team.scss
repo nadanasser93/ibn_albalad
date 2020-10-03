@@ -1,0 +1,163 @@
+@import "variables";
+@import "functions";
+
+/*-----------------------------------------------------------------------------------
+
+[Team] (Section)
+
+# Team section (wrapper)
+# slide (class)
+# Box (class)
+# Images
+# Typography (h5, h6, p)
+# Social icons
+# Carousel slider
+
+-----------------------------------------------------------------------------------*/
+
+/* Team section wrapper */
+.site-team {
+  margin: 0;
+  display: block;
+  width: 100%;
+  clear: both;
+  background-color: $input_bg;
+  padding-bottom: rem(100);
+  padding-top: rem(140);
+
+  @include medium_max {
+    padding-top: rem(100);
+  }
+
+  .slide {
+    /* Slide (class) */
+    margin: 0;
+    display: block;
+    padding: rem(20) rem(15) rem(50);
+
+    @include small_max {
+      padding-left: rem(10);
+      padding-right: rem(10);
+    }
+  }
+
+  .site-box {
+    /* box (class) */
+    max-width: 22rem;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: $color_white;
+    border-radius: rem(4);
+    box-shadow: 0 0 0.438rem rgba(2, 3, 3, 0.09);
+    padding-left: rem(30);
+    padding-right: rem(30);
+    padding-top: rem(40);
+    overflow: visible;
+    @include transition('box-shadow');
+
+    &:hover {
+      box-shadow: 0 0 1.75rem rgba(2, 3, 3, 0.15);
+    }
+  }
+
+  figure {
+    /* Image */
+    max-width: 16rem;
+    width: 100%;
+    display: block;
+    clear: both;
+    max-height: 16.938rem;
+    overflow: hidden;
+    border-radius: rem(1000);
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    margin-bottom: rem(20);
+    position: relative;
+
+    img {
+      max-width: 100%;
+      border-radius: rem(1000);
+      display: inline-block;
+    }
+  }
+
+  h5 {
+    /* Typography */
+    color: $color_slider_BG;
+    font-family: inherit;
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: block;
+    float: left;
+    width: 100%;
+    clear: both;
+    margin-bottom: rem(4);
+    margin-top: rem(20);
+  }
+
+  h6 {
+    color: $paragraph_second;
+    font-family: inherit;
+    font-size: 0.813rem;
+    font-weight: 400;
+    margin-bottom: rem(20);
+    width: 100%;
+  }
+
+  p {
+    color: $paragraph_second;
+    font-family: inherit;
+    font-size: 0.813rem;
+    font-weight: 400;
+    line-height: 1.625rem;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: rem(40);
+  }
+
+  .site-social-icons {
+    /* Social icons (class) */
+    width: 100%;
+    clear: both;
+    display: block;
+    overflow: visible;
+
+    a {
+      width: 2.125rem;
+      height: 2.125rem;
+      border-radius: rem(100);
+      background-color: $color_slider_BG;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: rem(-23);
+
+      i.fa, span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: block;
+        height: 100%;
+        width: 100%;
+        color: $color_white;
+        font-size: 0.813rem;
+        font-weight: 400;
+        line-height: 2.125rem;
+      }
+
+    }
+  }
+
+  .swiper-container{
+    /* Carousel slider */
+    padding-bottom: rem(50);
+  }
+
+  .swiper-pagination{
+    margin-top: rem(10);
+  }
+}

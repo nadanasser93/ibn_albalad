@@ -1,0 +1,231 @@
+@import "variables";
+@import "functions";
+
+/*-----------------------------------------------------------------------------------
+
+[Accordion] (Section)
+
+# Accordion (wrapper)
+# Accordion image (class)
+# Bootstrap panel (code)
+# Custom scroll bar
+
+-----------------------------------------------------------------------------------*/
+
+/* Accordion wrapper */
+.site-accordion {
+  margin: 0;
+  display: block;
+  width: 100%;
+  clear: both;
+  background: #2b8dd9 url("../images/accordion-bg.png") no-repeat center;
+  background-size: cover;
+  overflow: visible;
+  min-height: rem(475);
+  padding: rem(80) 0 rem(70);
+
+  @include medium_max {
+    //background: $section_bg;
+    background: #2b8dd9;
+  }
+
+  .accordion-img {
+    /* accordion image */
+    position: absolute;
+    z-index: 20;
+    top: rem(-135);
+    left: 25%;
+    right: 0;
+    bottom: 0;
+    display: block;
+    overflow: visible;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 18rem;
+
+    @include medium_max {
+      left: 0;
+      top: 0;
+      position: relative;
+    }
+
+    img {
+      height: auto;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+
+.panel-group {
+  /* Bootstrap panel group */
+  margin: 0;
+  text-align: left;
+
+  @include medium_max {
+    margin-top: rem(80);
+  }
+
+  .panel-title {
+    /* Panel title */
+    color: $color_white;
+    font-family: inherit;
+    display: block;
+    width: 100%;
+    border-radius: rem(4);
+
+    a {
+      width: 100%;
+      display: block;
+      padding: rem(12) rem(50) rem(10) rem(20);
+      border: none;
+      @include transition('background-color');
+      position: relative;
+      color: $color_white;
+      font-family: inherit;
+      font-size: 1.25rem;
+      font-weight: 400;
+      border-radius: rem(4);
+
+      @include large_max {
+        font-size: 1.2rem;
+      }
+
+      @include small_max {
+        font-size: 1rem;
+        padding-top: rem(15);
+        padding-bottom: rem(15);
+      }
+
+      span {
+        position: absolute;
+        top: 0;
+        right: rem(16);
+        bottom: 0;
+        margin: auto 0;
+        //background: $color_orange;
+        background: white;
+        text-indent: rem(-1000);
+        border-radius: rem(1000);
+        @include transition('background');
+        display: block;
+        overflow: visible;
+        width: 1.563rem;
+        height: 1.563rem;
+
+        &:before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: url("../images/accordion-minus.png") center no-repeat;
+          background-size: 0.625rem 0.125rem;
+        }
+      }
+
+      &.collapsed {
+        /* Panel collapsed */
+        background-color: $accordion_collapse;
+
+        span {
+          background-color: transparentize($color_white, 0.8);
+
+          &:before {
+            background: url("../images/accordion-plus.png") center no-repeat;
+            background-size: 0.625rem 0.625rem;
+          }
+        }
+
+      }
+    }
+  }
+
+  .panel {
+    /* Panel */
+    background: none;
+    border: none;
+    margin-bottom: rem(12);
+    border-radius: rem(4);
+    overflow: hidden;
+    display: block;
+  }
+
+  .panel-heading {
+    /* Panel heading */
+    background-color: $accordion_heading;
+    border: none;
+    padding: 0;
+    margin: 0;
+    border-radius: rem(4) rem(4) 0 0;
+  }
+
+  .panel-collapse {
+    /* Panel collapse */
+    padding: 0;
+    background-color: $accordion_heading;
+    border-radius: 0 0 rem(4) rem(4);
+  }
+
+  .panel-body-container {
+    /* panel container */
+    padding: rem(10) rem(17) rem(25) rem(20);
+    border-radius: 0 0 rem(4) rem(4);
+
+  }
+
+  .panel-body {
+    /* panel body */
+    border: none !important;
+    background-color: $accordion_body;
+    color: $accordion_color;
+    font-family: inherit;
+    border-radius: 0 0 rem(4) rem(4);
+    letter-spacing: rem(0.1);
+    padding: 0;
+    margin: 0;
+    max-height: rem(72);
+    min-height: rem(72);
+    position: relative;
+    height: 100%;
+    overflow: auto;
+    font-size: 0.813rem;
+    font-weight: 400;
+    line-height: 1.625rem;
+
+    &:before {
+      display: none;
+    }
+
+  }
+
+  .mCSB_inside > .mCSB_container {
+    /* ----------------------------- Custom  scroll bar for panel */
+    margin-right: rem(60);
+  }
+
+  .mCSB_dragger_bar {
+    /* Scroll drag bar */
+    background: none;
+    border-radius: 0 !important;
+    opacity: 1 !important;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 80%;
+      width: 100%;
+      margin: auto 0;
+      display: block;
+      border-top: rem(3) solid $color_white;
+      border-bottom: rem(3) solid $color_white;
+      background: $color_orange;
+    }
+  }
+}

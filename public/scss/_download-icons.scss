@@ -1,0 +1,79 @@
+@import "variables";
+@import "functions";
+
+/*-----------------------------------------------------------------------------------
+
+[Download Icons] (Section)
+
+# Download Icons (Wrapper)
+# Align center (class)
+# Icons
+# Icons adjust (class)
+# Images
+
+-----------------------------------------------------------------------------------*/
+
+/* Download Icons Wrapper */
+.site-download-icons {
+  margin: 0;
+  padding: 0;
+  display: block;
+
+  @extend .site-store-icons;
+
+  @include medium_max {
+    //background: $section_bg;
+    background: #2B8DD9;
+    padding-bottom: rem(40);
+  }
+
+  .align-center {
+    /* Align center (class) */
+    bottom: rem(-45);
+
+    @include medium_max {
+      bottom: 0;
+    }
+  }
+
+  a {
+    border: none;
+    margin-right: rem(10);
+    margin-left: rem(10);
+    border-radius: rem(1000);
+    padding: rem(28) rem(60) rem(28) rem(90);
+
+    &:hover {
+      background-color: darken(#2b8dd9, 8);
+    }
+
+    @include small_max {
+      display: block;
+      width: 100%;
+      max-width: rem(320);
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: rem(4);
+    }
+  }
+
+  i.fa, span, img {
+    /* Icons */
+    line-height: rem(90);
+    position: relative;
+    left: rem(20);
+    top: rem(2);
+  }
+
+  i.fa.adjust {
+    /* Icons adjust (class) */
+    font-size: rem(30);
+    right: rem(10);
+  }
+
+  img {
+    /* Image */
+    right: rem(15);
+  }
+
+}

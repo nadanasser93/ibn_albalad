@@ -1,0 +1,341 @@
+@import "variables";
+@import "functions";
+
+/*-----------------------------------------------------------------------------------
+
+[Slider] (Section)
+
+# Slider (Wrapper)
+# Caption
+# Pagination
+# Navigation
+# Typography
+# Button
+
+-----------------------------------------------------------------------------------*/
+
+/* Header slider wrapper */
+.header-slider {
+  /* HEADER SLIDER */
+  padding: 0;
+  display: block;
+  width: 100%;
+  clear: both;
+  min-height: 100px;
+  background: $color_slider_BG;
+  position: relative;
+  height: 800px;
+  max-width: 100%;
+  margin: 0 auto;
+  font-family: inherit;
+  z-index: 1;
+
+  ul.seq-canvas,
+  ul.seq-canvas > * {
+    /* Reset */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: block;
+  }
+
+  .seq-canvas {
+    /* Make the canvas the same dimensions as the container and prevent lines from
+   wrapping so each step can sit side-by-side */
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: block !important;
+    max-width: 1400px;
+    margin: 0 auto !important;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  .seq-canvas > li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    height: 100%;
+    width: 100%;
+    clear: both;
+    text-align: center;
+    z-index: 1;
+
+    .bg-img {
+      transform: translateX(-2000px);
+      transition: transform 2000ms ease;
+      max-width: 100%;
+      background: no-repeat 90% bottom;
+      background-size: 570px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      @include medium_max {
+        background-size: 300px;
+        background-position: center bottom;
+      }
+
+      @include custom_max(400) {
+        background-size: 80%;
+      }
+
+    }
+
+    &.seq-in .bg-img {
+      transform: translateX(0);
+    }
+
+    &.seq-out .bg-img {
+      transform: translateX(2000px);
+    }
+
+    .slide-caption {
+      opacity: 0;
+      transition: opacity 600ms ease;
+    }
+
+    &.seq-in {
+
+      .slide-caption {
+        opacity: 1;
+        transition-delay: 1500ms;
+      }
+
+    }
+
+    &.seq-out {
+
+      .slide-caption {
+        opacity: 0;
+      }
+
+    }
+
+  }
+
+  .seq-pagination {
+    /* PAGINATION */
+    width: 100%;
+    padding: 0 0 0 rem(80);
+    display: block;
+    z-index: 100;
+    position: absolute;
+    left: 0;
+    bottom: 20%;
+    right: 0;
+    top: auto;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    @include medium_max {
+      text-align: center;
+      padding-left: 0;
+      bottom: rem(30);
+    }
+
+    li {
+      font-family: Montserrat, serif;
+      font-weight: 400;
+      color: $slider_color;
+      font-size: rem(13);
+      margin: 0;
+      padding: 0 rem(8);
+      display: inline-block;
+      list-style: none;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .seq-current {
+      color: $color_orange;
+      font-size: rem(18);
+
+      &:after {
+        content: "";
+        display: block;
+        height: 1px;
+        width: 80%;
+        background: $color_orange;
+        position: relative;
+        margin: 0 auto;
+      }
+    }
+
+  }
+
+  .seq-prev, .seq-next {
+    /* NAVIGATION PREV BUTTON */
+    position: absolute;
+    z-index: 100;
+    color: $color_white;
+    width: rem(50);
+    height: rem(50);
+    line-height: rem(50);
+    background-color: $color_slider_button;
+    border: none;
+    box-shadow: none;
+    border-radius: rem(200);
+    @include transition('background, color');
+    margin: auto 0;
+    top: 0;
+    left: rem(-10);
+    bottom: 0;
+    display: block;
+
+    &:hover {
+      background: $color_orange;
+
+      i.fa, span {
+        opacity: 1;
+      }
+    }
+
+    i.fa, span {
+      opacity: 0.4;
+      font-size: rem(20);
+      line-height: rem(50);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: block;
+      text-align: center;
+      @include transition('opacity');
+    }
+  }
+
+  .seq-next {
+    /* NAVIGATION NEXT BUTTON */
+    color: $color_white;
+    left: auto;
+    right: rem(-10);
+  }
+
+  .slide-caption {
+    /* CAPTION */
+    position: absolute;
+    top: 15%;
+    left: 6%;
+    bottom: 0;
+    display: block;
+    color: white;
+    z-index: 100;
+    text-align: left;
+    padding-left: rem(5);
+
+    @include large_max {
+      font-size: rem(12);
+    }
+
+    @include medium_max {
+      text-align: center;
+      top: rem(20);
+      left: 0;
+      max-width: rem(440);
+      margin-left: auto;
+      margin-right: auto;
+      right: 0;
+      padding-left: rem(20);
+      padding-right: rem(20);
+    }
+
+    @include small_max {
+      max-width: rem(500);
+    }
+  }
+
+  h1 {
+    color: $color_white;
+    font-family: inherit;
+    font-size: em(52);
+    font-weight: 700;
+    line-height: em(20);
+    white-space: pre-line;
+
+    @include medium_max {
+      white-space: normal;
+    }
+
+    @include small_max {
+      font-size: em(30);
+    }
+  }
+
+  h2 {
+    color: $color_white;
+    font-family: inherit;
+    font-size: em(34);
+    font-weight: 400;
+    line-height: em(22);
+    margin-bottom: em(4);
+    white-space: pre-line;
+
+    @include medium_max {
+      white-space: normal;
+      margin-bottom: rem(20);
+    }
+
+    @include small_max {
+      font-size: em(30);
+    }
+  }
+
+  p {
+    color: $accordion_color;
+    font-family: inherit;
+    font-size: em(13);
+    font-weight: 400;
+    line-height: em(32);
+    margin-bottom: em(30);
+    white-space: pre-line;
+
+    @include large_max {
+      font-size: em(14);
+    }
+
+    @include medium_max {
+      white-space: normal;
+    }
+  }
+
+  .slide-button {
+    min-width: em(240);
+    padding: 0 em(40);
+    border: em(2) solid $color_white;
+    border-radius: em(200);
+    color: $color_white;
+    font-family: inherit;
+    font-size: em(13);
+    font-weight: 700;
+    line-height: em(60);
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    @include transition('color, background');
+    margin: em(30) em(20) em(30) 0;
+
+    @include small_max {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      background: $color_white;
+      color: $color_slider_BG;
+    }
+  }
+
+}

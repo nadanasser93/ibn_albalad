@@ -1,0 +1,236 @@
+@import "variables";
+@import "functions";
+
+/*-----------------------------------------------------------------------------------
+
+[How it works] (Section)
+
+# How it works (wrapper)
+# Typography (h1, h3, h4, p)
+# Device image
+# Section (image, icons)
+# Carousel Slider
+# carousel navigation
+# carousel pagination
+
+-----------------------------------------------------------------------------------*/
+
+/* How it works section wrapper */
+.site-how-it-works {
+  background: #2B8DD9 url("../images/how-it-works-bg.png") no-repeat center;
+  background-size: cover;
+  padding-top: rem(75);
+  padding-bottom: rem(50);
+
+  @include small_max {
+    padding-bottom: rem(80);
+  }
+
+  h1 {
+    /* Typography */
+    margin-bottom: rem(60);
+  }
+
+  h3 {
+    color: $color_white;
+    font-family: inherit;
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: rem(10);
+    margin-top: rem(20);
+    text-align: left;
+  }
+
+  p {
+    //color: $paragraph;
+    color: #e4e9ea;
+    font-family: inherit;
+    font-size: 0.813rem;
+    font-weight: 400;
+    line-height: 1.625rem;
+    margin-top: 0;
+    letter-spacing: rem(0.5);
+    text-align: left;
+  }
+
+  h4 {
+    color: $color_white;
+    font-family: inherit;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: rem(10);
+    text-align: left;
+  }
+
+  figure.device {
+    /* device */
+    text-align: center;
+    position: relative;
+    left: rem(40);
+  }
+
+  .section {
+    /* Section */
+    position: relative;
+    padding-left: rem(60);
+    margin-top: rem(60);
+
+    &.first {
+      margin-top: rem(70);
+    }
+
+    figure {
+      position: absolute;
+      top: rem(5);
+      left: 0;
+      display: block;
+    }
+
+    i.fa, span {
+      /* Icons */
+      font-size: rem(40);
+      line-height: rem(15);
+    }
+  }
+
+  @include small_min {
+    .swiper-button-prev {
+      /* Carousel slider navigation */
+      width: rem(21);
+      height: rem(21);
+      line-height: rem(21);
+      opacity: 0.3;
+      left: rem(40);
+      top: auto;
+      bottom: rem(355);
+
+      @include large_max{
+        left: rem(30);
+      }
+
+      @include medium_max{
+        left: rem(18);
+      }
+
+      &:hover {
+        color: $color_white;
+        opacity: 1;
+      }
+
+      span, i.fa {
+        line-height: rem(14);
+        text-align: center;
+        display: inline-block;
+        left: 0;
+        font-size: rem(16);
+      }
+
+    }
+
+    .swiper-button-next {
+      left: rem(40);
+      right: auto;
+      bottom: rem(70);
+
+      @include large_max{
+        left: rem(30);
+      }
+
+      @include medium_max{
+        left: rem(18);
+      }
+
+      span, i.fa {
+        position: relative;
+        top: -1px;
+      }
+    }
+
+    .swiper-pagination {
+      /* Pagination */
+      left: rem(32);
+      width: auto;
+      right: auto;
+      top: auto;
+      bottom: rem(100);
+
+      @include large_max{
+        left: rem(23);
+      }
+
+      @include medium_max{
+        left: rem(10);
+      }
+    }
+
+    .swiper-pagination-bullet {
+      float: left;
+      display: block;
+      clear: both;
+      background: $color_white;
+      width: rem(22);
+      height: rem(22);
+
+      span {
+        display: none;
+      }
+    }
+
+    .swiper-pagination-bullet-active {
+      background: $color_orange;
+      margin-top: rem(40);
+      margin-bottom: rem(40);
+
+      span {
+        display: inline-block;
+        width: rem(84);
+        height: rem(84);
+        //background-color: $color_slider_BG;
+        background-color: white;
+        //border: rem(2) solid $color_orange;
+        border: rem(2) solid white;
+        //box-shadow: 0 0 rem(21) rgba(255, 131, 9, 0.56);
+        box-shadow: 0 0 21px rgba(255, 255, 255, 0.56);
+        border-radius: rem(1000);
+        //color: $color_white;
+        color: #2b8dd9;
+        font-size: rem(38);
+        line-height: rem(80);
+        text-transform: uppercase;
+        position: relative;
+        z-index: 1;
+        top: rem(-30);
+        left: rem(-30);
+
+        &:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          display: block;
+          width: 100%;
+          height: 100%;
+          //background: $color_orange;
+          background: white;
+          border-radius: rem(1000);
+          //border: rem(4) solid $color_slider_BG;
+          border: rem(4) solid #2b8dd9;
+          z-index: -1;
+        }
+
+      }
+    }
+  }
+
+  @include small_max {
+    .swiper-pagination-bullet {
+      /* Hide the icon on mobile view */
+      span {
+        display: none;
+      }
+    }
+  }
+
+}

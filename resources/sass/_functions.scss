@@ -1,0 +1,96 @@
+@import "variables";
+
+// transition
+@mixin transition($property) {
+  transition: 300ms linear;
+  transition-property: #{$property};
+}
+
+// em font size
+$default_size: 16;
+@function em($new_size,$output_size: $default_size) {
+  @return #{$new_size/$output_size}em
+}
+
+// rem font size
+$default_size: 16;
+@function rem($new_size,$output_size: $default_size) {
+  @return #{$new_size/$output_size}rem
+}
+
+// vw font size
+@function vw($target) {
+  $vw-context: (1365*.01) * 1px;
+  @return ($target/$vw-context) * 1vw;
+}
+
+// add body class
+@mixin body_class($class) {
+  @at-root #{selector-replace(&, 'body', 'body#{$class}')} {
+    @content;
+  }
+}
+
+// add parent class
+@mixin parent($old-context, $new-context) {
+  @at-root #{selector-replace(&, $old-context, $new-context)} {
+    @content;
+  }
+}
+
+// bootstrap media query
+@mixin small_min() {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin small_max() {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin medium_min() {
+  @media screen and (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin medium_max() {
+  @media screen and (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin medium_only() {
+  @media screen and (max-width: 991px) and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin large_min() {
+  @media screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin large_max() {
+  @media screen and (max-width: 1199px) {
+    @content;
+  }
+}
+
+$default_custom: 320 !default;
+@mixin custom_max($value: $default_custom) {
+  @media screen and (max-width: #{$value}px) {
+    @content;
+  }
+}
+
+$default_custom: 320 !default;
+@mixin custom_min($value: $default_custom) {
+  @media screen and (min-width: #{$value}px) {
+    @content;
+  }
+}

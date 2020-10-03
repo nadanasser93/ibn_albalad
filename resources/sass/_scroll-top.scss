@@ -1,0 +1,32 @@
+@import "variables";
+@import "functions";
+
+/*-----------------------------------------------------------------------------------
+
+[Scroll Back To Top]
+
+-----------------------------------------------------------------------------------*/
+
+/* Scroll back to top wrapper */
+#scrollUp {
+  margin: 0;
+  padding: 0;
+  bottom: rem(30);
+  right: rem(30);
+  height: rem(50);
+  width: rem(50);
+  line-height: rem(50);
+  text-align: center;
+  //background: $color_orange;
+  background: #142834;
+  border-radius: rem(200);
+  font-size: rem(30);
+  box-shadow: 0 0 rem(15) rgba(2, 3, 3, 0.19);
+  @include transition('color, background');
+  color: $color_white;
+
+  &:hover {
+    color: $color_slider_BG;
+    background: #D3D3D3;
+  }
+}

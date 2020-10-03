@@ -81,3 +81,20 @@ Route::group(['prefix' => 'customer', 'namespace' => 'Customer'], function () {
     Route::get('/companies/deleteImage/{id}', 'CompanyController@deleteImage')->name('companies.deleteImage');
     Route::post('/updateImage/{id}', 'CompanyController@updateImage')->name('companies.updateImage');
 });
+
+Route::get('/home/show_cities', 'CityController@show')->name('home.show_cities');
+Route::get('/home/homes/{id}', 'HomeController@show')->name('home.homes');
+Route::get('/home/home_details/{id}', 'HomeController@detail')->name('home.home_details');
+
+Route::get('/job/city_or_job', 'JobController@index')->name('job.city_or_job');
+Route::get('/job/show_cities', 'JobController@showcity')->name('job.show_cities');
+Route::get('/job/show_jobs', 'JobController@showjob')->name('job.show_jobs');
+Route::get('/job/jobs/{id}', 'JobController@show')->name('job.jobs');
+
+Route::get('/job/details/{id}', 'JobController@detail')->name('job.details');
+
+Route::get('/company/city_or_job', 'CompanyController@first')->name('company.city_or_job');
+Route::get('/company/show_cities', 'CompanyController@showcity')->name('company.show_cities');
+Route::get('/company/show_jobs', 'CompanyController@showjob')->name('company.show_jobs');
+Route::get('/company/jobs/{id}', 'CompanyController@show')->name('company.jobs');
+Route::get('/company/details/{id}', 'CompanyController@detail')->name('company.details');

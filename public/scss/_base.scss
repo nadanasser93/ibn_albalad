@@ -1,0 +1,336 @@
+@import "variables";
+@import "functions";
+
+/*-----------------------------------------------------------------------------------
+
+[GLOBAL STYLE]
+
+# HTML (Global font size: Default: 16px)
+# a tag
+# Responsive Image
+# Clearfix
+# Bootstrap Container
+# Wrapper
+# Template Sections
+# Input Fields
+# Carousel slider
+
+-----------------------------------------------------------------------------------*/
+html {
+  font-size: 16px; /* Global Font Size */
+  width: 100%;
+}
+
+body {
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  clear: both;
+  font-family: $font_Poppins;
+}
+
+* {
+  outline: none !important;
+  //-webkit-tap-highlight-color: transparent;
+}
+
+/* Change the a tag color */
+a {
+  text-decoration: none;
+  color: $color_orange;
+  @include transition('color');
+  display: inline-block;
+
+  &:hover, &:active, &:focus, &:visited {
+    text-decoration: none;
+    color: $color_orange;
+  }
+}
+
+/* Responsive image */
+img {
+  max-width: 100%;
+  display: inline-block;
+}
+
+/* Clearfix */
+.clearfix {
+  clear: both;
+}
+
+/* Make bootstrap container max-width 100% */
+.container {
+  max-width: 100%;
+}
+
+
+/* Template wrapper */
+.wrapper {
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  clear: both;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+/* Template white section and blue section */
+.section-white, .section-blue {
+  margin: 0;
+  padding: rem(80) 0;
+  display: block;
+  width: 100%;
+  clear: both;
+  background: $color_white;
+  text-align: center;
+  overflow: hidden;
+
+  /* Section h1 heading */
+  h1 {
+    color: $color_slider_BG;
+    font-size: rem(44);
+    line-height: rem(66);
+    font-weight: 400;
+    margin-top: 0;
+    position: relative;
+    margin-bottom: rem(60);
+
+    @include small_max {
+      font-size: rem(32);
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    &:after {
+      /* H1 heading icon add */
+      content: "";
+      position: relative;
+      background: url("../images/heading-before.png") no-repeat center;
+      background-size: rem(54) rem(18);
+      display: block;
+      width: rem(54);
+      height: rem(18);
+      margin-left: auto;
+      margin-right: auto;
+      clear: both;
+      top: rem(8);
+    }
+  }
+}
+
+/* Template section blue */
+.section-blue {
+  color: $color_white;
+  background-color: $section_bg;
+
+  h1 {
+    color: $color_white
+  }
+
+}
+
+/*-----------------------------------------------------------------------------------*/
+/* Input fields */
+/*-----------------------------------------------------------------------------------*/
+input {
+  border: none;
+  box-shadow: none;
+}
+
+/* Submit input field */
+input[type=submit], button[type=submit] {
+  min-width: 12.188rem;
+  min-height: 3.125rem;
+  background-color: $color_orange;
+  border-radius: rem(24);
+  color: $color_white;
+  font-family: inherit;
+  font-size: 0.813rem;
+  font-weight: 700;
+  line-height: 1.813rem;
+  text-transform: uppercase;
+  border: 0.125rem solid $color_orange;
+  @include transition('background, color');
+
+  &:hover {
+    background: $color_white;
+    color: $color_slider_button;
+  }
+}
+
+/* Fluid container with wide class */
+.container-fluid.wide {
+  max-width: 1400px;
+
+  @include small_min {
+    padding-left: rem(80);
+    padding-right: rem(80);
+  }
+}
+
+/*-----------------------------------------------------------------------------------*/
+/* Carousel slider CSS */
+/*-----------------------------------------------------------------------------------*/
+.swiper-container {
+  /* Main container */
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  clear: both;
+  list-style: none;
+  box-shadow: none;
+}
+
+/* wrapper */
+.swiper-wrapper {
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+/* Single slide */
+.swiper-slide {
+  margin: 0;
+  padding: 0;
+  display: block;
+  list-style: none;
+  box-shadow: none;
+}
+
+/* Pagination */
+.swiper-pagination {
+  box-shadow: none;
+  text-shadow: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  clear: both;
+  left: 0;
+  right: 0;
+
+  @include medium_max {
+    margin-top: rem(10);
+  }
+
+  @include small_max {
+    margin-top: rem(20);
+  }
+}
+
+/* pagination bullet */
+.swiper-pagination-bullet {
+  width: rem(17);
+  height: rem(17);
+  //background-color: $pagination_color;
+  background-color: #88bfe9;
+  opacity: 1;
+  @include transition('background-color');
+  margin: rem(7);
+}
+
+.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+  margin: rem(7);
+}
+
+/* Active pagination bulet */
+.swiper-pagination-bullet-active {
+  //background-color: $color_orange;
+  background-color: white;
+}
+
+/* Navigatin prev button */
+.swiper-button-prev {
+  margin: 0;
+  padding: 0;
+  width: rem(50);
+  height: rem(50);
+  line-height: rem(50);
+  text-align: center;
+  background: none;
+  border-radius: rem(100);
+  opacity: 0.3;
+  border: rem(2) solid $color_white;
+  font-size: rem(20);
+  @include transition('background, opacity, border-color');
+  left: rem(-40);
+
+  @include small_max {
+    left: rem(20);
+    top: rem(-50);
+  }
+
+  &:hover {
+    //background: $color_orange;
+    background: #88bfe9;
+    opacity: 1;
+    //border-color: $color_orange;
+    border-color: #88bfe9;
+  }
+
+  span, i.fa {
+    position: absolute;
+    top: 0;
+    left: rem(-2);
+    right: 0;
+    display: block;
+    bottom: 0;
+    line-height: rem(47);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+}
+
+/* Navigation next button */
+.swiper-button-next {
+  @extend .swiper-button-prev;
+  left: auto;
+  right: rem(-40);
+
+  @include small_max {
+    right: rem(20);
+  }
+
+  span, i.fa {
+    left: rem(2);
+  }
+}
+
+/* Carousel CSS for white section */
+.section-white {
+
+  .swiper-pagination {
+    margin-top: rem(40);
+  }
+
+  .swiper-pagination-bullet{
+    background-color: #d3d3d3;
+  }
+
+  .swiper-pagination-bullet-active{
+    background-color: #2b8dd9;
+  }
+
+  .swiper-button-prev {
+    background-color: $light_grey;
+    border-color: $light_grey;
+    color: $color_slider_BG;
+    opacity: 1;
+    @include transition('color, background, border-color');
+
+    &:hover {
+      color: $color_white;
+      border-color: $color_orange;
+      background: $color_orange;
+    }
+  }
+
+}
