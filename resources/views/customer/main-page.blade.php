@@ -100,8 +100,7 @@
     var service;
     function selectService(x){
         service=x
-        console.log(service)
-        if(drop1!=undefined)
+       if(drop1!=undefined)
             drop1[0].dropzone.removeAllFiles(true);
         if(drop2!=undefined)
             drop2[0].dropzone.removeAllFiles(true);
@@ -144,7 +143,7 @@
 
     }
     var company_id,employee_id,home_id;
-    var drop1,drop2,drop3,drop4,drop5;
+    var drop1,drop2,drop3,drop4,drop5,className='a';
     function storeOrder() {
         if(service===3) {
             submitHome(event,4)
@@ -182,23 +181,30 @@
         });
     }
     function getSubscripts(type) {
+
         if(type==='homes')
             className='homesubscription'
         else  if(type==='companies')
             className='companysubscription'
         else
             className='employeesubscription'
+        $('.' + className).html("")
         $.ajax({    //create an ajax request to display.php
             type: "GET",
             url: "{{asset('customer/getSubscriptionType')}}/"+type,
             dataType: "JSON",   //expect html to be returned
             success: function(response){
-
                 for(i=0;i<response.length;i++) {
-
-                    $('.'+className).append(
-                        @include('customer.components.subscriptions')
-                    )
+                    if(type==='companies') {
+                        if (response[i].is_company == is_company)
+                            $('.' + className).append(
+                                @include('customer.components.subscriptions')
+                            )
+                    }
+                    else
+                        $('.'+className).append(
+                            @include('customer.components.subscriptions')
+                        )
                 }
             }
 
@@ -230,6 +236,9 @@
         });
     }
     function createCompany() {
+        getSubscripts('companies')
+        is_company=0;
+        $('.' + className).html("")
         $.ajax({
             url: '{{asset("customer/companies/create")}}',
             type: 'get',
@@ -332,7 +341,7 @@
 
                     }
                 });
-                getSubscripts('companies')
+
 
             }
         });
@@ -541,10 +550,11 @@
             success: function(response){
 
                 phone='';email='';subscription_name='';image='';
+                price_incl=0;price_excl=0;sumprice_incl=0;sumprice_excl=0
                 for(i=0;i<response.services.length;i++) {
                     if(response.services[i].service!==null) {
-                        phone =response.services[i].service.phone
-                        email =response.services[i].service.email
+                        phone =response.services[i].service.phone!=null?response.services[i].service.phone:''
+                        email =response.services[i].service.email!=null?response.services[i].service.email:''
                         {{-- if(response.order.services[i].service.image!==undefined && response.order.services[i].service.image!==null)
                         image="{{asset('public/storage')}}/"+response.order.services[i].service.image.id+"/"+response.order.services[i].service.image.file_name
                         if(response.order.services[i].service.employee_image!==undefined&&response.order.services[i].service.employee_image!==null)
@@ -553,11 +563,15 @@
                             image="{{asset('public/storage')}}/"+response.order.services[i].service.main_image.id+"/"+response.order.services[i].service.main_image.file_name--}}
                         if(response.services[i].service.subscription!==null) {
                             subscription_name =response.services[i].service.subscription.name
-
+                            price_incl =response.services[i].service.subscription.price_incl
+                            price_excl =response.services[i].service.subscription.price_excl
                         }
                       }
                             $("#orders tbody").append(@include('customer.components.table-content'))
                     }
+                sumprice_incl=response.amount_incl;
+                sumprice_excl=response.amount_excl;
+                   $("#orders tbody").append('<tr><td colspan=4 style="text-align: center">amount incl:'+sumprice_incl+'</td><td colspan=5 style="text-align: center">amount excl:'+sumprice_excl+'</td></tr>')
                 }
 
         });

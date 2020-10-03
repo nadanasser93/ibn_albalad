@@ -34,7 +34,7 @@
                                     <div class="col-md-1">  <label for="customer">Customer</label></div>
                                     <div class="col-md-5">
 
-                                        <input type="radio" name="com_type" class="form-control" id="customer" value="customer" placeholder="Name"></div>
+                                        <input type="radio" name="com_type" class="form-control" id="customer" value="customer" placeholder="Name" checked></div>
                                     <div class="col-md-1">  <label for="customer">Company</label></div>
                                     <div class="col-md-5">
                                         <input type="radio" name="com_type" class="form-control" id="company" value="company" placeholder="Name">
@@ -143,18 +143,22 @@
 
 @push('footer-scripts')
 <script>
+    var x =0,is_company=0;
     $(document).ready(function(){
         $('input[name="com_type"]').click(function(){
             var inputValue = $(this).attr("value");
             var target = $("#kvk1");
-            if(inputValue==='company')
-                target.css('display','block')
-            else
-                target.css('display','none')
+            if(inputValue==='company') {
+                target.css('display', 'block')
+                is_company=1
+            }
+            else {
+                target.css('display', 'none')
+                is_company=0
+            }
+            getSubscripts('companies')
         });
     });
-    //var add_address= $("#add_address");
-    var x =0;
     $("#add_address").click(function(e){
         e.preventDefault();
 
@@ -203,6 +207,7 @@
                     newServ(step);
                     storeServiceOrder('companies');
                     getCustomerOrders();
+
                 }
 
             },

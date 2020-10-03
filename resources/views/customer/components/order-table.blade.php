@@ -9,6 +9,8 @@
             <th class="p-3">{{ trans('global.phone') }}</th>
             <th class="p-3">{{ trans('global.email') }}</th>
             <th class="p-3">{{ trans('subscription') }}</th>
+            <th class="p-3">{{ trans('price_encl') }}</th>
+            <th class="p-3">{{ trans('price_excl') }}</th>
             <th class="p-3">{{ trans('admin.companies.created_at') }}</th>
 
         </tr>

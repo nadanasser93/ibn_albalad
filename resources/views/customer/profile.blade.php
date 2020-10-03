@@ -57,7 +57,7 @@
 
 @push('footer-scripts')
     <script>
-        $(document).ready(function(){
+       /* $(document).ready(function(){
             $('input[type="radio"]').click(function(){
                 var inputValue = $(this).attr("value");
                 var target = $("#kvk");
@@ -66,7 +66,7 @@
                 else
                     target.css('display','none')
             });
-        });
+        });*/
         $("#my_form").submit(function(event){
             event.preventDefault();  // this prevents the form from submitting
             var post_url = $(this).attr("action"); //get form action url
