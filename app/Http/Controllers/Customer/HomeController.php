@@ -58,7 +58,7 @@ class HomeController extends Controller
         $user=Auth::user();
         $user=User::find($user->id);
         $home = $this->home_service->create([
-
+            'user_id'=>$user->id,
         ]);
         return $home->id;
        // return view('customer.homes.create',compact('cities','home','user'));

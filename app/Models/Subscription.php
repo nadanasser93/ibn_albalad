@@ -45,7 +45,7 @@ class Subscription extends BaseModel implements HasMedia
 {
     use HasMediaTrait;
 
-    protected $fillable=['period_id','name','description','most_chosen','price_incl','price_excl','order_type'];
+    protected $fillable=['period_id','name','description','most_chosen','price_incl','price_excl','order_type','is_company','discount','subscription_for'];
     protected $appends =['image'];
     public function period()
     {
@@ -64,5 +64,6 @@ class Subscription extends BaseModel implements HasMedia
     {
         return $this->getFirstMedia('image');
     }
+
 
 }

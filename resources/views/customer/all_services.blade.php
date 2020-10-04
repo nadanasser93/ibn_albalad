@@ -15,7 +15,7 @@
                     <div class="card-footer">
                         <div class="row pl-3 pr-3 pl-md-0">
                             <a href="{{ route('profile') }}" class="btn btn-primary ">
-                                {{ trans('global.homes.create') }}
+                                {{ trans('global.create') }}
                             </a>
                         </div>
                     </div>

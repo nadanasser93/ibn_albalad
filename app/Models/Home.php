@@ -10,16 +10,13 @@ class Home extends BaseModel implements HasMedia
 {
     use HasMediaTrait;
     protected $fillable=['post_code','street','house_number','description','city_id','company_id','change','user_id',
-        'phone','area','rooms_count','house_type'
+        'phone','area','rooms_count','house_type','subscription_id'
     ];
 
     protected $appends = ['main_image','photos'];
 
     public function city(){
         return $this->belongsTo(City::class,'city_id');
-    }
-    public function company(){
-        return $this->belongsTo(Company::class,'company_id');
     }
 
     public function registerMediaCollections()
@@ -35,5 +32,11 @@ class Home extends BaseModel implements HasMedia
     public function getMainImageAttribute()
     {
         return $this->getFirstMedia('image');
+    }
+    public function orderServices(){
+        return $this->morphMany(OrderService::class, 'service');
+    }
+    public function subscription(){
+        return $this->belongsTo(Subscription::class,'subscription_id');
     }
 }

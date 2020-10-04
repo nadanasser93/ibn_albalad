@@ -73,7 +73,7 @@
                                 @include('customer.homes.create')
                             </div>
                             <!--<button class="btn btn-primary" onclick="stepper1.next()">Next</button>-->
-                            <button class="btn btn-primary" onclick="stepper1.next()">Pay</button>
+                            <button class="btn btn-primary" onclick="storeOrder()">Pay</button>
                         </div>
 
                         <div id="test-l-4" class="content">
@@ -97,8 +97,10 @@
     stepper1Node.addEventListener('shown.bs-stepper', function (event) {
         console.warn('shown.bs-stepper', event)
     })
+    var service;
     function selectService(x){
-        if(drop1!=undefined)
+        service=x
+       if(drop1!=undefined)
             drop1[0].dropzone.removeAllFiles(true);
         if(drop2!=undefined)
             drop2[0].dropzone.removeAllFiles(true);
@@ -141,8 +143,103 @@
 
     }
     var company_id,employee_id,home_id;
-    var drop1,drop2,drop3,drop4,drop5;
+    var drop1,drop2,drop3,drop4,drop5,className='a';
+    function storeOrder() {
+        if(service===3) {
+            submitHome(event,4)
+
+        }
+        else  if(service===1) {
+            submitCompany(event,4)
+        }
+        else if(service===2){
+            submitEmployee(event,4)
+        }
+
+    }
+    function storeServiceOrder(type) {
+        if(type==='homes')
+            id=home_id
+        else  if(type==='companies')
+            id = company_id
+        else
+            id=employee_id
+        order_id=$('#order_id').val()
+        $('#order').val(order_id)
+        _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type: "POST",
+            url: "{{asset('customer/storeServiceOrder')}}",
+            data:{
+                _token: _token,
+                type:type,
+                id:id,
+                order_id:order_id,
+            },
+            success: function(response){
+                //  swal("Thanks For Order Now")
+            }
+        });
+    }
+    function getSubscripts(type) {
+
+        if(type==='homes')
+            className='homesubscription'
+        else  if(type==='companies')
+            className='companysubscription'
+        else
+            className='employeesubscription'
+        $('.' + className).html("")
+        $.ajax({    //create an ajax request to display.php
+            type: "GET",
+            url: "{{asset('customer/getSubscriptionType')}}/"+type,
+            dataType: "JSON",   //expect html to be returned
+            success: function(response){
+                for(i=0;i<response.length;i++) {
+                    if(type==='companies') {
+                        if (response[i].is_company == is_company)
+                            $('.' + className).append(
+                                @include('customer.components.subscriptions')
+                            )
+                    }
+                    else
+                        $('.'+className).append(
+                            @include('customer.components.subscriptions')
+                        )
+                }
+            }
+
+        });
+    }
+    function orderNow(subscription_id,type,e) {
+        e.preventDefault()
+
+        if(type==='homes')
+            id=home_id
+        else  if(type==='companies')
+            id = company_id
+        else
+            id=employee_id
+         _token   = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({    //create an ajax request to display.php
+            type: "POST",
+            url: "{{asset('customer/orderNow')}}",
+            data:{
+                type:type,
+                subscription_id:subscription_id,
+                id:id,
+                _token: _token
+            },
+            success: function(response){
+                swal("Thanks For Order Now")
+            }
+
+        });
+    }
     function createCompany() {
+        getSubscripts('companies')
+        is_company=0;
+        $('.' + className).html("")
         $.ajax({
             url: '{{asset("customer/companies/create")}}',
             type: 'get',
@@ -245,6 +342,8 @@
 
                     }
                 });
+
+
             }
         });
     }
@@ -309,6 +408,8 @@
 
                     }
                 });
+                getSubscripts('employees')
+
             }
         });
     }
@@ -360,14 +461,6 @@
                             }
 
                         });
-                        {{--@php  $file=\Spatie\MediaLibrary\Models\Media::latest()->first() @endphp
-                            @if(!empty($company->main_image))
-                        var mock = {name: '{{ $company->title }}',size: '',type: '' };
-                        this.emit('addedfile',mock);
-                        this.options.thumbnail.call(this,mock,'{{ url($company->main_image->getFullUrl()) }}');
-                        $('.dz-progress').remove();
-                        @endif--}}
-
                             this.on('sending',function(file,xhr,formData){
                             formData.append('fid','');
                             file.fid = '';
@@ -430,10 +523,12 @@
 
                     }
                 });
+                getSubscripts('homes')
+
             }
         });
     }
-    function newServ() {
+    function newServ(step) {
 
         $('form')[1].reset()
         $('form')[2].reset()
@@ -442,8 +537,45 @@
         jQuery('.alert-danger').hide();
         $("#sel").val("");
         $("#sel").trigger("change");
-        stepper1.to(2)
+        stepper1.to(step)
         $('#none').show();
+    }
+    function getCustomerOrders() {
+        var table=$('#orders').DataTable();
+        table.rows().remove().draw();
+        order_id=$('#order_id').val()
+        $.ajax({    //create an ajax request to display.php
+            type: "GET",
+            url: "{{asset('customer/getCustomerOrders')}}/"+order_id,
+            dataType: "JSON",   //expect html to be returned
+            success: function(response){
+
+                phone='';email='';subscription_name='';image='';
+                price_incl=0;price_excl=0;sumprice_incl=0;sumprice_excl=0
+                for(i=0;i<response.services.length;i++) {
+                    if(response.services[i].service!==null) {
+                        phone =response.services[i].service.phone!=null?response.services[i].service.phone:''
+                        email =response.services[i].service.email!=null?response.services[i].service.email:''
+                        {{-- if(response.order.services[i].service.image!==undefined && response.order.services[i].service.image!==null)
+                        image="{{asset('public/storage')}}/"+response.order.services[i].service.image.id+"/"+response.order.services[i].service.image.file_name
+                        if(response.order.services[i].service.employee_image!==undefined&&response.order.services[i].service.employee_image!==null)
+                            image="{{asset('public/storage')}}/"+response.order.services[i].service.employee_image.id+"/"+response.order.services[i].service.employee_image.file_name
+                        if(response.order.services[i].service.main_image!==undefined&& response.order.services[i].service.main_image!==null)
+                            image="{{asset('public/storage')}}/"+response.order.services[i].service.main_image.id+"/"+response.order.services[i].service.main_image.file_name--}}
+                        if(response.services[i].service.subscription!==null) {
+                            subscription_name =response.services[i].service.subscription.name
+                            price_incl =response.services[i].service.subscription.price_incl
+                            price_excl =response.services[i].service.subscription.price_excl
+                        }
+                      }
+                            $("#orders tbody").append(@include('customer.components.table-content'))
+                    }
+                sumprice_incl=response.amount_incl;
+                sumprice_excl=response.amount_excl;
+                   $("#orders tbody").append('<tr><td colspan=4 style="text-align: center">amount incl:'+sumprice_incl+'</td><td colspan=5 style="text-align: center">amount excl:'+sumprice_excl+'</td></tr>')
+                }
+
+        });
     }
 </script>
 @endpush

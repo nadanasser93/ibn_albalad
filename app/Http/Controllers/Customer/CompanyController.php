@@ -48,6 +48,7 @@ class CompanyController extends Controller
 
         $company = $this->company_service->create([
             'company_name'=>'created',
+            'user_id'=>$user->id,
         ]);
          return $company->id;
        // return view('customer.companies.create',compact('customer','cities','jobs','company',''));
@@ -62,9 +63,16 @@ class CompanyController extends Controller
     public function store(Request $request,$company_id)
     {
         $jobs=[];
+        $validator = \Validator::make($request->all(), [
+            'com_type'=>'required'
+        ]);
+
+        if ($validator->fails())
+        {
+            return response()->json(['errors'=>$validator->errors()->all()]);
+        }
         if(isset($request->job))
             if(count($request->job)<=3) {
-           // dd($request->job);
                 for ($x = 0; $x < count($request->job); $x++) {
                     $job = Job::where('id', $request->job[$x])->first();
                     if ($job == null) {
@@ -76,7 +84,6 @@ class CompanyController extends Controller
             }
             else
             return response()->json(['errors'=>'You Can Select Only Three Jobs']);
-      //  dd($company_id,$request->all());
           $company = $this->company_service->update($company_id,[
             'company_name'=>$request->company_name,
             'user_id'=>$request->customer_id,
@@ -187,7 +194,6 @@ class CompanyController extends Controller
         $jobs=[];
         if(isset($request->job))
             if(count($request->job)<=3) {
-              //  dd($request->job);
                 for ($x = 0; $x < count($request->job); $x++) {
                     $job = Job::where('id', $request->job[$x])->first();
                     if ($job == null) {

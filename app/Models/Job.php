@@ -12,8 +12,5 @@ class Job extends BaseModel
     {
         return $this->hasMany(CityAddress::class,'job_id');//->withPivot('company_name', 'company_address','company_phone','company_description','image');
     }
-    public function orders()
-    {
-        return $this->hasMany(Order::class,'job_id');
-    }
+
 }

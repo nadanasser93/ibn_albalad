@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,11 +11,8 @@ use Illuminate\Support\Facades\Auth;
  *
  * @property int $id
  * @property int $user_id
- * @property int $subscription_id
  * @property int $transaction_id
  * @property string $payment_method
- * @property string $start_date
- * @property string $end_date
  * @property float $amount_excl
  * @property float $amount_incl
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -51,22 +49,18 @@ class Order extends Model
      */
     protected $fillable = [
         'user_id',
-        'subscription_id',
         'transaction_id',
         'payment_id',
         'payment_method',
         'payment_status',
-        'start_date',
-        'end_date',
         'amount_excl',
         'amount_incl',
     ];
 
-
-
-
-    public function subscription()
-    {
-        return $this->belongsTo(Subscription::class);
+    public function services(){
+        return $this->hasMany(OrderService::class,'order_id');
+    }
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
     }
 }

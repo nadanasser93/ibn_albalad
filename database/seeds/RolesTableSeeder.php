@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Contracts\Role;
+use Spatie\Permission\Models\Role;
 
 
 class RolesTableSeeder extends Seeder
@@ -14,9 +14,9 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         // //
-        $role = Role::findOrCreate(['name' => 'superadmin']);
-        $role = Role::findOrCreate(['name' => 'admin']);
-        $role = Role::findOrCreate(['name' => 'company']);
-        $role = Role::findOrCreate(['name' => 'customer']);
+        $role = Role::firstOrCreate(['name' => 'superadmin','guard_name'=>'web']);
+        $role = Role::firstOrCreate(['name' => 'admin','guard_name'=>'web']);
+        $role = Role::firstOrCreate(['name' => 'company','guard_name'=>'web']);
+        $role = Role::firstOrCreate(['name' => 'customer','guard_name'=>'web']);
     }
 }

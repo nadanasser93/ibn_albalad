@@ -10,7 +10,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 class Company extends BaseModel implements HasMedia
 {
     use HasMediaTrait;
-    protected $fillable=['company_name','phone','email','job','bank_account','description','kvk','name','user_id','type'];
+    protected $fillable=['company_name','phone','email','job','bank_account','description','kvk','name','user_id','type','subscription_id'];
     protected $appends =['image','photos'];
 
     public function setJobAttribute($value)
@@ -20,21 +20,9 @@ class Company extends BaseModel implements HasMedia
     public function getJobAttribute($value){
         return json_decode($value);
     }
-    public function user()
-    {
-        return $this->morphOne('App\User', 'userable');
-    }
     public function addresses()
     {
         return $this->hasMany(CityAddress::class,'company_id');//->withPivot('company_name', 'company_address','company_phone','company_description','image');
-    }
-    public function homes()
-    {
-        return $this->hasMany(Home::class,'home_id');
-    }
-    public function orders()
-    {
-        return $this->morphMany('App\Models\Order', 'orderable');
     }
     public function registerMediaCollections()
     {
@@ -46,8 +34,14 @@ class Company extends BaseModel implements HasMedia
     {
         return $this->getMedia('photos');
     }
-    public function getMainImageAttribute()
+    public function getImageAttribute()
     {
         return $this->getFirstMedia('image');
+    }
+    public function orderServices(){
+        return $this->morphMany('App\Models\OrderService', 'service');
+    }
+    public function subscription(){
+        return $this->belongsTo(Subscription::class,'subscription_id');
     }
 }

@@ -1,6 +1,4 @@
-
-
-    <div class="col-md-8 mx-auto  grid-margin stretch-card">
+<div class="col-md-8 mx-auto  grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Customer Profile</h4>
@@ -8,22 +6,7 @@
                 <form class="forms-sample" method="post" id="my_form" action="{{route('profile_store')}}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" value="{{$customer->id}}" name="user_id">
-                   <!-- <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-1">  <label for="customer">Customer</label></div>
-                            <div class="col-md-5">
-
-                                <input type="radio" name="type" class="form-control" id="customer" value="customer" placeholder="Name" {{$customer->customer_type==1?'checked':''}}></div>
-                            <div class="col-md-1">  <label for="customer">Company</label></div>
-                            <div class="col-md-5">
-                                 <input type="radio" name="type" class="form-control" id="company" value="company" placeholder="Name" {{$customer->customer_type==2?'checked':''}}>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group" id="kvk" style="{{$customer->customer_type==1?'display: none':'display: block'}}">
-                        <label for="exampleInputName1">KVK</label>
-                        <input type="text" name="kvk" value="" class="form-control" id="exampleInputName1" placeholder="KVK">
-                    </div>-->
+                    <input type="hidden" value="{{$order->id}}" name="order_id" id="order_id">
                     <div class="form-group">
                         <label for="exampleInputName1">Name</label>
                         <input type="text" value="{{$customer->customer_name}}" name="customer_name" class="form-control" id="exampleInputName1" placeholder="Name">
@@ -74,7 +57,7 @@
 
 @push('footer-scripts')
     <script>
-        $(document).ready(function(){
+       /* $(document).ready(function(){
             $('input[type="radio"]').click(function(){
                 var inputValue = $(this).attr("value");
                 var target = $("#kvk");
@@ -83,7 +66,7 @@
                 else
                     target.css('display','none')
             });
-        });
+        });*/
         $("#my_form").submit(function(event){
             event.preventDefault();  // this prevents the form from submitting
             var post_url = $(this).attr("action"); //get form action url

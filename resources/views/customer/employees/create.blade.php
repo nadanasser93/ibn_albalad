@@ -67,12 +67,15 @@
                                     <input type="text" name="post_code"  value="" class="form-control" id="exampleInputName1" placeholder="Post Code">
                                 </div>
                             </div>
+                            <div class="employeesubscription row">
+
+                            </div>
                             <div class="form-group row mb-0 mt-2 mb-1">
                                 <div class="col-md-12 offset-md-4">
-                                    <button type="submit" class="btn btn-primary" onclick="">
+                                    <button type="button" class="btn btn-primary" onclick="submitEmployee(event,2)">
                                         {{ __('button.general.save') }}
                                     </button>
-                                    <!--<button class="btn btn-primary" onclick="stepper1.next()">Pay</button>-->
+
                                 </div>
 
                             </div>
@@ -99,21 +102,24 @@
 
     Dropzone.autoDiscover = false;
 
-    $("#employee_form").submit(function(event){
-        event.preventDefault();  // this prevents the form from submitting
+     function submitEmployee(e,step){
+        e.preventDefault();  // this prevents the form from submitting
+         form2=$("#employee_form")
      //   var post_url = $(this).attr("action"); //get form action url
         var post_url="{{asset('customer/employees/store/')}}/"+employee_id
-        var request_method = $(this).attr("method"); //get form GET/POST method
-        var form_data = $(this).serialize(); //Encode form elements for submission
+        var request_method = form2.attr("method"); //get form GET/POST method
+        var form_data = form2.serialize(); //Encode form elements for submission
 
         $.ajax({
             url : post_url,
             type: request_method,
             data : form_data
         }).done(function(response){ //
-            newServ()
+            newServ(step)
+            storeServiceOrder('employees');
+            getCustomerOrders();
         });
-    });
+    }
 </script>
 @endpush
 
